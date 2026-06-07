@@ -167,7 +167,7 @@
             box-shadow: 0 0 5px rgba(226, 27, 121, 0.1);
         }
         
-        /* زر الشراء العائم الناري والسريع للطلب المباشر */
+        /* زر تأكيد الطلب العائم الناري والسريع للطلب المباشر */
         .order-now-btn {
             background: linear-gradient(90deg, #d60000, #ff1a1a);
             color: white;
@@ -193,4 +193,182 @@
         }
         .order-now-btn:hover {
             transform: translateX(-50%) translateY(-3px);
-            box-shadow: 0 8px 25px rgba(214
+            box-shadow: 0 8px 25px rgba(214, 0, 0, 0.55);
+        }
+        .footer-badges {
+            text-align: center;
+            padding: 20px;
+            background-color: #fafafa;
+            color: #777;
+            font-size: 13px;
+            border-top: 1px solid #eee;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-marquee">
+        <span>⚠️ تنبيه هام: احذروا التقليد المنتشر! نحن نوفر لكم منتج DOVO الأصلي ذو الختم الفضي بضمان AL-HAMZAWI STORE الفعلي ✓ الدفع بعد المعاينة الكاملة والتأكد</span>
+    </div>
+
+    <div class="container">
+        
+        <img src="https://i.ibb.co/qMfNpRT4/IMG-20260607-WA0210.jpg" alt="كريم DOVO الأصلي واقوى العروض" class="product-img-full">
+
+        <div class="content-padding">
+            <h2 class="main-title">كريم DOVO الطبيعي لرفع وتكبير الصدر</h2>
+            <div class="sub-title">🌸 التركيبة العشبية الأصلية 100% والمضمونة للحصول على مظهر أنثوي جذاب ومتناسق بأمان تام وبدون أي آثار جانبية.</div>
+            <div class="price-container">سعر العبوة الأساسية: 275 ج.م</div>
+        </div>
+
+        <div class="offers-section">
+            <div class="offers-title">اختر العرض المناسب لك ووفر أكثر:</div>
+            
+            <div class="offer-box selected" onclick="selectOffer(this, 'عبوة واحدة بسعر 275 ج.م')">
+                <input type="radio" name="offer" checked>
+                <div>اشتري عبوة واحدة الآن بسعر 275 جنيه فقط</div>
+            </div>
+            
+            <div class="offer-box" onclick="selectOffer(this, 'عرض العبوتين بسعر 500 ج.م')">
+                <input type="radio" name="offer">
+                <div>عرض العبوتين بسعر 500 ج.م فقط 🌟 (وفرت 50 جنيه)</div>
+            </div>
+            
+            <div class="offer-box" onclick="selectOffer(this, '3 عبوات بسعر 720 ج.م')">
+                <span class="best-seller-badge">🔥 الأكثر مبيعاً</span>
+                <input type="radio" name="offer">
+                <div>عرض الـ 3 عبوات بسعر 720 ج.م فقط لفترة محدودة! 🔥 (وفرت 105 جنيه)</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="form-title">📝 اطلب الآن - البيانات المطلوبة للشحن</div>
+            
+            <div class="form-group">
+                <label>الاسم بالكامل</label>
+                <input type="text" id="name" placeholder="اكتب الاسم ثلاثي أو رباعي">
+            </div>
+            <div class="form-group">
+                <label>رقم الهاتف</label>
+                <input type="tel" id="phone" placeholder="رقم الموبايل المكون من 11 رقم">
+            </div>
+            <div class="form-group">
+                <label>المحافظة</label>
+                <select id="governorate">
+                    <option value="">اختر المحافظة من القائمة</option>
+                    <option value="القاهرة">القاهرة</option>
+                    <option value="الجيزة">الجيزة</option>
+                    <option value="الإسكندرية">الإسكندرية</option>
+                    <option value="القليوبية">القليوبية</option>
+                    <option value="المنوفية">المنوفية</option>
+                    <option value="الشرقية">الشرقية</option>
+                    <option value="الغربية">الغربية</option>
+                    <option value="الدقهلية">الدقهلية</option>
+                    <option value="البحيرة">البحيرة</option>
+                    <option value="دمياط">دمياط</option>
+                    <option value="بورسعيد">بورسعيد</option>
+                    <option value="الإسماعيلية">الإسماعيلية</option>
+                    <option value="السويس">السويس</option>
+                    <option value="الفيوم">الفيوم</option>
+                    <option value="بني سويف">بني سويف</option>
+                    <option value="المنيا">المنيا</option>
+                    <option value="أسيوط">أسيوط</option>
+                    <option value="سوهاج">سوهاج</option>
+                    <option value="قنا">قنا</option>
+                    <option value="الأقصر">الأقصر</option>
+                    <option value="أسوان">أسوان</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>العنوان بالتفصيل</label>
+                <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
+            </div>
+        </div>
+
+        <div class="footer-badges">
+            ⚡ توصيل سريع خلال 24 إلى 48 ساعة بحد أقصى<br>
+            ✓ الدفع عند الاستلام بعد معاينة المنتج بالكامل | ✓ ضمان براند AL-HAMZAWI
+        </div>
+
+    </div>
+
+    <button class="order-now-btn" onclick="sendOrder()">
+        <span>اضغط هنا لتأكيد طلب الشحن الفوري 🛍️</span>
+    </button>
+
+<script>
+    let chosenOffer = "عبوة واحدة بسعر 275 ج.م";
+
+    function selectOffer(element, offerText) {
+        document.querySelectorAll('.offer-box').forEach(box => {
+            box.classList.remove('selected');
+            box.querySelector('input').checked = false;
+        });
+        element.classList.add('selected');
+        element.querySelector('input').checked = true;
+        chosenOffer = offerText;
+    }
+
+    function sendOrder() {
+        // 1. رابط الـ Web App الخاص بجوجل شيت الخاص بك
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbyI75L4o9I6e133I8u3A6H2_g0x0j_nS_KKTJo/exec"; 
+        
+        // 2. رقم الواتساب بتاعك اللي هيستقبل الرسايل (مكتوب بصيغة كود مصر الدولي وبدون أصفار في الأول)
+        const whatsappNumber = "201501199341"; 
+
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const gov = document.getElementById('governorate').value;
+        const address = document.getElementById('address').value.trim();
+
+        if(!name || !phone || !gov || !address) {
+            alert('يا فندم يرجى ملء جميع الخانات المطلوبة لإتمام عملية الشحن الفوري!');
+            return;
+        }
+
+        const btn = document.querySelector('.order-now-btn span');
+        btn.innerText = "جاري حفظ طلبك وإرساله... ⏳";
+
+        // أ) الحركة الأولى: إرسال البيانات فوراً إلى جوجل شيت في الخلفية
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("phone", phone);
+        formData.append("governorate", gov);
+        formData.append("address", address);
+        formData.append("offer", chosenOffer);
+
+        fetch(scriptUrl, {
+            method: 'POST',
+            body: formData
+        })
+        .then(() => {
+            console.log("تم الحفظ في جوجل شيت بنجاح!");
+        })
+        .catch(error => {
+            console.log("حدث خطأ في حفظ الشيت ولكن سنتابع للواتساب");
+        });
+
+        // ب) الحركة الثانية: تجهيز رسالة الواتساب الأنيقة وتحويل العميل إليها فوراً
+        const message = `مرحباً AL-HAMZAWI STORE 👋\n` +
+                        `لقد قمت بطلب منتج DOVO الأصلي من الموقع، تفاصيل طلبي:\n\n` +
+                        `📝 الاسم بالكامل: ${name}\n` +
+                        `📞 رقم الهاتف: ${phone}\n` +
+                        `📍 المحافظة: ${gov}\n` +
+                        `🏠 العنوان بالتفصيل: ${address}\n` +
+                        `🎁 العرض المختار: ${offerText = chosenOffer}\n\n` +
+                        `يرجى تأكيد الطلب وشحن المنتج في أسرع وقت وشكراً لكم! ✨`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+        // فتح الواتساب للعميل بعد ثانية واحدة لإعطاء فرصة لإرسال الشيت
+        setTimeout(() => {
+            window.location.href = whatsappUrl;
+            btn.innerText = "اضغط هنا لتأكيد طلب الشحن الفوري 🛍️";
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
