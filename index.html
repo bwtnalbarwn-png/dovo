@@ -6,8 +6,8 @@
     <title>AL-HAMZAWI STORE - اطلب الآن</title>
     <style>
         :root {
-            --primary-color: #e21b79; /* لون البراند البينك الاحترافي */
-            --secondary-color: #25d366; /* لون الواتساب الأخضر */
+            --primary-color: #e21b79; /* لون البراند البينك الأنيق */
+            --secondary-color: #d60000; /* أحمر ناري قوي لزرار تأكيد الطلب */
             --bg-color: #f7f7f7;
         }
         @keyframes marquee {
@@ -20,10 +20,10 @@
             margin: 0;
             padding: 0;
             color: #333;
-            padding-bottom: 90px; /* مساحة للزرار العائم السفلي */
+            padding-bottom: 95px; /* مساحة للزرار العائم السفلي */
         }
         .header-marquee {
-            background-color: #ffef00; /* أصفر فاقع يجذب العين */
+            background-color: #ffef00; /* أصفر فاقع بيشد العين */
             color: #d60000; /* أحمر ناري واضح */
             font-weight: bold;
             font-size: 14px;
@@ -35,7 +35,7 @@
         .header-marquee span {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 15s linear infinite;
+            animation: marquee 14s linear infinite;
         }
         .container {
             max-width: 500px;
@@ -51,12 +51,12 @@
             width: 100%;
             height: auto;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: -2px; /* منع الفراغات بين الصور */
         }
         h2.main-title {
             font-size: 24px;
             color: #111;
-            margin: 15px 0 5px 0;
+            margin: 20px 0 8px 0;
             text-align: center;
             font-weight: bold;
         }
@@ -66,9 +66,10 @@
             text-align: center;
             margin-bottom: 20px;
             line-height: 1.6;
+            padding: 0 10px;
         }
         .price-container {
-            font-size: 28px;
+            font-size: 30px;
             color: var(--primary-color);
             font-weight: bold;
             margin-bottom: 25px;
@@ -92,7 +93,7 @@
         }
         .offer-box {
             border: 2px solid #ddd;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 16px;
             margin-bottom: 18px;
             display: flex;
@@ -101,72 +102,80 @@
             transition: 0.3s;
             position: relative;
             background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
         .offer-box input {
-            margin-left: 12px;
-            transform: scale(1.3);
+            margin-left: 14px;
+            transform: scale(1.4);
         }
         .offer-box.selected {
             border-color: var(--primary-color);
             background-color: #fff0f6;
+            box-shadow: 0 4px 10px rgba(226, 27, 121, 0.1);
         }
         
-        /* شارة الأكثر مبيعاً المخصصة على عرض الـ 3 عبوات بالظبط */
+        /* شارة الأكثر مبيعاً المخصصة على عرض الـ 3 عبوات */
         .best-seller-badge {
             position: absolute;
-            top: -12px;
-            left: 15px;
-            background-color: #ff9800; /* لون برتقالي ناري شيك */
+            top: -14px;
+            left: 20px;
+            background: linear-gradient(45deg, #ff9800, #ff5722);
             color: white;
-            padding: 3px 12px;
+            padding: 4px 14px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: bold;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 3px 8px rgba(255, 87, 34, 0.3);
         }
 
         .form-section {
             background-color: #fff;
-            padding: 25px 20px;
+            padding: 30px 20px;
+            border-top: 4px solid #f0f0f0;
         }
         .form-title {
             text-align: center;
-            font-size: 20px;
+            font-size: 21px;
             font-weight: bold;
             color: #111;
-            margin-bottom: 22px;
+            margin-bottom: 25px;
         }
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 600;
             font-size: 15px;
+            color: #444;
         }
         .form-group input, .form-group select {
             width: 100%;
-            padding: 13px;
+            padding: 14px;
             border: 1px solid #ccc;
-            border-radius: 6px;
+            border-radius: 8px;
             box-sizing: border-box;
             font-size: 16px;
             outline: none;
+            background-color: #fafafa;
+            transition: 0.2s;
         }
         .form-group input:focus, .form-group select:focus {
             border-color: var(--primary-color);
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(226, 27, 121, 0.1);
         }
         
-        /* زر الشراء العائم اللي بيتحرك مع الشاشة بستايل جذاب جداً */
+        /* زر الشراء العائم الناري والسريع للطلب المباشر */
         .order-now-btn {
-            background-color: var(--secondary-color);
+            background: linear-gradient(90deg, #d60000, #ff1a1a);
             color: white;
             border: none;
             width: calc(100% - 30px);
             max-width: 470px;
-            padding: 16px;
-            font-size: 19px;
+            padding: 18px;
+            font-size: 20px;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
@@ -174,7 +183,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 6px 20px rgba(214, 0, 0, 0.4);
             transition: 0.3s;
             position: fixed;
             bottom: 15px;
@@ -183,150 +192,5 @@
             z-index: 1000;
         }
         .order-now-btn:hover {
-            transform: translateX(-50%) translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
-        }
-        .footer-badges {
-            text-align: center;
-            padding: 20px;
-            background-color: #f9f9f9;
-            color: #777;
-            font-size: 12px;
-            border-top: 1px solid #eee;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="header-marquee">
-        <span>⚠️ تنبيه: احذروا التقليد المنتشر! نوفر لكم المنتج الأصلي ذو الختم الأصلي بضمان AL-HAMZAWI STORE ✓ شحن سريع لجميع المحافظات والدفع بعد المعاينة</span>
-    </div>
-
-    <div class="container">
-        
-        <i<img src="https://i.ibb.co/qMfNpRT4/IMG-20260607-WA0210.jpg" alt="كريم DOVO الإعلاني" class="product-img-full">
-        <img src="https://i.ibb.co/qMfNpRT4/IMG-20260607-WA0210.jpg" alt="كريم DOVO الإعلاني" class="product-img-full">
-
-        <div class="content-padding">
-            <h2 class="main-title">كريم DOVO الطبيعي لرفع وتكبير الصدر</h2>
-            <div class="sub-title">التركيبة العشبية الأصلية 100% والمضمونة للحصول على مظهر أنثوي جذاب ومتناسق من أول أسبوع استخدام وبأمان تام.</div>
-            <div class="price-container">سعر العبوة: 275 ج.م</div>
-        </div>
-
-        <div class="offers-section">
-            <div class="offers-title">اختر العرض المناسب لك:</div>
-            
-            <div class="offer-box selected" onclick="selectOffer(this, 'عبوة واحدة بسعر 275 ج.م')">
-                <input type="radio" name="offer" checked>
-                <div>اشتري عبوة واحدة الآن بسعر 275 جنيه فقط</div>
-            </div>
-            
-            <div class="offer-box" onclick="selectOffer(this, 'عرض العبوتين بسعر 500 ج.م')">
-                <input type="radio" name="offer">
-                <div>عرض العبوتين بسعر 500 ج.م فقط 🌟 (وفرتي 50 جنيه)</div>
-            </div>
-            
-            <div class="offer-box" onclick="selectOffer(this, '3 عبوات بسعر 720 ج.م')">
-                <span class="best-seller-badge">🔥 الأكثر مبيعاً</span>
-                <input type="radio" name="offer">
-                <div>عرض الـ 3 عبوات بسعر 720 ج.م فقط لفترة محدودة! 🔥</div>
-            </div>
-        </div>
-
-        <div class="form-section">
-            <div class="form-title">📝 يرجى إدخال معلوماتك بدقة لإكمال الطلب</div>
-            
-            <div class="form-group">
-                <label>الاسم بالكامل</label>
-                <input type="text" id="name" placeholder="اكتب اسمك الثلاثي">
-            </div>
-            <div class="form-group">
-                <label>رقم الهاتف (يفضل عليه واتساب)</label>
-                <input type="tel" id="phone" placeholder="رقم الموبايل المكون من 11 رقم">
-            </div>
-            <div class="form-group">
-                <label>المحافظة</label>
-                <select id="governorate">
-                    <option value="">اختر المحافظة</option>
-                    <option value="القاهرة">القاهرة</option>
-                    <option value="الجيزة">الجيزة</option>
-                    <option value="الإسكندرية">الإسكندرية</option>
-                    <option value="القليوبية">القليوبية</option>
-                    <option value="المنوفية">المنوفية</option>
-                    <option value="الشرقية">الشرقية</option>
-                    <option value="الغربية">الغربية</option>
-                    <option value="الدقهلية">الدقهلية</option>
-                    <option value="البحيرة">البحيرة</option>
-                    <option value="دمياط">دمياط</option>
-                    <option value="بورسعيد">بورسعيد</option>
-                    <option value="الإسماعيلية">الإسماعيلية</option>
-                    <option value="السويس">السويس</option>
-                    <option value="الفيوم">الفيوم</option>
-                    <option value="بني سويف">بني سويف</option>
-                    <option value="المنيا">المنيا</option>
-                    <option value="أسيوط">أسيوط</option>
-                    <option value="سوهاج">سوهاج</option>
-                    <option value="قنا">قنا</option>
-                    <option value="الأقصر">الأقصر</option>
-                    <option value="أسوان">أسوان</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>العنوان بالتفصيل</label>
-                <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور أو علامة مميزة">
-            </div>
-        </div>
-
-        <div class="footer-badges">
-            ✓ شحن سريع لكل المحافظات | ✓ فتح الطرد والمعاينة قبل الدفع | ✓ ضمان استبدال مجاني
-        </div>
-
-    </div>
-
-    <button class="order-now-btn" onclick="sendToWhatsApp()">
-        <span>اضغط هنا للشراء عبر الواتساب 💬</span>
-    </button>
-
-<script>
-    let chosenOffer = "عبوة واحدة بسعر 275 ج.م";
-
-    function selectOffer(element, offerText) {
-        document.querySelectorAll('.offer-box').forEach(box => {
-            box.classList.remove('selected');
-            box.querySelector('input').checked = false;
-        });
-        element.classList.add('selected');
-        element.querySelector('input').checked = true;
-        chosenOffer = offerText;
-    }
-
-    function sendToWhatsApp() {
-        const myWhatsAppNumber = "201207362722"; 
-
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const gov = document.getElementById('governorate').value;
-        const address = document.getElementById('address').value.trim();
-
-        if(!name || !phone || !gov || !address) {
-            alert('يا فندم يرجى ملء جميع الخانات أولاً لإكمال طلبك الشحن!');
-            return;
-        }
-
-        const message = `🚨 طلب جديد من موقع AL-HAMZAWI 🚨\n\n` +
-                        `👤 الاسم بالكامل: ${name}\n` +
-                        `📞 رقم الهاتف: ${phone}\n` +
-                        `📍 المحافظة: ${gov}\n` +
-                        `🏠 العنوان بالتفصيل: ${address}\n` +
-                        `🎁 العرض المختار: ${chosenOffer}\n\n` +
-                        `رجاء مراجعة الطلب وتأكيد الشحن الفوري سريعاً لضمان رضا العميل! 🔥`;
-
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${encodedMessage}`;
-
-        window.open(whatsappUrl, '_blank');
-    }
-</script>
-
-</body>
-</html>
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(214
