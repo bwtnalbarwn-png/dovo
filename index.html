@@ -25,7 +25,6 @@
                 transform: translateY(0);
             }
         }
-        
         @keyframes carpetRoll {
             0%, 100% { width: 0; opacity: 0; padding: 0; }
             10%, 40% { width: 130px; opacity: 1; padding: 0 15px 0 35px; }
@@ -91,16 +90,27 @@
             line-height: 1.7;
             font-weight: 600;
         }
+        
+        /* ستايل الأسعار المشطوبة */
         .price-container {
-            font-size: 28px;
-            color: var(--primary-color);
-            font-weight: 900;
             margin-top: 20px;
             text-align: center;
             background: #fff0f6;
-            padding: 10px;
+            padding: 12px;
             border-radius: 12px;
             border: 1px dashed var(--primary-color);
+        }
+        .old-price {
+            font-size: 16px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+        .new-price {
+            font-size: 28px;
+            color: var(--primary-color);
+            font-weight: 900;
         }
         
         /* قسم العروض */
@@ -150,9 +160,25 @@
         .offer-text {
             font-weight: 700;
             font-size: 15px;
+            flex: 1;
+        }
+        .offer-prices {
+            text-align: left;
+            font-weight: 700;
+        }
+        .offer-old-price {
+            font-size: 12px;
+            color: #999;
+            text-decoration: line-through;
+            display: block;
+            line-height: 1;
+        }
+        .offer-new-price {
+            font-size: 16px;
+            color: #111;
         }
 
-        /* فورم البيانات بستايل رصاصي رقيق */
+        /* فورم البيانات بستايل رصاصي رقيق وأيقونات داخلية */
         .form-group {
             margin-bottom: 18px;
         }
@@ -163,9 +189,23 @@
             font-size: 14px;
             color: #444;
         }
+        .input-icon-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .input-icon-wrapper .icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            fill: #7a828a;
+            pointer-events: none;
+        }
         .form-group input, .form-group select {
             width: 100%;
-            padding: 15px;
+            padding: 15px 45px 15px 15px;
             border: 1px solid #e0e0e0;
             border-radius: 12px;
             box-sizing: border-box;
@@ -182,7 +222,7 @@
             box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.1);
         }
 
-        /* 🌟 مستطيل كرت الحسابات والشحن والبروموكود 🌟 */
+        /* مستطيل كرت الحسابات والشحن والبروموكود */
         .checkout-box {
             background-color: #fbfbfb;
             border: 1px dashed #e0e0e0;
@@ -198,7 +238,7 @@
             margin-bottom: 10px;
             color: #444;
         }
-        .checkout-row.total {
+        .checkout-row total {
             border-top: 1px solid #eee;
             padding-top: 10px;
             font-size: 18px;
@@ -363,6 +403,21 @@
             box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2);
         }
 
+        /* ستايل نافذة الكوبون المنبثقة HA10 */
+        .coupon-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 10001;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: 0.3s ease;
+        }
+        .coupon-overlay.show { opacity: 1; pointer-events: auto; }
+        .coupon-card {
+            background: white; width: 85%; max-width: 360px;
+            border-radius: 20px; padding: 25px; text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
         .footer-badges {
             text-align: center;
             padding: 20px;
@@ -386,7 +441,10 @@
         <div class="animated-card card-1">
             <h2 class="main-title">كريم DOVO الطبيعي لرفع وتكبير الصدر</h2>
             <div class="sub-title">🌸 التركيبة العشبية الأصلية 100% والمضمونة للحصول على مظهر أنثوي جذاب ومتناسق بأمان تام وبدون أي آثار جانبية.</div>
-            <div class="price-container">سعر العبوة الأساسية: 275 ج.م</div>
+            <div class="price-container">
+                <span class="old-price">350 ج.م</span>
+                <span class="new-price">275 ج.م</span>
+            </div>
         </div>
 
         <div class="animated-card card-2">
@@ -395,17 +453,29 @@
             <div class="offer-box selected" onclick="selectOffer(this, 'عبوة واحدة بسعر 275 ج.م', 275)">
                 <input type="radio" name="offer" checked>
                 <div class="offer-text">اشتري عبوة واحدة الآن بسعر 275 جنيه فقط</div>
+                <div class="offer-prices">
+                    <span class="offer-old-price">350 ج.م</span>
+                    <span class="offer-new-price">275 ج.م</span>
+                </div>
             </div>
             
             <div class="offer-box" onclick="selectOffer(this, 'عرض العبوتين بسعر 500 ج.م', 500)">
                 <input type="radio" name="offer">
                 <div class="offer-text">عرض العبوتين بسعر 500 ج.م فقط 🌟 (وفرت 50 جنيه)</div>
+                <div class="offer-prices">
+                    <span class="offer-old-price">550 ج.م</span>
+                    <span class="offer-new-price">500 ج.م</span>
+                </div>
             </div>
             
             <div class="offer-box" onclick="selectOffer(this, '3 عبوات بسعر 720 ج.م', 720)">
                 <span class="best-seller-badge">🔥 الأكثر مبيعاً</span>
                 <input type="radio" name="offer">
-                <div class="offer-text">عرض الـ 3 عبوات بسعر 720 ج.م فقط لفترة محدودة! 🔥 (وفرت 105 جنيه)</div>
+                <div class="offer-text">عرض الـ 3 عبوات بسعر 720 ج.م فقط لفترة محدودة! 🔥</div>
+                <div class="offer-prices">
+                    <span class="offer-old-price">825 ج.م</span>
+                    <span class="offer-new-price">720 ج.م</span>
+                </div>
             </div>
         </div>
 
@@ -414,42 +484,57 @@
             
             <div class="form-group">
                 <label>الاسم بالكامل</label>
-                <input type="text" id="name" placeholder="اكتب الاسم ثلاثي أو رباعي">
+                <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <input type="text" id="name" placeholder="اكتب الاسم ثلاثي أو رباعي">
+                </div>
             </div>
+            
             <div class="form-group">
                 <label>رقم الهاتف</label>
-                <input type="tel" id="phone" placeholder="رقم الموبايل المكون من 11 رقم">
+                <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <input type="tel" id="phone" placeholder="رقم الموبايل المكون من 11 رقم">
+                </div>
             </div>
+            
             <div class="form-group">
                 <label>المحافظة</label>
-                <select id="governorate">
-                    <option value="">اختر المحافظة من القائمة</option>
-                    <option value="القاهرة">القاهرة</option>
-                    <option value="الجيزة">الجيزة</option>
-                    <option value="الإسكندرية">الإسكندرية</option>
-                    <option value="القليوبية">القليوبية</option>
-                    <option value="المنوفية">المنوفية</option>
-                    <option value="الشرقية">الشرقية</option>
-                    <option value="الغربية">الغربية</option>
-                    <option value="الدقهلية">الدقهلية</option>
-                    <option value="البحيرة">البحيرة</option>
-                    <option value="دمياط">دمياط</option>
-                    <option value="بورسعيد">بورسعيد</option>
-                    <option value="الإسماعيلية">الإسماعيلية</option>
-                    <option value="السويس">السويس</option>
-                    <option value="الفيوم">الفيوم</option>
-                    <option value="بني سويف">بني سويف</option>
-                    <option value="المنيا">المنيا</option>
-                    <option value="أسيوط">أسيوط</option>
-                    <option value="سوهاج">سوهاج</option>
-                    <option value="قنا">قنا</option>
-                    <option value="الأقصر">الأقصر</option>
-                    <option value="أسوان">أسوان</option>
-                </select>
+                <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <select id="governorate" onchange="updateShippingByLocation()">
+                        <option value="">اختر المحافظة من القائمة</option>
+                        <option value="القاهرة">القاهرة</option>
+                        <option value="الجيزة">الجيزة</option>
+                        <option value="الإسكندرية">الإسكندرية</option>
+                        <option value="القليوبية">القليوبية</option>
+                        <option value="المنوفية">المنوفية</option>
+                        <option value="الشرقية">الشرقية</option>
+                        <option value="الغربية">الغربية</option>
+                        <option value="الدقهلية">الدقهلية</option>
+                        <option value="البحيرة">البحيرة</option>
+                        <option value="دمياط">دمياط</option>
+                        <option value="بورسعيد">بورسعيد</option>
+                        <option value="الإسماعيلية">الإسماعيلية</option>
+                        <option value="السويس">السويس</option>
+                        <option value="الفيوم">الفيوم</option>
+                        <option value="بني سويف">بني سويف</option>
+                        <option value="المنيا">المنيا</option>
+                        <option value="أسيوط">أسيوط</option>
+                        <option value="سوهاج">سوهاج</option>
+                        <option value="قنا">قنا</option>
+                        <option value="الأقصر">الأقصر</option>
+                        <option value="أسوان">أسوان</option>
+                    </select>
+                </div>
             </div>
+            
             <div class="form-group">
                 <label>العنوان بالتفصيل</label>
-                <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
+                <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 17.93V19a1 1 0 0 1-2 0v-1.07A8 8 0 0 1 4.07 13H5a1 1 0 0 1 0-2h-.93A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 11H19a1 1 0 0 1 0 2h.93A8 8 0 0 1 13 17.93z"/></svg>
+                    <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
+                </div>
             </div>
 
             <div class="checkout-box">
@@ -458,10 +543,10 @@
                     <span id="txt-subtotal">275 ج.م</span>
                 </div>
                 <div class="checkout-row">
-                    <span>تكلفة الشحن لجميع المحافظات:</span>
+                    <span>تكلفة الشحن (حسب موقعك):</span>
                     <span id="txt-shipping">60 ج.م</span>
                 </div>
-                <div class="checkout-row total">
+                <div class="checkout-row" style="border-top: 1px solid #eee; padding-top: 10px; font-size: 18px; color: #111; font-weight: 900;">
                     <span>الإجمالي النهائي للدفع عند الاستلام:</span>
                     <span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
                 </div>
@@ -503,11 +588,10 @@
 <script>
     let chosenOffer = "عبوة واحدة بسعر 275 ج.م";
     let productPrice = 275;
-    let shippingPrice = 60;
+    let shippingPrice = 60; // الافتراضي
     let appliedDiscount = 0;
     let usedCouponName = "بدون كوبون";
 
-    // تحديث الحسابات لايف عند اختيار العرض
     function selectOffer(element, offerText, price) {
         document.querySelectorAll('.offer-box').forEach(box => {
             box.classList.remove('selected');
@@ -521,7 +605,23 @@
         recalculateTotal();
     }
 
-    // سيستم تشغيل الكوبونات والبروموكود لايف
+    // دالة ذكية لتحديث سعر الشحن تلقائياً بناءً على اختيار المحافظة
+    function updateShippingByLocation() {
+        const gov = document.getElementById('governorate').value;
+        
+        // لو مفيش كوبون شحن مجاني مفعل، احسب حسب المكان
+        if (!usedCouponName.includes("FREE")) {
+            if (gov === "القاهرة" || gov === "الجيزة") {
+                shippingPrice = 60;
+            } else if (gov !== "") {
+                shippingPrice = 80; // باقي المحافظات
+            } else {
+                shippingPrice = 60; // الافتراضي لو مأختارش
+            }
+        }
+        recalculateTotal();
+    }
+
     function applyPromo() {
         const input = document.getElementById('promo-input').value.trim().toUpperCase();
         const msg = document.getElementById('promo-msg');
@@ -531,40 +631,38 @@
             return;
         }
 
-        if(input === "HAMZA10") {
-            appliedDiscount = Math.round(productPrice * 0.10); // خصم 10%
-            usedCouponName = "HAMZA10 (خصم 10%)";
+        if(input === "HAMZA10" || input === "HA10") {
+            appliedDiscount = Math.round(productPrice * 0.10); 
+            usedCouponName = input + " (خصم 10%)";
             msg.style.display = "block";
             msg.style.color = "#25d366";
             msg.innerText = `✓ مبروك! تم تطبيق كود الخصم بنجاح ووفرت ${appliedDiscount} ج.م`;
         } else if(input === "FREE") {
-            shippingPrice = 0; // شحن مجاني
+            shippingPrice = 0; 
             usedCouponName = "FREE (شحن مجاني)";
             msg.style.display = "block";
             msg.style.color = "#25d366";
             msg.innerText = "✓ مبروك! تم تطبيق عرض الشحن المجاني بنجاح لشحنتك";
         } else {
             appliedDiscount = 0;
-            if(chosenOffer.includes('3 عبوات')) shippingPrice = 60; // إعادة الشحن لو باظ الكود
             usedCouponName = "بدون كوبون";
             msg.style.display = "block";
             msg.style.color = "var(--secondary-color)";
             msg.innerText = "❌ عذراً، هذا الكوبون غير صحيح أو انتهت فترة صلاحيته!";
+            // إعادة الشحن لطبيعته حسب المكان
+            updateShippingByLocation();
+            return;
         }
         recalculateTotal();
     }
 
-    // دالة إعادة حساب الإجمالي
     function recalculateTotal() {
-        // لو العرض اتغير نرجع الشحن لأصله إلا لو كود FREE شغال
-        if(usedCouponName.includes("FREE")) {
+        // لو كوبون الشحن المجاني شغال يفضل صفر، غير كدة نتبع مكان المحافظة
+        if (usedCouponName.includes("FREE")) {
             shippingPrice = 0;
-        } else {
-            shippingPrice = 60;
         }
 
-        // لو العرض اتغير نحدث قيمة الخصم لو كوبون الخصم شغال
-        if(usedCouponName.includes("HAMZA10")) {
+        if (usedCouponName.includes("HAMZA10") || usedCouponName.includes("HA10")) {
             appliedDiscount = Math.round(productPrice * 0.10);
         }
 
@@ -575,7 +673,6 @@
         document.getElementById('txt-total').innerText = finalTotal + " ج.م";
     }
 
-    // دالة الإرسال الأوتوماتيكية الكاملة للشيت
     function sendOrder() {
         const scriptUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec"; 
 
@@ -598,7 +695,6 @@
         formData.append("phone", phone);
         formData.append("governorate", gov);
         formData.append("address", address);
-        // بنبعت العرض، ومعه الكوبون المستخدم، والإجمالي الصافي النهائي للشيت علطول
         formData.append("offer", `${chosenOffer} | الكوبون: ${usedCouponName} | الإجمالي للدفع: ${finalTotalText}`);
 
         fetch(scriptUrl, {
@@ -609,7 +705,6 @@
             document.getElementById('successOverlay').classList.add('show');
             btn.innerText = "تم تسجيل الطلب ✓";
             
-            // تصفير الخانات
             document.getElementById('name').value = "";
             document.getElementById('phone').value = "";
             document.getElementById('governorate').value = "";
