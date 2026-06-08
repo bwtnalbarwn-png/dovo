@@ -12,12 +12,8 @@
         :root {
             --primary-color: #e21b79; /* بينك البراند الأنيق */
             --secondary-color: #d60000; /* أحمر ناري قوي */
-            --bg-color: #eff1f5; /* لون رصاصي خفيف جداً للصفحة، أنظف */
+            --bg-color: #eff1f5; /* لون رصاصي خفيف جداً للصفحة */
             --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        }
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
         }
         @keyframes fadeInUp {
             from {
@@ -43,23 +39,6 @@
             color: #222;
             padding-bottom: 100px;
         }
-        .header-marquee {
-            background-color: #ffef00;
-            color: #d60000;
-            font-weight: 800;
-            font-size: 13.5px;
-            padding: 10px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            position: relative;
-            z-index: 10;
-        }
-        .header-marquee span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 15s linear infinite;
-        }
         .container {
             max-width: 500px;
             margin: 0 auto;
@@ -78,7 +57,7 @@
             width: 100%;
             height: auto;
             display: block;
-            margin-bottom: -1px; /* منع الفراغات البيضاء */
+            margin-bottom: -1px;
         }
         
         /* الكروت والأنيميشن */
@@ -90,7 +69,7 @@
             box-shadow: var(--card-shadow);
             border: 1px solid rgba(0,0,0,0.03);
             animation: fadeInUp 0.8s ease forwards;
-            opacity: 0; /* تبدأ مخفية وتظهر بالأنيميشن */
+            opacity: 0;
         }
         .card-1 { animation-delay: 0.1s; }
         .card-2 { animation-delay: 0.3s; }
@@ -123,7 +102,7 @@
             border: 1px dashed var(--primary-color);
         }
         
-        /* قسم العروض المطور بحدود نظيفة */
+        /* قسم العروض */
         .offers-title, .form-title {
             font-size: 18px;
             font-weight: 800;
@@ -133,7 +112,7 @@
             padding-right: 10px;
         }
         .offer-box {
-            border: 1px solid #e0e0e0; /* حدود أرفع ونظيفة */
+            border: 1px solid #e0e0e0;
             border-radius: 16px;
             padding: 18px 16px;
             margin-bottom: 16px;
@@ -172,7 +151,7 @@
             font-size: 15px;
         }
 
-        /* فورم البيانات المطلوبة بستايل رصاصي رقيق وحدود نظيفة */
+        /* فورم البيانات بستايل رصاصي رقيق وحواف نظيفة */
         .form-group {
             margin-bottom: 18px;
         }
@@ -186,23 +165,23 @@
         .form-group input, .form-group select {
             width: 100%;
             padding: 15px;
-            border: 1px solid #e0e0e0; /* حدود أرفع ونظيفة */
+            border: 1px solid #e0e0e0;
             border-radius: 12px;
             box-sizing: border-box;
             font-size: 15px;
             font-family: 'Cairo', sans-serif;
             font-weight: 600;
             outline: none;
-            background-color: #fbfbfb; /* خلفية رصاصي خفيف جداً */
+            background-color: #fbfbfb;
             transition: all 0.25s;
         }
         .form-group input:focus, .form-group select:focus {
             border-color: var(--primary-color);
             background-color: #fff;
-            box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.1); /* ظل أوسع على التركيز */
+            box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.1);
         }
         
-        /* زر الشراء الثابت العملاق */
+        /* زر الشراء الثابت السفلي */
         .order-now-btn {
             background: linear-gradient(90deg, #d60000, #ff1a1a);
             color: white;
@@ -228,7 +207,7 @@
             box-shadow: 0 12px 30px rgba(214, 0, 0, 0.5);
         }
         
-        /* زرار واتساب العائم والذكي للدعم */
+        /* زرار واتساب العائم على الجنب للدعم */
         .whatsapp-floating {
             position: fixed;
             bottom: 95px;
@@ -253,46 +232,54 @@
             fill: white;
         }
 
-        /* شاشة النجاح المنبثقة */
+        /* مستطيل رسالة النجاح المنبثق المطور (طلبك بالظبط) */
         .success-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
             z-index: 10000;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0; pointer-events: none;
-            transition: 0.4s ease;
+            transition: 0.3s ease;
         }
         .success-overlay.show {
             opacity: 1; pointer-events: auto;
         }
         .success-card {
-            background: white;
-            width: 85%; max-width: 400px;
-            border-radius: 24px;
-            padding: 35px 20px;
+            background: #f4f5f7; /* شكل رصاصي شوية من جوة */
+            width: 85%; max-width: 420px;
+            border-radius: 16px;
+            padding: 30px 20px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            transform: scale(0.7); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid var(--primary-color); /* متحدد بحواف بينك */
+            box-shadow: 0 15px 35px rgba(226, 27, 121, 0.25); /* وليه ظل */
+            transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15);
         }
         .success-overlay.show .success-card {
             transform: scale(1);
         }
-        .success-icon {
-            width: 70px; height: 70px; background: #25d366; color: white;
-            border-radius: 50px; display: flex; align-items: center; justify-content: center;
-            font-size: 35px; margin: 0 auto 20px auto;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        .success-card p {
+            font-size: 16px;
+            color: #111;
+            margin: 0 0 20px 0;
+            line-height: 1.6;
+            font-weight: 700;
         }
-        .success-card h3 { font-size: 22px; margin: 0 0 10px 0; font-weight: 900; color: #111; }
-        .success-card p { font-size: 15px; color: #555; margin: 0 0 25px 0; line-height: 1.6; font-weight: 600; }
         .success-close-btn {
-            background: #111; color: white; border: none; padding: 12px 35px;
-            font-size: 15px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
             font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2);
         }
 
         .footer-badges {
@@ -309,15 +296,11 @@
 </head>
 <body>
 
-    <div class="header-marquee">
-        <span>⚠️ تنبيه هام: احذروا التقليد المنتشر! نحن نوفر لكم منتج DOVO الأصلي ذو الختم الفضي بضمان AL-HAMZAWI STORE الفعلي ✓ الدفع بعد المعاينة الكاملة والتأكد</span>
-    </div>
-
     <div class="container">
         
         <div class="images-gallery">
             <img src="https://i.ibb.co/qMfNpRT4/IMG-20260607-WA0210.jpg" alt="كريم DOVO الأصلي واقوى العروض" class="product-img-full">
-            </div>
+        </div>
 
         <div class="animated-card card-1">
             <h2 class="main-title">كريم DOVO الطبيعي لرفع وتكبير الصدر</h2>
@@ -390,12 +373,12 @@
         </div>
 
         <div class="footer-badges">
-            ⚡ توصيل سريع خلال 24 إلى 48 ساعة بحد أقصى<br>
+            ⚡ توصيل سريع خلال 24 إلى 72 ساعة بحد أقصى<br>
             ✓ الدفع عند الاستلام بعد معاينة المنتج بالكامل | ✓ ضمان براند AL-HAMZAWISTORE
         </div>
     </div>
 
-    <a href="https://wa.me/201501199341?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A7%D9%84%D8%AD%D9%85%D8%B2%D8%A7%D9%85%D9%8A%20%D8%B3%D8%AA%D9%85%D8%B1%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1" class="whatsapp-floating" target="_blank" title="تواصل معنا عبر واتساب">
+    <a href="https://wa.me/201207362722?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A7%D9%84%D8%AD%D9%85%D8%B2%D8%A7%D9%85%D9%8A%20%D8%B3%D8%AA%D9%85%D8%B1%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1" class="whatsapp-floating" target="_blank" title="تواصل معنا عبر واتساب">
         <svg viewBox="0 0 32 32">
             <path d="M16 2a13 13 0 0 0-11.23 19.57L3 29l7.7-1.92A13 13 0 1 0 16 2zm6.75 18.53c-.3.84-1.51 1.52-2.1 1.57-.56.05-1.12.23-3.6-0.76a14.2 14.2 0 0 1-6.14-5.4 6.2 6.2 0 0 1-1.28-3.3 6.63 6.63 0 0 1 2-4.88c.19-.2.4-.25.59-.25h.42c.13 0 .3 0 .47.41.19.46.65 1.58.71 1.7s.1.25.02.43a1.44 1.44 0 0 1-.23.38c-.11.13-.23.29-.33.4s-.22.23-.09.46a10.15 10.15 0 0 0 1.85 2.29 9.3 9.3 0 0 0 2.67 1.65c.23.11.36.09.5-.07s.57-.66.72-.88.29-.19.5-.11 1.32.62 1.55.73.38.16.44.27.06.63-.24 1.47z"/>
         </svg>
@@ -407,17 +390,14 @@
 
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
-            <div class="success-icon">✓</div>
-            <h3>تم إرسال طلبك بنجاح! 🎉</h3>
-            <p>شكراً لثقتك في <b>AL-HAMZAWI STORE</b>.<br>تم تسجيل بياناتك الفورية في سيستم الشحن، وسيتم التواصل معك هاتفياً لتأكيد موعد التسليم خلال ساعات معدودة. 🚚✨</p>
-            <button class="success-close-btn" onclick="closeSuccess()">ممتاز، إغلاق</button>
+            <p>تم تسجيل طلبك بنجاح، سيتم التواصل معك في أقرب وقت، شكراً لك.</p>
+            <button class="success-close-btn" onclick="closeSuccess()">حسناً، إغلاق</button>
         </div>
     </div>
 
 <script>
     let chosenOffer = "عبوة واحدة بسعر 275 ج.م";
 
-    // تفعيل اختيار العروض بالمستطيلات
     function selectOffer(element, offerText) {
         document.querySelectorAll('.offer-box').forEach(box => {
             box.classList.remove('selected');
@@ -428,7 +408,57 @@
         chosenOffer = offerText;
     }
 
-    // سيستم الإرسال الأوتوماتيكي المباشر للشيت
     function sendOrder() {
-        // الرابط السريع
-        const scriptUrl = "https://script.google.
+        // الرابط السريع والصحيح المربوط بجوجل شيت الخاص بك مباشرة
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec"; 
+
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const gov = document.getElementById('governorate').value;
+        const address = document.getElementById('address').value.trim();
+
+        if(!name || !phone || !gov || !address) {
+            alert('يرجى ملء جميع البيانات المطلوبة لضمان الشحن السريع!');
+            return;
+        }
+
+        const btn = document.querySelector('.order-now-btn span');
+        btn.innerText = "جاري حفظ طلبك بأمان... ⏳";
+
+        // استخدام الـ FormData المضمونة للإرسال الفوري والربط الصحيح مع السيرفر والشيت
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("phone", phone);
+        formData.append("governorate", gov);
+        formData.append("address", address);
+        formData.append("offer", chosenOffer);
+
+        fetch(scriptUrl, {
+            method: 'POST',
+            body: formData
+        })
+        .then(() => {
+            // إظهار مستطيل النجاح الوردي والرصاصي فوراً في وسط الصفحة
+            document.getElementById('successOverlay').classList.add('show');
+            btn.innerText = "تم تسجيل الطلب ✓";
+            
+            // تصفير الخانات
+            document.getElementById('name').value = "";
+            document.getElementById('phone').value = "";
+            document.getElementById('governorate').value = "";
+            document.getElementById('address').value = "";
+        })
+        .catch(error => {
+            alert('حدث خطأ في الاتصال بالسيرفر، يرجى المحاولة مرة أخرى!');
+            btn.innerText = "اضغط هنا لتأكيد طلب الشحن الفوري 🛍️";
+        });
+    }
+
+    function closeSuccess() {
+        document.getElementById('successOverlay').classList.remove('show');
+        document.querySelector('.order-now-btn span').innerText = "اضغط هنا لتأكيد طلب الشحن الفوري 🛍️";
+    }
+</script>
+
+</body>
+</html>
