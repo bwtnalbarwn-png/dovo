@@ -4,205 +4,306 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AL-HAMZAWI STORE - اطلب الآن</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-color: #e21b79; /* لون البراند البينك الأنيق */
-            --secondary-color: #d60000; /* أحمر ناري قوي لزرار تأكيد الطلب */
-            --bg-color: #f7f7f7;
+            --primary-color: #e21b79; /* بينك البراند الأنيق */
+            --secondary-color: #d60000; /* أحمر ناري قوي */
+            --bg-color: #eff1f5; /* لون رصاصي خفيف جداً للصفحة، أنظف */
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cairo', sans-serif;
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
-            color: #333;
-            padding-bottom: 95px; /* مساحة للزرار العائم السفلي */
+            color: #222;
+            padding-bottom: 100px;
         }
         .header-marquee {
-            background-color: #ffef00; /* أصفر فاقع بيشد العين */
-            color: #d60000; /* أحمر ناري واضح */
-            font-weight: bold;
-            font-size: 14px;
-            padding: 8px 0;
+            background-color: #ffef00;
+            color: #d60000;
+            font-weight: 800;
+            font-size: 13.5px;
+            padding: 10px 0;
             white-space: nowrap;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
         }
         .header-marquee span {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 14s linear infinite;
+            animation: marquee 15s linear infinite;
         }
         .container {
             max-width: 500px;
             margin: 0 auto;
             background: #fff;
             padding: 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 0 40px rgba(0,0,0,0.05);
         }
-        .content-padding {
-            padding: 20px;
+        
+        /* قسم معرض الصور */
+        .images-gallery {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
         }
         .product-img-full {
             width: 100%;
             height: auto;
             display: block;
-            margin-bottom: -2px; /* منع الفراغات بين الصور */
+            margin-bottom: -1px; /* منع الفراغات البيضاء */
         }
+        
+        /* الكروت والأنيميشن */
+        .animated-card {
+            background: #fff;
+            border-radius: 20px;
+            margin: 20px;
+            padding: 25px 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0; /* تبدأ مخفية وتظهر بالأنيميشن */
+        }
+        .card-1 { animation-delay: 0.1s; }
+        .card-2 { animation-delay: 0.3s; }
+        .card-3 { animation-delay: 0.5s; }
+
         h2.main-title {
             font-size: 24px;
             color: #111;
-            margin: 20px 0 8px 0;
+            margin: 0 0 12px 0;
             text-align: center;
-            font-weight: bold;
+            font-weight: 900;
         }
         .sub-title {
             font-size: 15px;
             color: #555;
             text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            padding: 0 10px;
+            margin-bottom: 0;
+            line-height: 1.7;
+            font-weight: 600;
         }
         .price-container {
-            font-size: 30px;
+            font-size: 28px;
             color: var(--primary-color);
-            font-weight: bold;
-            margin-bottom: 25px;
+            font-weight: 900;
+            margin-top: 20px;
             text-align: center;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 15px;
+            background: #fff0f6;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px dashed var(--primary-color);
         }
         
-        /* قسم العروض المطور */
-        .offers-section {
-            background-color: #fcfcfc;
-            padding: 25px 20px;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-        .offers-title {
+        /* قسم العروض المطور بحدود نظيفة */
+        .offers-title, .form-title {
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 800;
             margin-bottom: 20px;
             color: #111;
+            border-right: 4px solid var(--primary-color);
+            padding-right: 10px;
         }
         .offer-box {
-            border: 2px solid #ddd;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 18px;
+            border: 1px solid #e0e0e0; /* حدود أرفع ونظيفة */
+            border-radius: 16px;
+            padding: 18px 16px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             background: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
         .offer-box input {
             margin-left: 14px;
             transform: scale(1.4);
+            accent-color: var(--primary-color);
         }
         .offer-box.selected {
             border-color: var(--primary-color);
-            background-color: #fff0f6;
-            box-shadow: 0 4px 10px rgba(226, 27, 121, 0.1);
+            background-color: #fff5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(226, 27, 121, 0.12);
         }
-        
-        /* شارة الأكثر مبيعاً المخصصة على عرض الـ 3 عبوات */
         .best-seller-badge {
             position: absolute;
-            top: -14px;
+            top: -12px;
             left: 20px;
             background: linear-gradient(45deg, #ff9800, #ff5722);
             color: white;
-            padding: 4px 14px;
+            padding: 3px 14px;
             border-radius: 20px;
             font-size: 11px;
-            font-weight: bold;
-            box-shadow: 0 3px 8px rgba(255, 87, 34, 0.3);
+            font-weight: 700;
+            box-shadow: 0 5px 10px rgba(255, 87, 34, 0.25);
+        }
+        .offer-text {
+            font-weight: 700;
+            font-size: 15px;
         }
 
-        .form-section {
-            background-color: #fff;
-            padding: 30px 20px;
-            border-top: 4px solid #f0f0f0;
-        }
-        .form-title {
-            text-align: center;
-            font-size: 21px;
-            font-weight: bold;
-            color: #111;
-            margin-bottom: 25px;
-        }
+        /* فورم البيانات المطلوبة بستايل رصاصي رقيق وحدود نظيفة */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 15px;
+            font-weight: 700;
+            font-size: 14px;
             color: #444;
         }
         .form-group input, .form-group select {
             width: 100%;
-            padding: 14px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #e0e0e0; /* حدود أرفع ونظيفة */
+            border-radius: 12px;
             box-sizing: border-box;
-            font-size: 16px;
+            font-size: 15px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
             outline: none;
-            background-color: #fafafa;
-            transition: 0.2s;
+            background-color: #fbfbfb; /* خلفية رصاصي خفيف جداً */
+            transition: all 0.25s;
         }
         .form-group input:focus, .form-group select:focus {
             border-color: var(--primary-color);
             background-color: #fff;
-            box-shadow: 0 0 5px rgba(226, 27, 121, 0.1);
+            box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.1); /* ظل أوسع على التركيز */
         }
         
-        /* زر تأكيد الطلب العائم الناري والسريع للطلب المباشر */
+        /* زر الشراء الثابت العملاق */
         .order-now-btn {
             background: linear-gradient(90deg, #d60000, #ff1a1a);
             color: white;
             border: none;
-            width: calc(100% - 30px);
-            max-width: 470px;
+            width: calc(100% - 40px);
+            max-width: 460px;
             padding: 18px;
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 19px;
+            font-weight: 800;
             border-radius: 50px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 6px 20px rgba(214, 0, 0, 0.4);
-            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(214, 0, 0, 0.35);
+            transition: all 0.3s;
             position: fixed;
             bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1000;
+            z-index: 999;
+            font-family: 'Cairo', sans-serif;
         }
         .order-now-btn:hover {
             transform: translateX(-50%) translateY(-3px);
-            box-shadow: 0 8px 25px rgba(214, 0, 0, 0.55);
+            box-shadow: 0 12px 30px rgba(214, 0, 0, 0.5);
         }
+        
+        /* زرار واتساب العائم والذكي للدعم */
+        .whatsapp-floating {
+            position: fixed;
+            bottom: 95px;
+            left: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 998;
+            cursor: pointer;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+        .whatsapp-floating svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        /* شاشة النجاح المنبثقة */
+        .success-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: 0.4s ease;
+        }
+        .success-overlay.show {
+            opacity: 1; pointer-events: auto;
+        }
+        .success-card {
+            background: white;
+            width: 85%; max-width: 400px;
+            border-radius: 24px;
+            padding: 35px 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transform: scale(0.7); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .success-overlay.show .success-card {
+            transform: scale(1);
+        }
+        .success-icon {
+            width: 70px; height: 70px; background: #25d366; color: white;
+            border-radius: 50px; display: flex; align-items: center; justify-content: center;
+            font-size: 35px; margin: 0 auto 20px auto;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+        .success-card h3 { font-size: 22px; margin: 0 0 10px 0; font-weight: 900; color: #111; }
+        .success-card p { font-size: 15px; color: #555; margin: 0 0 25px 0; line-height: 1.6; font-weight: 600; }
+        .success-close-btn {
+            background: #111; color: white; border: none; padding: 12px 35px;
+            font-size: 15px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%;
+            font-family: 'Cairo', sans-serif;
+        }
+
         .footer-badges {
             text-align: center;
             padding: 20px;
             background-color: #fafafa;
-            color: #777;
+            color: #666;
             font-size: 13px;
             border-top: 1px solid #eee;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -214,35 +315,37 @@
 
     <div class="container">
         
-        <img src="https://i.ibb.co/qMfNpRT4/IMG-20260607-WA0210.jpg" alt="كريم DOVO الأصلي واقوى العروض" class="product-img-full">
+        <div class="images-gallery">
+            <img src="https://i.ibb.co/qMfNpRT4/IMG-20260607-WA0210.jpg" alt="كريم DOVO الأصلي واقوى العروض" class="product-img-full">
+            </div>
 
-        <div class="content-padding">
+        <div class="animated-card card-1">
             <h2 class="main-title">كريم DOVO الطبيعي لرفع وتكبير الصدر</h2>
             <div class="sub-title">🌸 التركيبة العشبية الأصلية 100% والمضمونة للحصول على مظهر أنثوي جذاب ومتناسق بأمان تام وبدون أي آثار جانبية.</div>
             <div class="price-container">سعر العبوة الأساسية: 275 ج.م</div>
         </div>
 
-        <div class="offers-section">
+        <div class="animated-card card-2">
             <div class="offers-title">اختر العرض المناسب لك ووفر أكثر:</div>
             
             <div class="offer-box selected" onclick="selectOffer(this, 'عبوة واحدة بسعر 275 ج.م')">
                 <input type="radio" name="offer" checked>
-                <div>اشتري عبوة واحدة الآن بسعر 275 جنيه فقط</div>
+                <div class="offer-text">اشتري عبوة واحدة الآن بسعر 275 جنيه فقط</div>
             </div>
             
             <div class="offer-box" onclick="selectOffer(this, 'عرض العبوتين بسعر 500 ج.م')">
                 <input type="radio" name="offer">
-                <div>عرض العبوتين بسعر 500 ج.م فقط 🌟 (وفرت 50 جنيه)</div>
+                <div class="offer-text">عرض العبوتين بسعر 500 ج.م فقط 🌟 (وفرت 50 جنيه)</div>
             </div>
             
             <div class="offer-box" onclick="selectOffer(this, '3 عبوات بسعر 720 ج.م')">
                 <span class="best-seller-badge">🔥 الأكثر مبيعاً</span>
                 <input type="radio" name="offer">
-                <div>عرض الـ 3 عبوات بسعر 720 ج.م فقط لفترة محدودة! 🔥 (وفرت 105 جنيه)</div>
+                <div class="offer-text">عرض الـ 3 عبوات بسعر 720 ج.م فقط لفترة محدودة! 🔥 (وفرت 105 جنيه)</div>
             </div>
         </div>
 
-        <div class="form-section">
+        <div class="animated-card card-3">
             <div class="form-title">📝 اطلب الآن - البيانات المطلوبة للشحن</div>
             
             <div class="form-group">
@@ -288,18 +391,33 @@
 
         <div class="footer-badges">
             ⚡ توصيل سريع خلال 24 إلى 48 ساعة بحد أقصى<br>
-            ✓ الدفع عند الاستلام بعد معاينة المنتج بالكامل | ✓ ضمان براند AL-HAMZAWI
+            ✓ الدفع عند الاستلام بعد معاينة المنتج بالكامل | ✓ ضمان براند AL-HAMZAWISTORE
         </div>
-
     </div>
+
+    <a href="https://wa.me/201501199341?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A7%D9%84%D8%AD%D9%85%D8%B2%D8%A7%D9%85%D9%8A%20%D8%B3%D8%AA%D9%85%D8%B1%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1" class="whatsapp-floating" target="_blank" title="تواصل معنا عبر واتساب">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 2a13 13 0 0 0-11.23 19.57L3 29l7.7-1.92A13 13 0 1 0 16 2zm6.75 18.53c-.3.84-1.51 1.52-2.1 1.57-.56.05-1.12.23-3.6-0.76a14.2 14.2 0 0 1-6.14-5.4 6.2 6.2 0 0 1-1.28-3.3 6.63 6.63 0 0 1 2-4.88c.19-.2.4-.25.59-.25h.42c.13 0 .3 0 .47.41.19.46.65 1.58.71 1.7s.1.25.02.43a1.44 1.44 0 0 1-.23.38c-.11.13-.23.29-.33.4s-.22.23-.09.46a10.15 10.15 0 0 0 1.85 2.29 9.3 9.3 0 0 0 2.67 1.65c.23.11.36.09.5-.07s.57-.66.72-.88.29-.19.5-.11 1.32.62 1.55.73.38.16.44.27.06.63-.24 1.47z"/>
+        </svg>
+    </a>
 
     <button class="order-now-btn" onclick="sendOrder()">
         <span>اضغط هنا لتأكيد طلب الشحن الفوري 🛍️</span>
     </button>
 
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-card">
+            <div class="success-icon">✓</div>
+            <h3>تم إرسال طلبك بنجاح! 🎉</h3>
+            <p>شكراً لثقتك في <b>AL-HAMZAWI STORE</b>.<br>تم تسجيل بياناتك الفورية في سيستم الشحن، وسيتم التواصل معك هاتفياً لتأكيد موعد التسليم خلال ساعات معدودة. 🚚✨</p>
+            <button class="success-close-btn" onclick="closeSuccess()">ممتاز، إغلاق</button>
+        </div>
+    </div>
+
 <script>
     let chosenOffer = "عبوة واحدة بسعر 275 ج.م";
 
+    // تفعيل اختيار العروض بالمستطيلات
     function selectOffer(element, offerText) {
         document.querySelectorAll('.offer-box').forEach(box => {
             box.classList.remove('selected');
@@ -310,65 +428,7 @@
         chosenOffer = offerText;
     }
 
+    // سيستم الإرسال الأوتوماتيكي المباشر للشيت
     function sendOrder() {
-        // 1. رابط الـ Web App الخاص بجوجل شيت الخاص بك
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec"; 
-        
-        // 2. رقم الواتساب بتاعك اللي هيستقبل الرسايل (مكتوب بصيغة كود مصر الدولي وبدون أصفار في الأول)
-        const whatsappNumber = "201207362722"; 
-
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const gov = document.getElementById('governorate').value;
-        const address = document.getElementById('address').value.trim();
-
-        if(!name || !phone || !gov || !address) {
-            alert('يا فندم يرجى ملء جميع الخانات المطلوبة لإتمام عملية الشحن الفوري!');
-            return;
-        }
-
-        const btn = document.querySelector('.order-now-btn span');
-        btn.innerText = "جاري حفظ طلبك وإرساله... ⏳";
-
-        // أ) الحركة الأولى: إرسال البيانات فوراً إلى جوجل شيت في الخلفية
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("phone", phone);
-        formData.append("governorate", gov);
-        formData.append("address", address);
-        formData.append("offer", chosenOffer);
-
-        fetch(scriptUrl, {
-            method: 'POST',
-            body: formData
-        })
-        .then(() => {
-            console.log("تم الحفظ في جوجل شيت بنجاح!");
-        })
-        .catch(error => {
-            console.log("حدث خطأ في حفظ الشيت ولكن سنتابع للواتساب");
-        });
-
-        // ب) الحركة الثانية: تجهيز رسالة الواتساب الأنيقة وتحويل العميل إليها فوراً
-        const message = `مرحباً AL-HAMZAWI STORE 👋\n` +
-                        `لقد قمت بطلب منتج DOVO الأصلي من الموقع، تفاصيل طلبي:\n\n` +
-                        `📝 الاسم بالكامل: ${name}\n` +
-                        `📞 رقم الهاتف: ${phone}\n` +
-                        `📍 المحافظة: ${gov}\n` +
-                        `🏠 العنوان بالتفصيل: ${address}\n` +
-                        `🎁 العرض المختار: ${offerText = chosenOffer}\n\n` +
-                        `يرجى تأكيد الطلب وشحن المنتج في أسرع وقت وشكراً لكم! ✨`;
-
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-        // فتح الواتساب للعميل بعد ثانية واحدة لإعطاء فرصة لإرسال الشيت
-        setTimeout(() => {
-            window.location.href = whatsappUrl;
-            btn.innerText = "اضغط هنا لتأكيد طلب الشحن الفوري 🛍️";
-        }, 1000);
-    }
-</script>
-
-</body>
-</html>
+        // الرابط السريع
+        const scriptUrl = "https://script.google.
