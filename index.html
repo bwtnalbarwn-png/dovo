@@ -25,10 +25,11 @@
                 transform: translateY(0);
             }
         }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        
+        @keyframes carpetRoll {
+            0%, 100% { width: 0; opacity: 0; padding: 0; }
+            10%, 40% { width: 130px; opacity: 1; padding: 0 15px 0 35px; }
+            50%, 90% { width: 0; opacity: 0; padding: 0; }
         }
         
         body {
@@ -37,7 +38,7 @@
             margin: 0;
             padding: 0;
             color: #222;
-            padding-bottom: 100px;
+            padding-bottom: 120px;
         }
         .container {
             max-width: 500px;
@@ -151,7 +152,7 @@
             font-size: 15px;
         }
 
-        /* فورم البيانات بستايل رصاصي رقيق وحواف نظيفة */
+        /* فورم البيانات بستايل رصاصي رقيق */
         .form-group {
             margin-bottom: 18px;
         }
@@ -180,20 +181,75 @@
             background-color: #fff;
             box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.1);
         }
+
+        /* 🌟 مستطيل كرت الحسابات والشحن والبروموكود 🌟 */
+        .checkout-box {
+            background-color: #fbfbfb;
+            border: 1px dashed #e0e0e0;
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .checkout-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        .checkout-row.total {
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            font-size: 18px;
+            color: #111;
+            font-weight: 900;
+        }
+        .promo-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .promo-group input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            outline: none;
+        }
+        .promo-btn {
+            background-color: #222;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .promo-message {
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 5px;
+            display: none;
+        }
         
-        /* زر الشراء الثابت السفلي */
+        /* زر الشراء الثابت السفلي المصغر */
         .order-now-btn {
             background: linear-gradient(90deg, #d60000, #ff1a1a);
             color: white;
             border: none;
-            width: calc(100% - 40px);
-            max-width: 460px;
-            padding: 18px;
-            font-size: 19px;
+            width: 85%;
+            max-width: 380px;
+            padding: 12px 15px;
+            font-size: 15.5px;
             font-weight: 800;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(214, 0, 0, 0.35);
+            box-shadow: 0 6px 20px rgba(214, 0, 0, 0.3);
             transition: all 0.3s;
             position: fixed;
             bottom: 15px;
@@ -203,36 +259,61 @@
             font-family: 'Cairo', sans-serif;
         }
         .order-now-btn:hover {
-            transform: translateX(-50%) translateY(-3px);
-            box-shadow: 0 12px 30px rgba(214, 0, 0, 0.5);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 10px 25px rgba(214, 0, 0, 0.45);
         }
         
-        /* زرار واتساب العائم على الجنب للدعم */
-        .whatsapp-floating {
+        /* منطقة زرار واتساب بأنيميشن السجادة */
+        .whatsapp-wrapper {
             position: fixed;
-            bottom: 95px;
+            bottom: 75px;
             left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 998;
+            direction: ltr;
+        }
+        .whatsapp-floating {
             background-color: #25d366;
             color: white;
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 998;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.18);
             cursor: pointer;
             text-decoration: none;
-            animation: pulse 2s infinite;
+            position: relative;
+            z-index: 2;
         }
         .whatsapp-floating svg {
-            width: 30px;
-            height: 30px;
+            width: 26px;
+            height: 26px;
             fill: white;
         }
+        .whatsapp-text-carpet {
+            background-color: #111111;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 20px 20px 0;
+            margin-left: -25px;
+            z-index: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0; opacity: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            animation: carpetRoll 8s infinite ease-in-out;
+        }
 
-        /* مستطيل رسالة النجاح المنبثق المطور (طلبك بالظبط) */
+        /* مستطيل رسالة النجاح المنبثق المطور */
         .success-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -249,13 +330,13 @@
             opacity: 1; pointer-events: auto;
         }
         .success-card {
-            background: #f4f5f7; /* شكل رصاصي شوية من جوة */
+            background: #f4f5f7;
             width: 85%; max-width: 420px;
             border-radius: 16px;
             padding: 30px 20px;
             text-align: center;
-            border: 2px solid var(--primary-color); /* متحدد بحواف بينك */
-            box-shadow: 0 15px 35px rgba(226, 27, 121, 0.25); /* وليه ظل */
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 15px 35px rgba(226, 27, 121, 0.25);
             transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15);
         }
         .success-overlay.show .success-card {
@@ -311,17 +392,17 @@
         <div class="animated-card card-2">
             <div class="offers-title">اختر العرض المناسب لك ووفر أكثر:</div>
             
-            <div class="offer-box selected" onclick="selectOffer(this, 'عبوة واحدة بسعر 275 ج.م')">
+            <div class="offer-box selected" onclick="selectOffer(this, 'عبوة واحدة بسعر 275 ج.م', 275)">
                 <input type="radio" name="offer" checked>
                 <div class="offer-text">اشتري عبوة واحدة الآن بسعر 275 جنيه فقط</div>
             </div>
             
-            <div class="offer-box" onclick="selectOffer(this, 'عرض العبوتين بسعر 500 ج.م')">
+            <div class="offer-box" onclick="selectOffer(this, 'عرض العبوتين بسعر 500 ج.م', 500)">
                 <input type="radio" name="offer">
                 <div class="offer-text">عرض العبوتين بسعر 500 ج.م فقط 🌟 (وفرت 50 جنيه)</div>
             </div>
             
-            <div class="offer-box" onclick="selectOffer(this, '3 عبوات بسعر 720 ج.م')">
+            <div class="offer-box" onclick="selectOffer(this, '3 عبوات بسعر 720 ج.م', 720)">
                 <span class="best-seller-badge">🔥 الأكثر مبيعاً</span>
                 <input type="radio" name="offer">
                 <div class="offer-text">عرض الـ 3 عبوات بسعر 720 ج.م فقط لفترة محدودة! 🔥 (وفرت 105 جنيه)</div>
@@ -370,6 +451,27 @@
                 <label>العنوان بالتفصيل</label>
                 <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
             </div>
+
+            <div class="checkout-box">
+                <div class="checkout-row">
+                    <span>قيمة المنتج:</span>
+                    <span id="txt-subtotal">275 ج.م</span>
+                </div>
+                <div class="checkout-row">
+                    <span>تكلفة الشحن لجميع المحافظات:</span>
+                    <span id="txt-shipping">60 ج.م</span>
+                </div>
+                <div class="checkout-row total">
+                    <span>الإجمالي النهائي للدفع عند الاستلام:</span>
+                    <span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
+                </div>
+                
+                <div class="promo-group">
+                    <input type="text" id="promo-input" placeholder="هل لديك كوبون خصم؟ أدخله هنا">
+                    <button type="button" class="promo-btn" onclick="applyPromo()">تطبيق الكود</button>
+                </div>
+                <div id="promo-msg" class="promo-message"></div>
+            </div>
         </div>
 
         <div class="footer-badges">
@@ -378,14 +480,17 @@
         </div>
     </div>
 
-    <a href="https://wa.me/201207362722?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A7%D9%84%D8%AD%D9%85%D8%B2%D8%A7%D9%85%D9%8A%20%D8%B3%D8%AA%D9%85%D8%B1%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1" class="whatsapp-floating" target="_blank" title="تواصل معنا عبر واتساب">
-        <svg viewBox="0 0 32 32">
-            <path d="M16 2a13 13 0 0 0-11.23 19.57L3 29l7.7-1.92A13 13 0 1 0 16 2zm6.75 18.53c-.3.84-1.51 1.52-2.1 1.57-.56.05-1.12.23-3.6-0.76a14.2 14.2 0 0 1-6.14-5.4 6.2 6.2 0 0 1-1.28-3.3 6.63 6.63 0 0 1 2-4.88c.19-.2.4-.25.59-.25h.42c.13 0 .3 0 .47.41.19.46.65 1.58.71 1.7s.1.25.02.43a1.44 1.44 0 0 1-.23.38c-.11.13-.23.29-.33.4s-.22.23-.09.46a10.15 10.15 0 0 0 1.85 2.29 9.3 9.3 0 0 0 2.67 1.65c.23.11.36.09.5-.07s.57-.66.72-.88.29-.19.5-.11 1.32.62 1.55.73.38.16.44.27.06.63-.24 1.47z"/>
-        </svg>
-    </a>
+    <div class="whatsapp-wrapper">
+        <a href="https://wa.me/201207362722?text=%D8%A3%D9%87%D9%84%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D8%A8%D8%AA%D8%AC%D8%B1%D8%A8%D8%A9%20%D9%8..%20Dovo.%20%D9%87%D9%84%20%D9%85%D8%AA%D9%85%D9%85%D9%8A%D8%AA%D9%85%D9%88%D9%81%D8%B1%20%D8%20%D8%AD%D9%84%D9%8A%D8%A7%D9%8B%D8%9F%20%D9%83%D9%8A%D9%81%20%D9%8A%D9%85%D9%83%D9%86%D9%86%D9%82%20%D8%B7%D9%84%D8%A8%D9%87%20%D9%85%D9%86%20Al-Hamzawi-Store%D8%9F" class="whatsapp-floating" target="_blank" title="تواصل معنا عبر واتساب">
+            <svg viewBox="0 0 32 32">
+                <path d="M16 2a13 13 0 0 0-11.23 19.57L3 29l7.7-1.92A13 13 0 1 0 16 2zm6.75 18.53c-.3.84-1.51 1.52-2.1 1.57-.56.05-1.12.23-3.6-0.76a14.2 14.2 0 0 1-6.14-5.4 6.2 6.2 0 0 1-1.28-3.3 6.63 6.63 0 0 1 2-4.88c.19-.2.4-.25.59-.25h.42c.13 0 .3 0 .47.41.19.46.65 1.58.71 1.7s.1.25.02.43a1.44 1.44 0 0 1-.23.38c-.11.13-.23.29-.33.4s-.22.23-.09.46a10.15 10.15 0 0 0 1.85 2.29 9.3 9.3 0 0 0 2.67 1.65c.23.11.36.09.5-.07s.57-.66.72-.88.29-.19.5-.11 1.32.62 1.55.73.38.16.44.27.06.63-.24 1.47z"/>
+            </svg>
+        </a>
+        <div class="whatsapp-text-carpet">تواصل عبر واتساب</div>
+    </div>
 
     <button class="order-now-btn" onclick="sendOrder()">
-        <span>اضغط هنا لتأكيد طلب الشحن الفوري 🛍️</span>
+        <span>تأكيد طلب الشحن الفوري 🛍️</span>
     </button>
 
     <div class="success-overlay" id="successOverlay">
@@ -397,25 +502,88 @@
 
 <script>
     let chosenOffer = "عبوة واحدة بسعر 275 ج.م";
+    let productPrice = 275;
+    let shippingPrice = 60;
+    let appliedDiscount = 0;
+    let usedCouponName = "بدون كوبون";
 
-    function selectOffer(element, offerText) {
+    // تحديث الحسابات لايف عند اختيار العرض
+    function selectOffer(element, offerText, price) {
         document.querySelectorAll('.offer-box').forEach(box => {
             box.classList.remove('selected');
             box.querySelector('input').checked = false;
         });
         element.classList.add('selected');
         element.querySelector('input').checked = true;
+        
         chosenOffer = offerText;
+        productPrice = price;
+        recalculateTotal();
     }
 
+    // سيستم تشغيل الكوبونات والبروموكود لايف
+    function applyPromo() {
+        const input = document.getElementById('promo-input').value.trim().toUpperCase();
+        const msg = document.getElementById('promo-msg');
+        
+        if(!input) {
+            alert('يرجى كتابة اسم الكوبون أولاً!');
+            return;
+        }
+
+        if(input === "HAMZA10") {
+            appliedDiscount = Math.round(productPrice * 0.10); // خصم 10%
+            usedCouponName = "HAMZA10 (خصم 10%)";
+            msg.style.display = "block";
+            msg.style.color = "#25d366";
+            msg.innerText = `✓ مبروك! تم تطبيق كود الخصم بنجاح ووفرت ${appliedDiscount} ج.م`;
+        } else if(input === "FREE") {
+            shippingPrice = 0; // شحن مجاني
+            usedCouponName = "FREE (شحن مجاني)";
+            msg.style.display = "block";
+            msg.style.color = "#25d366";
+            msg.innerText = "✓ مبروك! تم تطبيق عرض الشحن المجاني بنجاح لشحنتك";
+        } else {
+            appliedDiscount = 0;
+            if(chosenOffer.includes('3 عبوات')) shippingPrice = 60; // إعادة الشحن لو باظ الكود
+            usedCouponName = "بدون كوبون";
+            msg.style.display = "block";
+            msg.style.color = "var(--secondary-color)";
+            msg.innerText = "❌ عذراً، هذا الكوبون غير صحيح أو انتهت فترة صلاحيته!";
+        }
+        recalculateTotal();
+    }
+
+    // دالة إعادة حساب الإجمالي
+    function recalculateTotal() {
+        // لو العرض اتغير نرجع الشحن لأصله إلا لو كود FREE شغال
+        if(usedCouponName.includes("FREE")) {
+            shippingPrice = 0;
+        } else {
+            shippingPrice = 60;
+        }
+
+        // لو العرض اتغير نحدث قيمة الخصم لو كوبون الخصم شغال
+        if(usedCouponName.includes("HAMZA10")) {
+            appliedDiscount = Math.round(productPrice * 0.10);
+        }
+
+        const finalTotal = (productPrice - appliedDiscount) + shippingPrice;
+
+        document.getElementById('txt-subtotal').innerText = productPrice + " ج.م";
+        document.getElementById('txt-shipping').innerText = (shippingPrice === 0) ? "شحن مجاني مبروك" : shippingPrice + " ج.م";
+        document.getElementById('txt-total').innerText = finalTotal + " ج.م";
+    }
+
+    // دالة الإرسال الأوتوماتيكية الكاملة للشيت
     function sendOrder() {
-        // الرابط السريع والصحيح المربوط بجوجل شيت الخاص بك مباشرة
         const scriptUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec"; 
 
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
         const gov = document.getElementById('governorate').value;
         const address = document.getElementById('address').value.trim();
+        const finalTotalText = document.getElementById('txt-total').innerText;
 
         if(!name || !phone || !gov || !address) {
             alert('يرجى ملء جميع البيانات المطلوبة لضمان الشحن السريع!');
@@ -425,20 +593,19 @@
         const btn = document.querySelector('.order-now-btn span');
         btn.innerText = "جاري حفظ طلبك بأمان... ⏳";
 
-        // استخدام الـ FormData المضمونة للإرسال الفوري والربط الصحيح مع السيرفر والشيت
         const formData = new FormData();
         formData.append("name", name);
         formData.append("phone", phone);
         formData.append("governorate", gov);
         formData.append("address", address);
-        formData.append("offer", chosenOffer);
+        // بنبعت العرض، ومعه الكوبون المستخدم، والإجمالي الصافي النهائي للشيت علطول
+        formData.append("offer", `${chosenOffer} | الكوبون: ${usedCouponName} | الإجمالي للدفع: ${finalTotalText}`);
 
         fetch(scriptUrl, {
             method: 'POST',
             body: formData
         })
         .then(() => {
-            // إظهار مستطيل النجاح الوردي والرصاصي فوراً في وسط الصفحة
             document.getElementById('successOverlay').classList.add('show');
             btn.innerText = "تم تسجيل الطلب ✓";
             
@@ -447,16 +614,22 @@
             document.getElementById('phone').value = "";
             document.getElementById('governorate').value = "";
             document.getElementById('address').value = "";
+            document.getElementById('promo-input').value = "";
+            document.getElementById('promo-msg').style.display = "none";
+            appliedDiscount = 0;
+            shippingPrice = 60;
+            usedCouponName = "بدون كوبون";
+            recalculateTotal();
         })
         .catch(error => {
             alert('حدث خطأ في الاتصال بالسيرفر، يرجى المحاولة مرة أخرى!');
-            btn.innerText = "اضغط هنا لتأكيد طلب الشحن الفوري 🛍️";
+            btn.innerText = "تأكيد طلب الشحن الفوري 🛍️";
         });
     }
 
     function closeSuccess() {
         document.getElementById('successOverlay').classList.remove('show');
-        document.querySelector('.order-now-btn span').innerText = "اضغط هنا لتأكيد طلب الشحن الفوري 🛍️";
+        document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
     }
 </script>
 
