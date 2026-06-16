@@ -463,25 +463,31 @@
                         <option value="">اختر المحافظة من القائمة</option>
                         <option value="القاهرة">القاهرة</option>
                         <option value="الجيزة">الجيزة</option>
-                        <option value="الإسكندرية">الإسكندرية</option>
                         <option value="القليوبية">القليوبية</option>
-                        <option value="المنوفية">المنوفية</option>
-                        <option value="الشرقية">الشرقية</option>
-                        <option value="الغربية">الغربية</option>
-                        <option value="الدقهلية">الدقهلية</option>
+                        <option value="الإسكندرية">الإسكندرية</option>
                         <option value="البحيرة">البحيرة</option>
+                        <option value="مطروح">مطروح</option>
+                        <option value="الدقهلية">الدقهلية</option>
+                        <option value="كفر الشيخ">كفر الشيخ</option>
+                        <option value="الغربية">الغربية</option>
+                        <option value="المنوفية">المنوفية</option>
                         <option value="دمياط">دمياط</option>
                         <option value="بورسعيد">بورسعيد</option>
                         <option value="الإسماعيلية">الإسماعيلية</option>
                         <option value="السويس">السويس</option>
-                        <option value="الفيوم">الفيوم</option>
+                        <option value="الشرقية">الشرقية</option>
+                        <option value="شمال سيناء">شمال سيناء</option>
+                        <option value="جنوب سيناء">جنوب سيناء</option>
                         <option value="بني سويف">بني سويف</option>
+                        <option value="الفيوم">الفيوم</option>
                         <option value="المنيا">المنيا</option>
                         <option value="أسيوط">أسيوط</option>
+                        <option value="الوادي الجديد">الوادي الجديد</option>
                         <option value="سوهاج">سوهاج</option>
                         <option value="قنا">قنا</option>
                         <option value="الأقصر">الأقصر</option>
                         <option value="أسوان">أسوان</option>
+                        <option value="البحر الأحمر">البحر الأحمر</option>
                     </select>
                 </div>
             </div>
@@ -494,6 +500,7 @@
                 </div>
             </div>
 
+            <!-- قسم طريقة الدفع الذكي -->
             <div class="payment-method-container" style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
                 <label style="font-weight: 700; color: #333; display: block; margin-bottom: 10px; font-size: 15px;">💵 اختر طريقة الدفع المفضلة:</label>
                 
@@ -507,13 +514,17 @@
                     <label for="vodafone_cash" style="font-weight: 600; color: #222; cursor: pointer;">تحويل فودافون كاش (مقدم)</label>
                 </div>
 
+                <!-- خانة إرفاق الإسكرين شوت الذكية -->
                 <div id="cash-details" style="display: none; margin-top: 12px; background: #fff4f4; border: 1px dashed #d60000; padding: 15px; border-radius: 8px; animation: fadeIn 0.3s ease-in-out;">
                     <p style="color: #d60000; font-weight: 700; margin: 0 0 8px 0; font-size: 14px;">⚠️ تعليمات التحويل الفوري:</p>
                     <p style="color: #444; font-size: 14px; margin: 0; line-height: 1.6;">
                         يرجى تحويل إجمالي المبلغ على رقمنا: <strong style="color: #000; font-size: 16px; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #ccc;">01064752844</strong><br>
-                        ثم قم بكتابة اسم المحوّل أو رقم التحويل في الخانة بالأسفل واضغط تأكيد.
+                        ثم قم برفع صورة (إسكرين شوت) لإيصال التحويل لتأكيد طلبك بنجاح.
                     </p>
-                    <input type="text" id="transfer_reference" placeholder="اكتب رقم التحويل أو اسم المحوّل هنا" style="width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: 'Cairo', sans-serif;">
+                    <div style="margin-top: 12px;">
+                        <label style="display: block; margin-bottom: 6px; font-weight: 700; font-size: 13px; color: #555;">📸 أرفق سكرين شوت التحويل هنا:</label>
+                        <input type="file" id="transfer_screenshot" accept="image/*" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; background: #fff; font-family: 'Cairo', sans-serif;">
+                    </div>
                 </div>
             </div>
 
@@ -589,12 +600,13 @@
     function updateShippingByLocation() {
         const gov = document.getElementById('governorate').value;
         if (!usedCouponName.includes("FREE")) {
-            if (gov === "القاهرة" || gov === "الجيزة") {
-                shippingPrice = 60;
+            // حساب الشحن النظيف: القاهرة والجيزة والقليوبية بـ 60 جنيه وباقي المحافظات الـ 24 بـ 80 جنيه
+            if (gov === "القاهرة" || gov === "الجيزة" || gov === "القليوبية") {
+                shippingPrice = 60; 
             } else if (gov !== "") {
-                shippingPrice = 80;
+                shippingPrice = 80; 
             } else {
-                shippingPrice = 60;
+                shippingPrice = 60; 
             }
         }
         recalculateTotal();
@@ -612,7 +624,7 @@
             cashDetailsDiv.style.display = 'none';
             paymentMethod = "الدفع عند الاستلام";
             totalLabel.innerText = "الإجمالي النهائي للدفع عند الاستلام:";
-            document.getElementById('transfer_reference').value = ''; 
+            document.getElementById('transfer_screenshot').value = ''; 
         }
     }
 
@@ -667,7 +679,7 @@
         const phone = document.getElementById('phone').value.trim();
         const gov = document.getElementById('governorate').value;
         const address = document.getElementById('address').value.trim();
-        const reference = document.getElementById('transfer_reference').value.trim();
+        const screenshotInput = document.getElementById('transfer_screenshot');
         const finalTotalText = document.getElementById('txt-total').innerText;
 
         if(!name || !phone || !gov || !address) {
@@ -675,8 +687,8 @@
             return;
         }
 
-        if (paymentMethod === "تحويل كاش مقدم" && !reference) {
-            alert('يرجى كتابة رقم التحويل أو اسم المحوّل لتأكيد استلام الكاش البدء في الشحن!');
+        if (paymentMethod === "تحويل كاش مقدم" && screenshotInput.files.length === 0) {
+            alert('برجاء إرفاق صورة إيصال التحويل (السكرين شوت) أولاً لتأكيد استلام الكاش والبدء في الشحن!');
             return;
         }
 
@@ -688,7 +700,13 @@
         formData.append("phone", phone);
         formData.append("governorate", gov);
         formData.append("address", address);
-        formData.append("offer", `${chosenOffer} | الكوبون: ${usedCouponName} | طريقة الدفع: ${paymentMethod} | إثبات التحويل: ${reference ? reference : 'لا يوجد (COD)'} | الإجمالي: ${finalTotalText}`);
+        
+        let screenshotStatus = "لا يوجد (COD)";
+        if (paymentMethod === "تحويل كاش مقدم" && screenshotInput.files.length > 0) {
+            screenshotStatus = `مرفق سكرين شوت باسم: ${screenshotInput.files[0].name}`;
+        }
+
+        formData.append("offer", `${chosenOffer} | الكوبون: ${usedCouponName} | طريقة الدفع: ${paymentMethod} | إثبات التحويل: ${screenshotStatus} | الإجمالي: ${finalTotalText}`);
 
         fetch(scriptUrl, {
             method: 'POST',
@@ -702,7 +720,7 @@
             document.getElementById('phone').value = "";
             document.getElementById('governorate').value = "";
             document.getElementById('address').value = "";
-            document.getElementById('transfer_reference').value = "";
+            screenshotInput.value = "";
             document.getElementById('promo-input').value = "";
             document.getElementById('promo-msg').style.display = "none";
             
