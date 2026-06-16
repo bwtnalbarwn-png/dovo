@@ -16,19 +16,17 @@
             --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         @keyframes carpetRoll {
             0%, 100% { width: 0; opacity: 0; padding: 0; }
             10%, 40% { width: 130px; opacity: 1; padding: 0 15px 0 35px; }
             50%, 90% { width: 0; opacity: 0; padding: 0; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         body {
@@ -47,7 +45,6 @@
             box-shadow: 0 0 40px rgba(0,0,0,0.05);
         }
         
-        /* قسم معرض الصور */
         .images-gallery {
             width: 100%;
             display: flex;
@@ -60,7 +57,6 @@
             margin-bottom: -1px;
         }
         
-        /* الكروت والأنيميشن */
         .animated-card {
             background: #fff;
             border-radius: 20px;
@@ -91,7 +87,6 @@
             font-weight: 600;
         }
         
-        /* ستايل الأسعار المشطوبة */
         .price-container {
             margin-top: 20px;
             text-align: center;
@@ -113,7 +108,6 @@
             font-weight: 900;
         }
         
-        /* قسم العروض */
         .offers-title, .form-title {
             font-size: 18px;
             font-weight: 800;
@@ -178,10 +172,7 @@
             color: #111;
         }
 
-        /* فورم البيانات بستايل رصاصي رقيق وأيقونات داخلية */
-        .form-group {
-            margin-bottom: 18px;
-        }
+        .form-group { margin-bottom: 18px; }
         .form-group label {
             display: block;
             margin-bottom: 8px;
@@ -222,7 +213,6 @@
             box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.1);
         }
 
-        /* مستطيل كرت الحسابات والشحن والبروموكود */
         .checkout-box {
             background-color: #fbfbfb;
             border: 1px dashed #e0e0e0;
@@ -237,13 +227,6 @@
             font-weight: 700;
             margin-bottom: 10px;
             color: #444;
-        }
-        .checkout-row total {
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-            font-size: 18px;
-            color: #111;
-            font-weight: 900;
         }
         .promo-group {
             display: flex;
@@ -277,7 +260,6 @@
             display: none;
         }
         
-        /* زر الشراء الثابت السفلي المصغر */
         .order-now-btn {
             background: linear-gradient(90deg, #d60000, #ff1a1a);
             color: white;
@@ -303,7 +285,6 @@
             box-shadow: 0 10px 25px rgba(214, 0, 0, 0.45);
         }
         
-        /* منطقة زرار واتساب بأنيميشن السجادة */
         .whatsapp-wrapper {
             position: fixed;
             bottom: 75px;
@@ -328,11 +309,7 @@
             position: relative;
             z-index: 2;
         }
-        .whatsapp-floating svg {
-            width: 26px;
-            height: 26px;
-            fill: white;
-        }
+        .whatsapp-floating svg { width: 26px; height: 26px; fill: white; }
         .whatsapp-text-carpet {
             background-color: #111111;
             color: #ffffff;
@@ -353,7 +330,6 @@
             animation: carpetRoll 8s infinite ease-in-out;
         }
 
-        /* مستطيل رسالة النجاح المنبثق المطور */
         .success-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -366,9 +342,7 @@
             opacity: 0; pointer-events: none;
             transition: 0.3s ease;
         }
-        .success-overlay.show {
-            opacity: 1; pointer-events: auto;
-        }
+        .success-overlay.show { opacity: 1; pointer-events: auto; }
         .success-card {
             background: #f4f5f7;
             width: 85%; max-width: 420px;
@@ -379,9 +353,7 @@
             box-shadow: 0 15px 35px rgba(226, 27, 121, 0.25);
             transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15);
         }
-        .success-overlay.show .success-card {
-            transform: scale(1);
-        }
+        .success-overlay.show .success-card { transform: scale(1); }
         .success-card p {
             font-size: 16px;
             color: #111;
@@ -401,21 +373,6 @@
             width: 100%;
             font-family: 'Cairo', sans-serif;
             box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2);
-        }
-
-        /* ستايل نافذة الكوبون المنبثقة HA10 */
-        .coupon-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 10001;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: 0.3s ease;
-        }
-        .coupon-overlay.show { opacity: 1; pointer-events: auto; }
-        .coupon-card {
-            background: white; width: 85%; max-width: 360px;
-            border-radius: 20px; padding: 25px; text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .footer-badges {
@@ -537,6 +494,29 @@
                 </div>
             </div>
 
+            <div class="payment-method-container" style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
+                <label style="font-weight: 700; color: #333; display: block; margin-bottom: 10px; font-size: 15px;">💵 اختر طريقة الدفع المفضلة:</label>
+                
+                <div style="margin-bottom: 10px; background: #f9f9f9; padding: 12px; border-radius: 8px; border: 1px solid #ddd; display: flex; align-items: center;">
+                    <input type="radio" id="cod" name="payment_method" value="الدفع عند الاستلام" checked onclick="toggleCashDetails(false)" style="margin-left: 10px; transform: scale(1.2); accent-color: var(--primary-color);">
+                    <label for="cod" style="font-weight: 600; color: #222; cursor: pointer;">الدفع عند الاستلام (COD)</label>
+                </div>
+
+                <div style="background: #f9f9f9; padding: 12px; border-radius: 8px; border: 1px solid #ddd; display: flex; align-items: center;">
+                    <input type="radio" id="vodafone_cash" name="payment_method" value="تحويل كاش مقدم" onclick="toggleCashDetails(true)" style="margin-left: 10px; transform: scale(1.2); accent-color: var(--primary-color);">
+                    <label for="vodafone_cash" style="font-weight: 600; color: #222; cursor: pointer;">تحويل فودافون كاش (مقدم)</label>
+                </div>
+
+                <div id="cash-details" style="display: none; margin-top: 12px; background: #fff4f4; border: 1px dashed #d60000; padding: 15px; border-radius: 8px; animation: fadeIn 0.3s ease-in-out;">
+                    <p style="color: #d60000; font-weight: 700; margin: 0 0 8px 0; font-size: 14px;">⚠️ تعليمات التحويل الفوري:</p>
+                    <p style="color: #444; font-size: 14px; margin: 0; line-height: 1.6;">
+                        يرجى تحويل إجمالي المبلغ على رقمنا: <strong style="color: #000; font-size: 16px; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #ccc;">01064752844</strong><br>
+                        ثم قم بكتابة اسم المحوّل أو رقم التحويل في الخانة بالأسفل واضغط تأكيد.
+                    </p>
+                    <input type="text" id="transfer_reference" placeholder="اكتب رقم التحويل أو اسم المحوّل هنا" style="width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: 'Cairo', sans-serif;">
+                </div>
+            </div>
+
             <div class="checkout-box">
                 <div class="checkout-row">
                     <span>قيمة المنتج:</span>
@@ -547,12 +527,12 @@
                     <span id="txt-shipping">60 ج.م</span>
                 </div>
                 <div class="checkout-row" style="border-top: 1px solid #eee; padding-top: 10px; font-size: 18px; color: #111; font-weight: 900;">
-                    <span>الإجمالي النهائي للدفع عند الاستلام:</span>
+                    <span id="lbl-total-type">الإجمالي النهائي للدفع عند الاستلام:</span>
                     <span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
                 </div>
                 
                 <div class="promo-group">
-                    <input type="text" id="promo-input" placeholder="هل لديك كوبون خصم؟ أدخله هنا">
+                    <input type="text" id="promo-input" placeholder="هل لديك كوبون خصم? أدخله هنا">
                     <button type="button" class="promo-btn" onclick="applyPromo()">تطبيق الكود</button>
                 </div>
                 <div id="promo-msg" class="promo-message"></div>
@@ -560,8 +540,8 @@
         </div>
 
         <div class="footer-badges">
-            ⚡ توصيل سريع خلال 24 إلى 72 ساعة بحد أقصى<br>
-            ✓ الدفع عند الاستلام بعد معاينة المنتج بالكامل | ✓ ضمان براند AL-HAMZAWISTORE
+            ⚡ توصيل سريع من 24 إلى 72 ساعة بحد أقصى<br>
+            ✓ الدفع الآمن بعد المعاينة أو التحويل | ✓ ضمان براند AL-HAMZAWISTORE
         </div>
     </div>
 
@@ -588,9 +568,10 @@
 <script>
     let chosenOffer = "عبوة واحدة بسعر 275 ج.م";
     let productPrice = 275;
-    let shippingPrice = 60; // الافتراضي
+    let shippingPrice = 60; 
     let appliedDiscount = 0;
     let usedCouponName = "بدون كوبون";
+    let paymentMethod = "الدفع عند الاستلام";
 
     function selectOffer(element, offerText, price) {
         document.querySelectorAll('.offer-box').forEach(box => {
@@ -605,21 +586,34 @@
         recalculateTotal();
     }
 
-    // دالة ذكية لتحديث سعر الشحن تلقائياً بناءً على اختيار المحافظة
     function updateShippingByLocation() {
         const gov = document.getElementById('governorate').value;
-        
-        // لو مفيش كوبون شحن مجاني مفعل، احسب حسب المكان
         if (!usedCouponName.includes("FREE")) {
             if (gov === "القاهرة" || gov === "الجيزة") {
                 shippingPrice = 60;
             } else if (gov !== "") {
-                shippingPrice = 80; // باقي المحافظات
+                shippingPrice = 80;
             } else {
-                shippingPrice = 60; // الافتراضي لو مأختارش
+                shippingPrice = 60;
             }
         }
         recalculateTotal();
+    }
+
+    function toggleCashDetails(show) {
+        const cashDetailsDiv = document.getElementById('cash-details');
+        const totalLabel = document.getElementById('lbl-total-type');
+        
+        if (show) {
+            cashDetailsDiv.style.display = 'block';
+            paymentMethod = "تحويل كاش مقدم";
+            totalLabel.innerText = "الإجمالي النهائي المطلوب تحويله كاش:";
+        } else {
+            cashDetailsDiv.style.display = 'none';
+            paymentMethod = "الدفع عند الاستلام";
+            totalLabel.innerText = "الإجمالي النهائي للدفع عند الاستلام:";
+            document.getElementById('transfer_reference').value = ''; 
+        }
     }
 
     function applyPromo() {
@@ -649,7 +643,6 @@
             msg.style.display = "block";
             msg.style.color = "var(--secondary-color)";
             msg.innerText = "❌ عذراً، هذا الكوبون غير صحيح أو انتهت فترة صلاحيته!";
-            // إعادة الشحن لطبيعته حسب المكان
             updateShippingByLocation();
             return;
         }
@@ -657,14 +650,8 @@
     }
 
     function recalculateTotal() {
-        // لو كوبون الشحن المجاني شغال يفضل صفر، غير كدة نتبع مكان المحافظة
-        if (usedCouponName.includes("FREE")) {
-            shippingPrice = 0;
-        }
-
-        if (usedCouponName.includes("HAMZA10") || usedCouponName.includes("HA10")) {
-            appliedDiscount = Math.round(productPrice * 0.10);
-        }
+        if (usedCouponName.includes("FREE")) { shippingPrice = 0; }
+        if (usedCouponName.includes("HAMZA10") || usedCouponName.includes("HA10")) { appliedDiscount = Math.round(productPrice * 0.10); }
 
         const finalTotal = (productPrice - appliedDiscount) + shippingPrice;
 
@@ -680,10 +667,16 @@
         const phone = document.getElementById('phone').value.trim();
         const gov = document.getElementById('governorate').value;
         const address = document.getElementById('address').value.trim();
+        const reference = document.getElementById('transfer_reference').value.trim();
         const finalTotalText = document.getElementById('txt-total').innerText;
 
         if(!name || !phone || !gov || !address) {
             alert('يرجى ملء جميع البيانات المطلوبة لضمان الشحن السريع!');
+            return;
+        }
+
+        if (paymentMethod === "تحويل كاش مقدم" && !reference) {
+            alert('يرجى كتابة رقم التحويل أو اسم المحوّل لتأكيد استلام الكاش البدء في الشحن!');
             return;
         }
 
@@ -695,7 +688,7 @@
         formData.append("phone", phone);
         formData.append("governorate", gov);
         formData.append("address", address);
-        formData.append("offer", `${chosenOffer} | الكوبون: ${usedCouponName} | الإجمالي للدفع: ${finalTotalText}`);
+        formData.append("offer", `${chosenOffer} | الكوبون: ${usedCouponName} | طريقة الدفع: ${paymentMethod} | إثبات التحويل: ${reference ? reference : 'لا يوجد (COD)'} | الإجمالي: ${finalTotalText}`);
 
         fetch(scriptUrl, {
             method: 'POST',
@@ -709,11 +702,15 @@
             document.getElementById('phone').value = "";
             document.getElementById('governorate').value = "";
             document.getElementById('address').value = "";
+            document.getElementById('transfer_reference').value = "";
             document.getElementById('promo-input').value = "";
             document.getElementById('promo-msg').style.display = "none";
+            
             appliedDiscount = 0;
             shippingPrice = 60;
             usedCouponName = "بدون كوبون";
+            toggleCashDetails(false);
+            document.getElementById('cod').checked = true;
             recalculateTotal();
         })
         .catch(error => {
