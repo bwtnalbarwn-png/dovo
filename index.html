@@ -12,7 +12,7 @@
         :root {
             --primary-color: #e21b79; /* بينك البراند الأنيق */
             --secondary-color: #d60000; /* أحمر ناري قوي */
-            --bg-color: #eff1f5; /* لون رصاصي خفيف جداً للصفحة */
+            --bg-color: #eff1f5; 
             --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
         @keyframes fadeInUp {
@@ -23,10 +23,6 @@
             0%, 100% { width: 0; opacity: 0; padding: 0; }
             10%, 40% { width: 130px; opacity: 1; padding: 0 15px 0 35px; }
             50%, 90% { width: 0; opacity: 0; padding: 0; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         body {
@@ -45,17 +41,8 @@
             box-shadow: 0 0 40px rgba(0,0,0,0.05);
         }
         
-        .images-gallery {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-img-full {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: -1px;
-        }
+        .images-gallery { width: 100%; display: flex; flex-direction: column; }
+        .product-img-full { width: 100%; height: auto; display: block; margin-bottom: -1px; }
         
         .animated-card {
             background: #fff;
@@ -71,21 +58,8 @@
         .card-2 { animation-delay: 0.3s; }
         .card-3 { animation-delay: 0.5s; }
 
-        h2.main-title {
-            font-size: 24px;
-            color: #111;
-            margin: 0 0 12px 0;
-            text-align: center;
-            font-weight: 900;
-        }
-        .sub-title {
-            font-size: 15px;
-            color: #555;
-            text-align: center;
-            margin-bottom: 0;
-            line-height: 1.7;
-            font-weight: 600;
-        }
+        h2.main-title { font-size: 24px; color: #111; margin: 0 0 12px 0; text-align: center; font-weight: 900; }
+        .sub-title { font-size: 15px; color: #555; text-align: center; margin-bottom: 0; line-height: 1.7; font-weight: 600; }
         
         .price-container {
             margin-top: 20px;
@@ -95,20 +69,10 @@
             border-radius: 12px;
             border: 1px dashed var(--primary-color);
         }
-        .old-price {
-            font-size: 16px;
-            color: #999;
-            text-decoration: line-through;
-            margin-left: 8px;
-            font-weight: 600;
-        }
-        .new-price {
-            font-size: 28px;
-            color: var(--primary-color);
-            font-weight: 900;
-        }
+        .old-price { font-size: 16px; color: #999; text-decoration: line-through; margin-left: 8px; font-weight: 600; }
+        .new-price { font-size: 28px; color: var(--primary-color); font-weight: 900; }
         
-        .form-title, .counter-title {
+        .offers-title, .form-title {
             font-size: 18px;
             font-weight: 800;
             margin-bottom: 20px;
@@ -117,285 +81,123 @@
             padding-right: 10px;
         }
 
-        /* ستايل كرت عداد الكمية المفتوح الجديد */
-        .quantity-row {
+        /* كروت العروض الوردية الحقيقية بـ تأثيراتها */
+        .offer-box {
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 18px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            background: #fff;
+        }
+        .offer-box input { margin-left: 14px; transform: scale(1.4); accent-color: var(--primary-color); }
+        .offer-box.selected {
+            border-color: var(--primary-color);
+            background-color: #fff5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(226, 27, 121, 0.12);
+        }
+        .best-seller-badge {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: linear-gradient(45deg, #ff9800, #ff5722);
+            color: white;
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            box-shadow: 0 5px 10px rgba(255, 87, 34, 0.25);
+        }
+        .offer-text { font-weight: 700; font-size: 15px; flex: 1; color: #111; }
+        .offer-prices { text-align: left; font-weight: 700; }
+        .offer-old-price { font-size: 12px; color: #999; text-decoration: line-through; display: block; line-height: 1; }
+        .offer-new-price { font-size: 16px; color: #111; }
+
+        /* ستايل كرت عدام القطع اللانهائي الإضافي تحت العروض علطول */
+        .custom-qty-box {
+            border: 1px dashed var(--primary-color);
+            background: #fff5f9;
+            border-radius: 16px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #fdfdfd;
-            border: 1px dashed #7a828a;
-            padding: 15px;
-            border-radius: 14px;
-            margin-bottom: 15px;
+            margin-top: 20px;
         }
+        .custom-qty-label { font-size: 14px; font-weight: 800; color: var(--primary-color); }
         .quantity-counter {
             display: flex;
             align-items: center;
-            background: #f5f6f8;
+            background: #fff;
             border-radius: 50px;
-            padding: 5px 15px;
-            border: 1px solid #e0e0e0;
-            gap: 20px;
+            padding: 3px 12px;
+            border: 1px solid var(--primary-color);
+            gap: 15px;
         }
         .counter-btn {
-            background: none;
-            border: none;
-            font-size: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            color: #555;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            outline: none;
+            background: none; border: none; font-size: 18px; font-weight: 700;
+            cursor: pointer; color: var(--primary-color); width: 28px; height: 28px;
+            display: flex; align-items: center; justify-content: center; outline: none;
         }
-        .counter-value { font-size: 16px; font-weight: 900; color: #111; min-width: 15px; text-align: center; }
+        .counter-value { font-size: 16px; font-weight: 900; color: #111; min-width: 20px; text-align: center; }
 
         .form-group { margin-bottom: 18px; }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            color: #444;
-        }
-        .input-icon-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .input-icon-wrapper .icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            fill: #7a828a;
-            pointer-events: none;
-        }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #444; }
+        .input-icon-wrapper { position: relative; width: 100%; }
+        .input-icon-wrapper .icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; fill: #7a828a; pointer-events: none; }
+        
         .form-group input, .form-group select {
-            width: 100%;
-            padding: 15px 45px 15px 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            box-sizing: border-box;
-            font-size: 15px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 600;
-            outline: none;
-            background-color: #fbfbfb;
-            transition: all 0.25s;
+            width: 100%; padding: 15px 45px 15px 15px; border: 1px solid #e0e0e0; border-radius: 12px;
+            box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600;
+            outline: none; background-color: #fbfbfb; transition: all 0.25s;
         }
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary-color);
-            background-color: #fff;
-            box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.1);
-        }
+        .form-group input:focus, .form-group select:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.1); }
 
-        .checkout-box {
-            background-color: #fbfbfb;
-            border: 1px dashed #e0e0e0;
-            border-radius: 14px;
-            padding: 15px;
-            margin-top: 20px;
-        }
-        .checkout-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #444;
-        }
-        .promo-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 12px;
-        }
-        .promo-group input {
-            flex: 1;
-            padding: 10px 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 600;
-            outline: none;
-        }
-        .promo-btn {
-            background-color: #222;
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 10px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 13px;
-        }
-        .promo-message {
-            font-size: 12px;
-            font-weight: 700;
-            margin-top: 5px;
-            display: none;
-        }
+        .checkout-box { background-color: #fbfbfb; border: 1px dashed #e0e0e0; border-radius: 14px; padding: 15px; margin-top: 20px; }
+        .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #444; }
+        .promo-group { display: flex; gap: 10px; margin-top: 12px; }
+        .promo-group input { flex: 1; padding: 10px 15px; border: 1px solid #e0e0e0; border-radius: 10px; font-family: 'Cairo', sans-serif; font-weight: 600; outline: none; }
+        .promo-btn { background-color: #222; color: white; border: none; padding: 0 20px; border-radius: 10px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 13px; }
+        .promo-message { font-size: 12px; font-weight: 700; margin-top: 5px; display: none; }
 
         .order-now-btn {
-            background: linear-gradient(90deg, #d60000, #ff1a1a);
-            color: white;
-            border: none;
-            width: 85%;
-            max-width: 380px;
-            padding: 12px 15px;
-            font-size: 15.5px;
-            font-weight: 800;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(214, 0, 0, 0.3);
-            transition: all 0.3s;
-            position: fixed;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 999;
-            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(90deg, #d60000, #ff1a1a); color: white; border: none; width: 85%; max-width: 380px;
+            padding: 12px 15px; font-size: 15.5px; font-weight: 800; border-radius: 50px; cursor: pointer;
+            box-shadow: 0 6px 20px rgba(214, 0, 0, 0.3); transition: all 0.3s; position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 999; font-family: 'Cairo', sans-serif;
         }
-        .order-now-btn:hover {
-            transform: translateX(-50%) translateY(-2px);
-            box-shadow: 0 10px 25px rgba(214, 0, 0, 0.45);
-        }
+        .order-now-btn:hover { transform: translateX(-50%) translateY(-2px); box-shadow: 0 10px 25px rgba(214, 0, 0, 0.45); }
         
-        /* ⬇️ استايل السجادة المتحركة لايقونة واتساب العائمة الأصلية */
-        .whatsapp-wrapper {
-            position: fixed;
-            bottom: 75px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            z-index: 998;
-            direction: ltr;
-        }
-        .whatsapp-floating {
-            background-color: #25d366;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.18);
-            cursor: pointer;
-            text-decoration: none;
-            position: relative;
-            z-index: 2;
-        }
+        .whatsapp-wrapper { position: fixed; bottom: 75px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
+        .whatsapp-floating { background-color: #25d366; color: white; width: 50px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); cursor: pointer; text-decoration: none; position: relative; z-index: 2; }
         .whatsapp-floating .ws-icon { width: 30px; height: 30px; fill: white; }
-        .whatsapp-text-carpet {
-            background-color: #111111;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 700;
-            font-family: 'Cairo', sans-serif;
-            height: 34px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0 20px 20px 0;
-            margin-left: -25px;
-            z-index: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0; opacity: 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            animation: carpetRoll 8s infinite ease-in-out;
-        }
+        .whatsapp-text-carpet { background-color: #111111; color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: carpetRoll 8s infinite ease-in-out; }
 
-        /* الفوتر الأسود المنسدل للسياسات والشروط تحت الإضافي */
-        .footer-menu-container {
-            background: #000;
-            color: #fff;
-            padding: 10px 0;
-            margin-top: 40px;
-        }
-        .menu-dropdown {
-            border-bottom: 1px solid #222;
-        }
-        .menu-header {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 15px;
-        }
-        .menu-header::after {
-            content: "▼";
-            font-size: 11px;
-            transition: 0.3s;
-        }
-        .menu-dropdown.active .menu-header::after {
-            transform: rotate(180deg);
-        }
-        .menu-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background: #111;
-            padding: 0 20px;
-        }
-        .menu-dropdown.active .menu-content {
-            max-height: 2500px;
-            padding: 20px;
-        }
+        /* الفوتر المنسدل المطور */
+        .footer-menu-container { background: #000; color: #fff; padding: 5px 0; margin-top: 40px; }
+        .menu-dropdown { border-bottom: 1px solid #222; }
+        .menu-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 15px; }
+        .menu-header::after { content: "▼"; font-size: 11px; transition: 0.3s; }
+        .menu-dropdown.active .menu-header::after { transform: rotate(180deg); }
+        .menu-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #111; padding: 0 20px; }
+        .menu-dropdown.active .menu-content { max-height: 2500px; padding: 20px; }
         .policy-list { list-style: none; padding: 0; margin: 0; }
         .policy-item { position: relative; padding-right: 20px; margin-bottom: 18px; font-size: 13px; line-height: 1.6; color: #ccc; text-align: right; }
         .policy-item::before { content: "•"; position: absolute; right: 0; top: -2px; color: #d4af37; font-size: 18px; }
         .policy-item strong { color: #fff; display: block; margin-bottom: 2px; font-size: 13.5px; }
 
-        .success-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(3px);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0; pointer-events: none;
-            transition: 0.3s ease;
-        }
+        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(3px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; }
         .success-overlay.show { opacity: 1; pointer-events: auto; }
-        .success-card {
-            background: #f4f5f7;
-            width: 85%; max-width: 420px;
-            border-radius: 16px;
-            padding: 30px 20px;
-            text-align: center;
-            border: 2px solid var(--primary-color);
-            box-shadow: 0 15px 35px rgba(226, 27, 121, 0.25);
-            transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15);
-        }
+        .success-card { background: #f4f5f7; width: 85%; max-width: 420px; border-radius: 16px; padding: 30px 20px; text-align: center; border: 2px solid var(--primary-color); box-shadow: 0 15px 35px rgba(226, 27, 121, 0.25); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); }
         .success-overlay.show .success-card { transform: scale(1); }
         .success-card p { font-size: 16px; color: #111; margin: 0 0 20px 0; line-height: 1.6; font-weight: 700; }
-        .success-close-btn {
-            background: var(--primary-color); color: white; border: none; padding: 10px 30px; font-size: 14px;
-            font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif;
-            box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2);
-        }
+        .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 10px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2); }
 
-        .footer-badges {
-            text-align: center;
-            padding: 20px;
-            background-color: #fafafa;
-            color: #666;
-            font-size: 13px;
-            border-top: 1px solid #eee;
-            line-height: 1.7;
-            font-weight: 600;
-        }
+        .footer-badges { text-align: center; padding: 20px; background-color: #000; color: #666; font-size: 13px; font-weight: 700; }
     </style>
 </head>
 <body>
@@ -406,7 +208,7 @@
             <img src="https://i.ibb.co/qMfNpRT4/IMG-20260607-WA0210.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
         </div>
 
-        <div class="animated-card card-1">
+        <div class="animated-card card-1" style="opacity: 1;">
             <h2 class="main-title">كريم DOVO الطبيعي لرفع وتكبير الصدر</h2>
             <div class="sub-title">🌸 التركيبة العشبية الأصلية 100% والمضمونة للحصول على مظهر أنثوي جذاب ومتناسق بأمان تام وبدون أي آثار جانبية.</div>
             <div class="price-container">
@@ -415,25 +217,53 @@
             </div>
         </div>
 
-        <div class="animated-card card-2">
-            <div class="counter-title">🔢 حدد الكمية المطلوبة:</div>
-            <div class="quantity-row">
-                <span class="row-label">عدد قطع المنتج</span>
+        <div class="animated-card card-2" style="opacity: 1;">
+            <div class="offers-title">اختر العرض المناسب لك ووفر أكثر:</div>
+            
+            <div class="offer-box selected" id="opt-1" onclick="selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م')">
+                <input type="radio" name="offer" checked>
+                <div class="offer-text">اشتري عبوة واحدة الآن بسعر 275 جنيه فقط</div>
+                <div class="offer-prices">
+                    <span class="offer-old-price">350 ج.م</span>
+                    <span class="offer-new-price">275 ج.م</span>
+                </div>
+            </div>
+            
+            <div class="offer-box" id="opt-2" onclick="selectFixedOffer(2, 500, 'عرض العبوتين بسعر 500 ج.م')">
+                <input type="radio" name="offer">
+                <div class="offer-text">عرض العبوتين بسعر 500 ج.م فقط 🌟 (وفرت 50 جنيه)</div>
+                <div class="offer-prices">
+                    <span class="offer-old-price">550 ج.م</span>
+                    <span class="offer-new-price">500 ج.م</span>
+                </div>
+            </div>
+            
+            <div class="offer-box" id="opt-3" onclick="selectFixedOffer(3, 720, '3 عبوات بسعر 720 ج.م')">
+                <span class="best-seller-badge">🔥 الأكثر مبيعاً</span>
+                <input type="radio" name="offer">
+                <div class="offer-text">عرض الـ 3 عبوات بسعر 720 ج.م فقط لفترة محدودة! 🔥</div>
+                <div class="offer-prices">
+                    <span class="offer-old-price">825 ج.م</span>
+                    <span class="offer-new-price">720 ج.م</span>
+                </div>
+            </div>
+
+            <div class="custom-qty-box">
+                <span class="custom-qty-label">🛍️ هل تريد كمية أكبر؟ زود من هنا:</span>
                 <div class="quantity-counter">
-                    <button class="counter-btn" onclick="decrementQty()">—</button>
-                    <span class="counter-value" id="qty-val">1</span>
-                    <button class="counter-btn" onclick="incrementQty()">+</button>
+                    <button class="counter-btn" type="button" onclick="stepCustomQty(-1)">—</button>
+                    <span class="counter-value" id="custom-qty-val">0</span>
+                    <button class="counter-btn" type="button" onclick="stepCustomQty(1)">+</button>
                 </div>
             </div>
         </div>
 
-        <div class="animated-card card-3">
+        <div class="animated-card card-3" style="opacity: 1;">
             <div class="form-title">📝 اطلب الآن - البيانات المطلوبة للشحن</div>
             
             <div class="form-group">
                 <label>الاسم بالكامل</label>
                 <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                     <input type="text" id="name" placeholder="اكتب الاسم ثلاثي أو رباعي">
                 </div>
             </div>
@@ -441,7 +271,6 @@
             <div class="form-group">
                 <label>رقم الهاتف</label>
                 <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                     <input type="tel" id="phone" placeholder="رقم الموبايل المكون من 11 رقم">
                 </div>
             </div>
@@ -449,7 +278,6 @@
             <div class="form-group">
                 <label>المحافظة</label>
                 <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                     <select id="governorate" onchange="updateShippingByLocation()">
                         <option value="">اختر المحافظة من القائمة</option>
                         <option value="القاهرة">القاهرة</option>
@@ -486,8 +314,7 @@
             <div class="form-group">
                 <label>العنوان بالتفصيل</label>
                 <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 17.93V19a1 1 0 0 1-2 0v-1.07A8 8 0 0 1 4.07 13H5a1 1 0 0 1 0-2h-.93A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 11H19a1 1 0 0 1 0 2h.93A8 8 0 0 1 13 17.93z"/></svg>
-                    <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
+                    <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور">
                 </div>
             </div>
 
@@ -497,16 +324,16 @@
                     <span id="txt-subtotal">275 ج.م</span>
                 </div>
                 <div class="checkout-row">
-                    <span>تكلفة الشحن (المحافظات):</span>
+                    <span>تكلفة الشحن:</span>
                     <span id="txt-shipping">60 ج.م</span>
                 </div>
                 <div class="checkout-row" style="border-top: 1px solid #eee; padding-top: 10px; font-size: 18px; color: #111; font-weight: 900;">
-                    <span>الإجمالي النهائي للدفع:</span>
+                    <span>الإجمالي النهائي:</span>
                     <span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
                 </div>
                 
                 <div class="promo-group">
-                    <input type="text" id="promo-input" placeholder="هل لديك كوبون خصم؟ أدخله هنا">
+                    <input type="text" id="promo-input" placeholder="هل لديك كوبون خصم؟">
                     <button type="button" class="promo-btn" onclick="applyPromo()">تطبيق</button>
                 </div>
                 <div id="promo-msg" class="promo-message"></div>
@@ -518,66 +345,23 @@
                 <div class="menu-header" onclick="toggleAccordion()">⚖️ بند الالتزام والشروط الرسمية للمتجر</div>
                 <div class="menu-content">
                     <ul class="policy-list">
-                        <li class="policy-item">
-                            <strong>المعاينة الكاملة قبل الدفع:</strong>
-                            نعطيك كامل الحق في فتح الشحنة وفحص جودة المنتج بالكامل مع مندوب التوصيل قبل دفع أي مبالغ مالية.
-                        </li>
-                        <li class="policy-item">
-                            <strong>شحن فوري سريع:</strong>
-                            تصلك الشحنة لباب المنزل في القاهرة والجيزة خلال 24 إلى 72 ساعة وباقي المحافظات من 5 أيام إلي أسبوع.
-                        </li>
-                        <li class="policy-item">
-                            <strong>ضمان الاستبدال والاسترجاع:</strong>
-                            البراند يضمن لك حق الاستبدال أو الاسترجاع الشامل في حال وجود أي عيب مصنعي أو تلف خلال 3 أيام من تاريخ الاستلام.
-                        </li>
-                        <li class="policy-item">
-                            <strong>تأمين الدفع كاش مقدم:</strong>
-                            في حال اختيار التحويل المسبق عبر فودافون كاش، السيستم المطور يضمن حماية طلبتك فور إرفاق إيصال التحويل (الاسكرين شوت).
-                        </li>
-                        <li class="policy-item">
-                            <strong>خصوصية بياناتك وحمايتها:</strong>
-                            جميع بيانات الشحن والعناوين الخاصة بك تُستخدم فقط لطباعة بوليصة التوصيل، وهي سرية تماماً ولا يتم مشاركتها مع أي جهة أخرى.
-                        </li>
-                        <li class="policy-item">
-                            <strong>جدية الطلب والشحن:</strong>
-                            بمجرد تسجيلك للبيانات، السيستم بيخصم تكلفة الشحن فوراً لحساب مندوب منطقتك ويتم حجز المنتج؛ يرجى عدم تأكيد الطلب إلا في حالة الجاهزية التامة للاستلام، منعا للمساءلة عن تكاليف الشحن والهدر.
-                        </li>
-                        <li class="policy-item">
-                            <strong>الالتزام القانوني بالاستلام:</strong>
-                            تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ في حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.
-                        </li>
-                        <li class="policy-item">
-                            <strong>تثبيت خط السير والأولوية:</strong>
-                            بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.
-                        </li>
-                        <li class="policy-item">
-                            <strong>قطعية الأسعار والمصاريف:</strong>
-                            جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.
-                        </li>
-                        <li class="policy-item">
-                            <strong>سياسة العروض المجمعة والباقات:</strong>
-                            في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.
-                        </li>
-                        <li class="policy-item">
-                            <strong>حد أقصى للاحتفاظ بالشحنة:</strong>
-                            في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة، يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤفت على الرقم من الطلب مجدداً.
-                        </li>
-                        <li class="policy-item">
-                            <strong>نظام الحظر الموحد (القائمة السوداء):</strong>
-                            متجرنا مرتبط بشبكة تجارية موحدة للكشف عن جدية المشترين. في حالة رفض استلام الشحنة بعد خروجها بدون سبب طبيعي صريح، يتم إدراج (الاسم، ورقم الهاتف, والعنوان) تلقائياً في القائمة السوداء المحظورة من الشحن أوتوماتيكياً في متجرنا وأكثر من 50 متجر إلكتروني اخر.
-                        </li>
+                        <li class="policy-item"><strong>جدية الطلب والشحن:</strong> بمجرد تسجيلك للبيانات، السيستم بيخصم تكلفة الشحن فوراً لحساب مندوب منطقتك ويتم حجز المنتج؛ يرجى عدم تأكيد الطلب إلا في حالة الجاهزية التامة للاستلام، منعا للمساءلة عن تكاليف الشحن والهدر.</li>
+                        <li class="policy-item"><strong>الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ في حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
+                        <li class="policy-item"><strong>تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
+                        <li class="policy-item"><strong>قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
+                        <li class="policy-item"><strong>سياسة العروض المجمعة والباقات:</strong> في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.</li>
+                        <li class="policy-item"><strong>حد أقصى للاحتفاظ بالشحنة:</strong> في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة، يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤقت على الرقم من الطلب مجدداً.</li>
+                        <li class="policy-item"><strong>نظام الحظر الموحد (القائمة السوداء):</strong> متجرنا مرتبط بشبكة تجارية موحدة للكشف عن جدية المشترين. في حالة رفض استلام الشحنة بعد خروجها بدون سبب طبيعي صريح، يتم إدراج (الاسم، ورقم الهاتف، والعنوان) تلقائياً في القائمة السوداء المحظورة من الشحن أوتوماتيكياً في متجرنا وأكثر من 50 متجر إلكتروني اخر.</li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-badges" style="background:#000; color:#666; border:none; padding:10px;">Powered By Easyorders</div>
+            <div class="footer-badges">Powered By Al-Hamzawi</div>
         </div>
     </div>
 
     <div class="whatsapp-wrapper">
-        <a href="https://wa.me/201207362722?text=أهلاً، أنا مهتم بتجربة كريم Dovo. هل متوفر حالياً؟ وكيف يمكنني طلبه من Al-Hamzawi-Store؟" class="whatsapp-floating" target="_blank">
-            <svg class="ws-icon" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-                <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-            </svg>
+        <a href="https://wa.me/201207362722?text=أهلاً متجر الحمزاوي، عندي استفسار." class="whatsapp-floating" target="_blank">
+            <svg class="ws-icon" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
         </a>
         <div class="whatsapp-text-carpet">تواصل عبر واتساب</div>
     </div>
@@ -594,24 +378,65 @@
     </div>
 
 <script>
-    // 🔒 Al-Hamzawi Tech - Re-Obfuscated Strict Script (Infinite Qty & Dropdown Edition)
-    var _0x4f12=["\x76\x61\x6C\x75\x6E","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x67\x6F\x76\x65\x72\x6E\x6F\x72\x61\x74\x65","\x76\x61\x6C\x75\x65","\x47\x41\x48\x49\x52\x41","\x4A\x45\x45\x5A\x41","\x51\x41\x4C\x59\x4F\x55\x42","\x70\x72\x6F\x6D\x6F\x2D\x69\x6E\x70\x75\x74","\x74\x72\x69\x6D","\x73\x75\x63\x63\x65\x73\x73\x4O\x76\x65\x72\x6C\x61\x71"];
-    let currentQty = 1;
+    let isCustomMode = false;
+    let customQty = 0;
+    let fixedQty = 1;
+    let currentTotalPieces = 1;
+    
+    let baseProductPrice = 275;
     let shippingPrice = 60;
-    let productPrice = 275;
-    let appliedDiscount = 0;
     let couponActive = false;
+    let appliedDiscount = 0;
+    let selectedOfferText = "عبوة واحدة بسعر 275 ج.م";
 
-    function incrementQty() {
-        currentQty++;
+    // لما العميل يختار عرض ثابت من الكروت الوردية
+    function selectFixedOffer(qty, price, text) {
+        isCustomMode = false;
+        fixedQty = qty;
+        baseProductPrice = price;
+        selectedOfferText = text;
+        currentTotalPieces = qty;
+        
+        // تصفير العداد التلقائي
+        customQty = 0;
+        document.getElementById('custom-qty-val').innerText = "0";
+
+        // ضبط كلاسات الاختيار البصرية
+        document.querySelectorAll('.offer-box').forEach(box => box.classList.remove('selected'));
+        document.querySelectorAll('.offer-box input').forEach(input => input.checked = false);
+        
+        const selectedBox = document.getElementById('opt-' + qty);
+        if(selectedBox) {
+            selectedBox.classList.add('selected');
+            selectedBox.querySelector('input').checked = true;
+        }
+
         recalculateTotal();
     }
 
-    function decrementQty() {
-        if (currentQty > 1) {
-            currentQty--;
-            recalculateTotal();
+    // لما العميل يحب يزود لمالا نهاية من العداد
+    function stepCustomQty(val) {
+        if (!isCustomMode) {
+            // أول ما يضغط على العداد، بيلغي اختيار الكروت الوردية ويبدأ يعد من 4 قطع
+            isCustomMode = true;
+            customQty = 4;
+            document.querySelectorAll('.offer-box').forEach(box => box.classList.remove('selected'));
+            document.querySelectorAll('.offer-box input').forEach(input => input.checked = false);
+        } else {
+            customQty += val;
+            if (customQty < 4) {
+                // لو نزل تحت الـ 4، بيرجع تلقائي يختار العرض الثالث
+                selectFixedOffer(3, 720, '3 عبوات بسعر 720 ج.م');
+                return;
+            }
         }
+        
+        document.getElementById('custom-qty-val').innerText = customQty;
+        currentTotalPieces = customQty;
+        baseProductPrice = customQty * 240; // سعر القطعة الموفر في الكميات الكبيرة لمالا نهاية
+        selectedOfferText = `كمية مخصصة: ${customQty} قطعة`;
+        
+        recalculateTotal();
     }
 
     function updateShippingByLocation() {
@@ -627,19 +452,16 @@
     }
 
     function recalculateTotal() {
-        // حساب سعر المنتجات بناءً على عروضك وعمل حساب القطع اللانهائية بعد الـ 3 قطع
-        if (currentQty === 1) { productPrice = 275; }
-        else if (currentQty === 2) { productPrice = 500; }
-        else if (currentQty === 3) { productPrice = 720; }
-        else { productPrice = currentQty * 240; } // حساب سعر القطعة التلقائي الموفر لمالا نهاية
+        if (couponActive) {
+            appliedDiscount = Math.round(baseProductPrice * 0.1);
+        } else {
+            appliedDiscount = 0;
+        }
 
-        if (couponActive) { appliedDiscount = Math.round(productPrice * 0.1); }
+        const finalTotal = (baseProductPrice - appliedDiscount) + shippingPrice;
 
-        const finalTotal = (productPrice - appliedDiscount) + shippingPrice;
-
-        document.getElementById('qty-val').innerText = currentQty;
-        document.getElementById('txt-subtotal').innerText = productPrice + " ج.م";
-        document.getElementById('top-price').innerText = (productPrice / currentQty).toFixed(0) + " ج.م / للقطعة";
+        document.getElementById('txt-subtotal').innerText = baseProductPrice + " ج.م";
+        document.getElementById('top-price').innerText = (baseProductPrice / currentTotalPieces).toFixed(0) + " ج.م / للقطعة";
         document.getElementById('txt-shipping').innerText = shippingPrice + " ج.م";
         document.getElementById('txt-total').innerText = finalTotal + " ج.م";
     }
@@ -661,6 +483,7 @@
         recalculateTotal();
     }
 
+    // تشغيل بند الشروط والأحكام بشكل سليم ومضمون
     function toggleAccordion() {
         const el = document.getElementById('policyAccordion');
         el.classList.toggle('active');
@@ -692,7 +515,7 @@
         formData.append("phone", phone);
         formData.append("governorate", gov);
         formData.append("address", address);
-        formData.append("offer", `عدد القطع: ${currentQty} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون: ${couponActive ? "نشط" : "لا يوجد"}`);
+        formData.append("offer", `العرض: ${selectedOfferText} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون: ${couponActive ? "نشط" : "لا يوجد"}`);
 
         fetch(webAppUrl, { method: "POST", body: formData })
         .then(() => {
@@ -704,9 +527,7 @@
             document.getElementById('address').value = "";
             document.getElementById('promo-input').value = "";
             document.getElementById('promo-msg').style.display = "none";
-            currentQty = 1;
-            couponActive = false;
-            recalculateTotal();
+            selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م');
         })
         .catch(() => {
             alert("حدث خطأ، يرجى المحاولة مرة أخرى!");
