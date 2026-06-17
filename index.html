@@ -81,7 +81,6 @@
             padding-right: 10px;
         }
 
-        /* كروت العروض الوردية الحقيقية بـ تأثيراتها */
         .offer-box {
             border: 1px solid #e0e0e0;
             border-radius: 16px;
@@ -118,7 +117,6 @@
         .offer-old-price { font-size: 12px; color: #999; text-decoration: line-through; display: block; line-height: 1; }
         .offer-new-price { font-size: 16px; color: #111; }
 
-        /* ستايل كرت عدام القطع اللانهائي الإضافي تحت العروض علطول */
         .custom-qty-box {
             border: 1px dashed var(--primary-color);
             background: #fff5f9;
@@ -148,21 +146,34 @@
 
         .form-group { margin-bottom: 18px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #444; }
-        .input-icon-wrapper { position: relative; width: 100%; }
-        .input-icon-wrapper .icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; fill: #7a828a; pointer-events: none; }
         
-        .form-group input, .form-group select {
-            width: 100%; padding: 15px 45px 15px 15px; border: 1px solid #e0e0e0; border-radius: 12px;
-            box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600;
-            outline: none; background-color: #fbfbfb; transition: all 0.25s;
+        .input-icon-wrapper { position: relative; width: 100%; }
+        .input-icon-wrapper .icon { 
+            position: absolute; 
+            right: 16px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            width: 20px; 
+            height: 20px; 
+            fill: #8e8e93; 
+            pointer-events: none; 
         }
-        .form-group input:focus, .form-group select:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.1); }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 15px 48px 15px 15px; border: 1px solid #d1d1d6; border-radius: 12px;
+            box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600;
+            outline: none; background-color: #fafafa; transition: all 0.2s ease-in-out;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.08); }
+        .form-group textarea { padding: 15px; resize: vertical; min-height: 80px; }
 
         .checkout-box { background-color: #fbfbfb; border: 1px dashed #e0e0e0; border-radius: 14px; padding: 15px; margin-top: 20px; }
         .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #444; }
         .promo-group { display: flex; gap: 10px; margin-top: 12px; }
         .promo-group input { flex: 1; padding: 10px 15px; border: 1px solid #e0e0e0; border-radius: 10px; font-family: 'Cairo', sans-serif; font-weight: 600; outline: none; }
         .promo-btn { background-color: #222; color: white; border: none; padding: 0 20px; border-radius: 10px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 13px; }
+        .promo-btn:disabled { background-color: #ccc; cursor: not-allowed; }
+
         .promo-message { font-size: 12px; font-weight: 700; margin-top: 5px; display: none; }
 
         .order-now-btn {
@@ -177,7 +188,6 @@
         .whatsapp-floating .ws-icon { width: 30px; height: 30px; fill: white; }
         .whatsapp-text-carpet { background-color: #111111; color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: carpetRoll 8s infinite ease-in-out; }
 
-        /* الفوتر المنسدل المطور */
         .footer-menu-container { background: #000; color: #fff; padding: 5px 0; margin-top: 40px; }
         .menu-dropdown { border-bottom: 1px solid #222; }
         .menu-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 15px; }
@@ -213,7 +223,7 @@
             <div class="sub-title">🌸 التركيبة العشبية الأصلية 100% والمضمونة للحصول على مظهر أنثوي جذاب ومتناسق بأمان تام وبدون أي آثار جانبية.</div>
             <div class="price-container">
                 <span class="old-price">350 ج.م</span>
-                <span class="new-price" id="top-price">275 ج.م</span>
+                <span class="new-price" id="top-price">275 ج.م / للقطعة</span>
             </div>
         </div>
 
@@ -249,10 +259,10 @@
             </div>
 
             <div class="custom-qty-box">
-                <span class="custom-qty-label">🛍️ هل تريد كمية أكبر؟ زود من هنا:</span>
+                <span class="custom-qty-label">🔢 حدد كمية مخصصة بالقطع:</span>
                 <div class="quantity-counter">
                     <button class="counter-btn" type="button" onclick="stepCustomQty(-1)">—</button>
-                    <span class="counter-value" id="custom-qty-val">0</span>
+                    <span class="counter-value" id="custom-qty-val">1</span>
                     <button class="counter-btn" type="button" onclick="stepCustomQty(1)">+</button>
                 </div>
             </div>
@@ -264,6 +274,7 @@
             <div class="form-group">
                 <label>الاسم بالكامل</label>
                 <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                     <input type="text" id="name" placeholder="اكتب الاسم ثلاثي أو رباعي">
                 </div>
             </div>
@@ -271,6 +282,7 @@
             <div class="form-group">
                 <label>رقم الهاتف</label>
                 <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                     <input type="tel" id="phone" placeholder="رقم الموبايل المكون من 11 رقم">
                 </div>
             </div>
@@ -278,6 +290,7 @@
             <div class="form-group">
                 <label>المحافظة</label>
                 <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                     <select id="governorate" onchange="updateShippingByLocation()">
                         <option value="">اختر المحافظة من القائمة</option>
                         <option value="القاهرة">القاهرة</option>
@@ -314,8 +327,14 @@
             <div class="form-group">
                 <label>العنوان بالتفصيل</label>
                 <div class="input-icon-wrapper">
-                    <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 17.93V19a1 1 0 0 1-2 0v-1.07A8 8 0 0 1 4.07 13H5a1 1 0 0 1 0-2h-.93A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 11H19a1 1 0 0 1 0 2h.93A8 8 0 0 1 13 17.93z"/></svg>
+                    <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label>ملاحظات إضافية (اختياري)</label>
+                <textarea id="notes" placeholder="اكتب هنا أي ملاحظات بخصوص الشحن أو مواعيد التسليم..."></textarea>
             </div>
 
             <div class="checkout-box">
@@ -334,7 +353,7 @@
                 
                 <div class="promo-group">
                     <input type="text" id="promo-input" placeholder="هل لديك كوبون خصم؟">
-                    <button type="button" class="promo-btn" onclick="applyPromo()">تطبيق</button>
+                    <button type="button" id="promo-btn-id" class="promo-btn" onclick="applyPromo()">تطبيق</button>
                 </div>
                 <div id="promo-msg" class="promo-message"></div>
             </div>
@@ -350,7 +369,7 @@
                         <li class="policy-item"><strong>تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
                         <li class="policy-item"><strong>قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
                         <li class="policy-item"><strong>سياسة العروض المجمعة والباقات:</strong> في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.</li>
-                        <li class="policy-item"><strong>حد أقصى للاحتفاظ بالشحنة:</strong> في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة، يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤقت على الرقم من الطلب مجدداً.</li>
+                        <li class="policy-item"><strong>حد أقصى للاحتفاظ بالشحنة:</strong> في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة، يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤفت على الرقم من الطلب مجدداً.</li>
                         <li class="policy-item"><strong>نظام الحظر الموحد (القائمة السوداء):</strong> متجرنا مرتبط بشبكة تجارية موحدة للكشف عن جدية المشترين. في حالة رفض استلام الشحنة بعد خروجها بدون سبب طبيعي صريح، يتم إدراج (الاسم، ورقم الهاتف، والعنوان) تلقائياً في القائمة السوداء المحظورة من الشحن أوتوماتيكياً في متجرنا وأكثر من 50 متجر إلكتروني اخر.</li>
                     </ul>
                 </div>
@@ -378,30 +397,22 @@
     </div>
 
 <script>
-    let isCustomMode = false;
-    let customQty = 0;
-    let fixedQty = 1;
     let currentTotalPieces = 1;
-    
     let baseProductPrice = 275;
     let shippingPrice = 60;
     let couponActive = false;
     let appliedDiscount = 0;
     let selectedOfferText = "عبوة واحدة بسعر 275 ج.م";
 
-    // لما العميل يختار عرض ثابت من الكروت الوردية
+    function syncCounterUI() {
+        document.getElementById('custom-qty-val').innerText = currentTotalPieces;
+    }
+
     function selectFixedOffer(qty, price, text) {
-        isCustomMode = false;
-        fixedQty = qty;
+        currentTotalPieces = qty;
         baseProductPrice = price;
         selectedOfferText = text;
-        currentTotalPieces = qty;
         
-        // تصفير العداد التلقائي
-        customQty = 0;
-        document.getElementById('custom-qty-val').innerText = "0";
-
-        // ضبط كلاسات الاختيار البصرية
         document.querySelectorAll('.offer-box').forEach(box => box.classList.remove('selected'));
         document.querySelectorAll('.offer-box input').forEach(input => input.checked = false);
         
@@ -411,31 +422,40 @@
             selectedBox.querySelector('input').checked = true;
         }
 
+        syncCounterUI();
         recalculateTotal();
     }
 
-    // لما العميل يحب يزود لمالا نهاية من العداد
     function stepCustomQty(val) {
-        if (!isCustomMode) {
-            // أول ما يضغط على العداد، بيلغي اختيار الكروت الوردية ويبدأ يعد من 4 قطع
-            isCustomMode = true;
-            customQty = 4;
-            document.querySelectorAll('.offer-box').forEach(box => box.classList.remove('selected'));
-            document.querySelectorAll('.offer-box input').forEach(input => input.checked = false);
+        let targetQty = currentTotalPieces + val;
+        if (targetQty < 1) return; 
+        
+        currentTotalPieces = targetQty;
+        
+        document.querySelectorAll('.offer-box').forEach(box => box.classList.remove('selected'));
+        document.querySelectorAll('.offer-box input').forEach(input => input.checked = false);
+
+        if (currentTotalPieces === 1) {
+            baseProductPrice = 275;
+            selectedOfferText = "عبوة واحدة بسعر 275 ج.م";
+            document.getElementById('opt-1').classList.add('selected');
+            document.getElementById('opt-1').querySelector('input').checked = true;
+        } else if (currentTotalPieces === 2) {
+            baseProductPrice = 500;
+            selectedOfferText = "عرض العبوتين بسعر 500 ج.م";
+            document.getElementById('opt-2').classList.add('selected');
+            document.getElementById('opt-2').querySelector('input').checked = true;
+        } else if (currentTotalPieces === 3) {
+            baseProductPrice = 720;
+            selectedOfferText = "3 عبوات بسعر 720 ج.م";
+            document.getElementById('opt-3').classList.add('selected');
+            document.getElementById('opt-3').querySelector('input').checked = true;
         } else {
-            customQty += val;
-            if (customQty < 4) {
-                // لو نزل تحت الـ 4، بيرجع تلقائي يختار العرض الثالث
-                selectFixedOffer(3, 720, '3 عبوات بسعر 720 ج.م');
-                return;
-            }
+            baseProductPrice = currentTotalPieces * 275;
+            selectedOfferText = `كمية مخصصة: ${currentTotalPieces} قطعة بسعر 275 ج.م للقطعة`;
         }
-        
-        document.getElementById('custom-qty-val').innerText = customQty;
-        currentTotalPieces = customQty;
-        baseProductPrice = customQty * 240; // سعر القطعة الموفر في الكميات الكبيرة لمالا نهاية
-        selectedOfferText = `كمية مخصصة: ${customQty} قطعة`;
-        
+
+        syncCounterUI();
         recalculateTotal();
     }
 
@@ -467,13 +487,22 @@
     }
 
     function applyPromo() {
+        // لو الكوبون اتطبق قبل كده ميعملش حاجة تاني نهائي
+        if (couponActive) return;
+
         const promo = document.getElementById('promo-input').value.trim().toUpperCase();
         const msg = document.getElementById('promo-msg');
+        const btn = document.getElementById('promo-btn-id');
+        
         if (promo === "HAMZA10" || promo === "HA10") {
             couponActive = true;
             msg.style.display = "block";
             msg.style.color = "#25d366";
             msg.innerText = "✓ تم تطبيق خصم 10% بنجاح!";
+            
+            // 🔒 حظر الزرار وتشفير خانة الإدخال لمنع التلاعب وتشغيل الدماغ
+            btn.disabled = true;
+            document.getElementById('promo-input').disabled = true;
         } else {
             couponActive = false;
             msg.style.display = "block";
@@ -483,7 +512,6 @@
         recalculateTotal();
     }
 
-    // تشغيل بند الشروط والأحكام بشكل سليم ومضمون
     function toggleAccordion() {
         const el = document.getElementById('policyAccordion');
         el.classList.toggle('active');
@@ -501,6 +529,7 @@
         const phone = document.getElementById('phone').value.trim();
         const gov = document.getElementById('governorate').value;
         const address = document.getElementById('address').value.trim();
+        const notes = document.getElementById('notes').value.trim();
         const btnSpan = document.querySelector('.order-now-btn span');
 
         if (!name || !phone || !gov || !address) {
@@ -515,7 +544,7 @@
         formData.append("phone", phone);
         formData.append("governorate", gov);
         formData.append("address", address);
-        formData.append("offer", `العرض: ${selectedOfferText} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون: ${couponActive ? "نشط" : "لا يوجد"}`);
+        formData.append("offer", `العرض: ${selectedOfferText} | ملاحظات العميل: ${notes || "لا يوجد"} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون: ${couponActive ? "نشط" : "لا يوجد"}`);
 
         fetch(webAppUrl, { method: "POST", body: formData })
         .then(() => {
@@ -525,8 +554,11 @@
             document.getElementById('phone').value = "";
             document.getElementById('governorate').value = "";
             document.getElementById('address').value = "";
+            document.getElementById('notes').value = "";
             document.getElementById('promo-input').value = "";
+            document.getElementById('promo-input').disabled = false;
             document.getElementById('promo-msg').style.display = "none";
+            btn.disabled = false;
             selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م');
         })
         .catch(() => {
