@@ -41,8 +41,30 @@
             box-shadow: 0 0 40px rgba(0,0,0,0.05);
         }
         
+        /* 📱 ستايل معرض الصور والاسكريبت المطور لمتجر الحمزاوي */
         .images-gallery { width: 100%; display: flex; flex-direction: column; }
-        .product-img-full { width: 100%; height: auto; display: block; margin-bottom: -1px; }
+        .gallery-item-wrapper {
+            width: 100%;
+            margin-bottom: 25px;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid #e5e5ea;
+        }
+        .product-img-full { width: 100%; height: auto; display: block; }
+        .img-script-text {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #3a3a3c;
+            line-height: 1.7;
+            padding: 18px 15px;
+            margin: 0;
+            text-align: right;
+            white-space: pre-line; /* نزول السطور المنظم */
+            background: #fff;
+            border-top: 1px solid #f2f2f7;
+        }
         
         .animated-card {
             background: #fff;
@@ -62,7 +84,7 @@
         .sub-title { font-size: 15px; color: #555; text-align: center; margin-bottom: 0; line-height: 1.7; font-weight: 600; }
         
         .price-container {
-            margin-top: 20px;
+            margin: 20px;
             text-align: center;
             background: #fff0f6;
             padding: 12px;
@@ -215,16 +237,40 @@
     <div class="container">
         
         <div class="images-gallery">
-            <img src="https://i.ibb.co/qMfNpRT4/IMG-20260607-WA0210.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
+            <div class="gallery-item-wrapper">
+                <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
+                <p class="img-script-text">✨ التركيبة العشبية الأصلية 100% لنتائج مضمونة وأمان تام يساهم في شد ورفع الأرداف يعزز من إمتلاء وتكبير الأرداف مرطب ومغذي للبشرة.</p>
+            </div>
+
+            <div class="gallery-item-wrapper">
+                <img src="https://f.top4top.io/p_38283r0da1.jpg" alt="🎀DOVO كريم رفع وتكبير الأرداف 🎀" class="product-img-full">
+                <p class="img-script-text">💖 لأن أنوثتك تستحق الإهتمام 
+هل تبحثين عن مظهر أكثر تناسقًا وجاذبية بثقة أكبر؟
+مع DOVO كريم رفع وتكبير الأرداف بتركيبة غنية بفيتامين E الطبيعي 100%، استمتعي بعناية يومية تساعد على تحسين مظهر البشرة ومنحها نعومة ومرونة ولمسة أنثوية جذابة.
+✅ تركيبة طبيعية لطيفة على البشرة
+✅ غني بفيتامين E المغذي
+✅ يساعد على تحسين مظهر الجلد ومرونته
+✅ سهل الاستخدام ويمتص بسرعة
+✅ مناسب للاستخدام اليومي.</p>
+            </div>
+
+            <div class="gallery-item-wrapper">
+                <img src="https://c.top4top.io/p_3828v8mta1.jpg" alt="🌸 لماذا تختارين DOVO؟" class="product-img-full">
+                <p class="img-script-text">لأن الجمال يبدأ من العناية المستمرة. تم تطوير DOVO ليمنحك تجربة عناية فاخرة تساعدك على الاهتمام ببشرتك وإبراز جمال قوامك بطريقة بسيطة ومريحة.</p>
+            </div>
+
+            <div class="gallery-item-wrapper">
+                <img src="https://a.top4top.io/p_38290cc1u1.jpg" alt="📦 تفاصيل المنتج" class="product-img-full">
+                <p class="img-script-text">الوزن: 250 جرام
+تركيبة طبيعية
+غني بفيتامين E
+مناسب للعناية اليومية بالبشرة</p>
+            </div>
         </div>
 
-        <div class="animated-card card-1" style="opacity: 1;">
-            <h2 class="main-title">كريم DOVO الطبيعي لرفع وتكبير الصدر</h2>
-            <div class="sub-title">🌸 التركيبة العشبية الأصلية 100% والمضمونة للحصول على مظهر أنثوي جذاب ومتناسق بأمان تام وبدون أي آثار جانبية.</div>
-            <div class="price-container">
-                <span class="old-price">350 ج.م</span>
-                <span class="new-price" id="top-price">275 ج.م / للقطعة</span>
-            </div>
+        <div class="price-container">
+            <span class="old-price">350 ج.م</span>
+            <span class="new-price" id="top-price">275 ج.م / للقطعة</span>
         </div>
 
         <div class="animated-card card-2" style="opacity: 1;">
