@@ -16,15 +16,20 @@
             --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
         
-        /* ✨ أنيميشن الدخول التتابعي الملوكي للكلام والصور ستايل iOS ✨ */
-        @keyframes iosFadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+        /* ✨ ترسانة أنيميشن الدخول والسكرول التفاعلي المطور ستايل iOS ✨ */
+        @keyframes iosEntranceUp {
+            from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes carpetRoll {
             0%, 100% { width: 0; opacity: 0; padding: 0; }
             10%, 40% { width: 130px; opacity: 1; padding: 0 15px 0 35px; }
             50%, 90% { width: 0; opacity: 0; padding: 0; }
+        }
+        @keyframes pulseIcon {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.15); color: var(--primary-color); }
+            100% { transform: translateY(-50%) scale(1); }
         }
         
         body {
@@ -45,25 +50,26 @@
         
         .images-gallery { width: 100%; display: flex; flex-direction: column; }
         
-        /* تطبيق أنيميشن الدخول المباشر المجدول لكل صورة والاسكريبت بتاعها */
-        .gallery-item-wrapper {
+        /* 📱 أنيميشن تفاعلي للظهور التدريجي لكل صورة والاسكريبت تبعها مع السكرول */
+        .gallery-item-wrapper, .animated-card, .price-container {
             width: 100%;
-            margin-bottom: 25px;
             background: #fff;
+            box-sizing: border-box;
+            animation: iosEntranceUp linear both;
+            animation-timeline: view();
+            animation-range: entry 10% cover 35%;
+        }
+        
+        /* إضافة الحواف السوداء الناعمة والفخمة لكل فريم وكارت بناءً على طلبك */
+        .gallery-item-wrapper {
+            margin-bottom: 25px;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            border: 1px solid #e5e5ea;
-            animation: iosFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
+            border: 1.5px solid #1c1c1e; /* حواف سوداء خفيفة ونظيفة */
         }
-        .gallery-item-wrapper:nth-child(1) { animation-delay: 0.1s; }
-        .gallery-item-wrapper:nth-child(2) { animation-delay: 0.3s; }
-        .gallery-item-wrapper:nth-child(3) { animation-delay: 0.5s; }
-        .gallery-item-wrapper:nth-child(4) { animation-delay: 0.7s; }
-
         .product-img-full { width: 100%; height: auto; display: block; }
         
-        /* أنيميشن ناعم للنصوص والسطور داخل الاسكريبت */
         .img-script-text {
             font-size: 14.5px;
             font-weight: 700;
@@ -74,33 +80,31 @@
             text-align: right;
             white-space: pre-line;
             background: #fff;
-            border-top: 1px solid #f2f2f7;
+            border-top: 1.5px solid #1c1c1e;
         }
         
         .animated-card {
-            background: #fff;
             border-radius: 20px;
-            margin: 20px;
+            margin: 20px 0;
+            width: calc(100% - 40px);
+            margin-left: 20px;
+            margin-right: 20px;
             padding: 25px 20px;
             box-shadow: var(--card-shadow);
-            border: 1px solid rgba(0,0,0,0.03);
-            animation: iosFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
+            border: 1.5px solid #1c1c1e; /* حواف سوداء خفيفة ونظيفة للكروت */
         }
-        .card-1 { animation-delay: 0.9s; }
-        .card-2 { animation-delay: 1.1s; }
 
         .price-container {
             margin: 20px;
-            text-align: center;
+            width: calc(100% - 40px);
+            text-align: right; /* محاذاة السعر بالكامل لليمين */
             background: #fff0f6;
-            padding: 12px;
+            padding: 15px;
             border-radius: 12px;
-            border: 1px dashed var(--primary-color);
-            animation: iosFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
-            animation-delay: 0.8s;
+            border: 1.5px dashed var(--primary-color);
         }
-        .old-price { font-size: 16px; color: #999; text-decoration: line-through; margin-left: 8px; font-weight: 600; }
-        .new-price { font-size: 28px; color: var(--primary-color); font-weight: 900; }
+        .old-price { font-size: 16px; color: #999; text-decoration: line-through; margin-right: 10px; font-weight: 600; float: left; }
+        .new-price { font-size: 26px; color: var(--primary-color); font-weight: 900; }
         
         .offers-title, .form-title {
             font-size: 18px;
@@ -109,10 +113,11 @@
             color: #111;
             border-right: 4px solid var(--primary-color);
             padding-right: 10px;
+            text-align: right;
         }
 
         .offer-box {
-            border: 1px solid #e0e0e0;
+            border: 1px solid #d1d1d6;
             border-radius: 16px;
             padding: 18px 16px;
             margin-bottom: 16px;
@@ -142,7 +147,7 @@
             font-weight: 700;
             box-shadow: 0 5px 10px rgba(255, 87, 34, 0.25);
         }
-        .offer-text { font-weight: 700; font-size: 15px; flex: 1; color: #111; }
+        .offer-text { font-weight: 700; font-size: 15px; flex: 1; color: #111; text-align: right; }
         .offer-prices { text-align: left; font-weight: 700; }
         .offer-old-price { font-size: 12px; color: #999; text-decoration: line-through; display: block; line-height: 1; }
         .offer-new-price { font-size: 16px; color: #111; }
@@ -174,42 +179,91 @@
         }
         .counter-value { font-size: 16px; font-weight: 900; color: #111; min-width: 20px; text-align: center; }
 
-        .form-group { margin-bottom: 18px; }
+        .form-group { margin-bottom: 18px; text-align: right; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #444; }
         
-        /* 📱 خانات وأيقونات الـ iOS المطابقة لصورك بالملي */
+        /* 📱 تكبير مقاس الأيقونات وإضافة أنيميشن النبض التفاعلي لها */
         .input-icon-wrapper { position: relative; width: 100%; }
         .input-icon-wrapper .icon { 
             position: absolute; 
             right: 16px; 
             top: 50%; 
             transform: translateY(-50%); 
-            width: 22px; 
-            height: 22px; 
-            fill: #1c1c1e; /* لون أسود صريح ونظيف */
+            width: 24px; /* تم تكبير الأيقونات بناءً على طلبك */
+            height: 24px; 
+            fill: #1c1c1e; 
             pointer-events: none; 
+            transition: all 0.2s;
         }
-        .form-group textarea ~ .icon { top: 25px; transform: none; } /* ضبط مكان أيقونة الملاحظات */
+        .form-group textarea ~ .icon { top: 25px; transform: none; }
         
         .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 15px 50px 15px 15px; border: 1px solid #d1d1d6; border-radius: 12px;
+            width: 100%; padding: 15px 54px 15px 15px; border: 1px solid #d1d1d6; border-radius: 12px;
             box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600;
-            outline: none; background-color: #fafafa; transition: all 0.2s ease-in-out;
+            outline: none; background-color: #fafafa; transition: all 0.2s ease-in-out; text-align: right; /* كل الكلام يمين */
         }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.08); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
+            border-color: var(--primary-color); 
+            background-color: #fff; 
+            box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.08); 
+        }
+        .form-group input:focus ~ .icon, .form-group select:focus ~ .icon, .form-group textarea:focus ~ .icon {
+            animation: pulseIcon 0.3s ease-in-out;
+            fill: var(--primary-color);
+        }
         .form-group textarea { min-height: 90px; }
 
-        .checkout-box { background-color: #fbfbfb; border: 1px dashed #e0e0e0; border-radius: 14px; padding: 15px; margin-top: 20px; }
-        .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #444; }
+        .checkout-box { background-color: #fbfbfb; border: 1px solid #e0e0e0; border-radius: 16px; padding: 20px; margin-top: 20px; }
+        .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
+        .checkout-row span:last-child { font-weight: 900; } /* محاذاة الأرقام يمين وثباتها */
+
+        /* 🛠️ هندسة زرار وخانة الكوبون التفاعلية المنسدلة (مطابقة للصورة 100%) */
+        .promo-accordion-container {
+            width: 100%;
+            margin-top: 15px;
+            border: 1px solid #d1d1d6;
+            border-radius: 12px;
+            background: #fff;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .promo-toggle-btn {
+            padding: 14px 16px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #444;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .promo-toggle-btn::after { content: "▼"; font-size: 10px; transition: 0.3s; }
+        .promo-accordion-container.active .promo-toggle-btn::after { transform: rotate(180deg); }
         
-        /* 🛠️ الستايل الفخم لخانة الكوبون المطابقة تماماً للصورة 85119 و 85121 */
-        .promo-group { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 15px; width: 100%; }
-        .promo-label-side { font-size: 14px; font-weight: 700; color: #444; white-space: nowrap; }
-        .promo-input-wrapper { display: flex; border: 1px solid #d1d1d6; border-radius: 50px; background: #fff; overflow: hidden; flex: 1; max-width: 280px; height: 46px; }
-        .promo-input-wrapper input { flex: 1; border: none; padding: 0 15px; font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: center; color: #111; }
-        .promo-btn { background: #fff; color: #1c1c1e; border: none; border-right: 1px solid #d1d1d6; padding: 0 20px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 14px; transition: 0.2s; }
-        .promo-btn:disabled { color: #aeaeb2; cursor: not-allowed; background: #f2f2f7; }
-        .promo-message { font-size: 12px; font-weight: 700; margin-top: 8px; display: none; text-align: center; }
+        .promo-expanded-fields {
+            max-height: 0;
+            display: flex;
+            gap: 10px;
+            padding: 0 15px;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        .promo-accordion-container.active .promo-expanded-fields {
+            max-height: 80px;
+            padding-bottom: 15px;
+            opacity: 1;
+        }
+        .promo-expanded-fields input {
+            flex: 1; padding: 10px 15px; border: 1px solid #d1d1d6; border-radius: 8px;
+            font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: right;
+        }
+        .promo-click-btn {
+            background-color: #1c1c1e; color: white; border: none; padding: 0 22px;
+            border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 14px;
+        }
+        .promo-click-btn:disabled { background-color: #ccc; cursor: not-allowed; }
+        .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
 
         .order-now-btn {
             background: linear-gradient(90deg, #d60000, #ff1a1a); color: white; border: none; width: 85%; max-width: 380px;
@@ -223,7 +277,6 @@
         .whatsapp-floating .ws-icon { width: 30px; height: 30px; fill: white; }
         .whatsapp-text-carpet { background-color: #111111; color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: carpetRoll 8s infinite ease-in-out; }
 
-        /* الفوتر المنسدل الأنيق المصفى */
         .footer-menu-container { background: #000; color: #fff; padding: 5px 0; margin-top: 40px; }
         .menu-dropdown { border-bottom: 1px solid #222; }
         .menu-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 15px; }
@@ -283,8 +336,8 @@
         </div>
 
         <div class="price-container">
-            <span class="old-price">350 ج.م</span>
             <span class="new-price" id="top-price">275 ج.م / للقطعة</span>
+            <span class="old-price">350 ج.م</span>
         </div>
 
         <div class="animated-card card-1">
@@ -387,7 +440,7 @@
             <div class="form-group">
                 <label>العنوان بالتفصيل</label>
                 <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 17.93V19a1 1 0 0 1-2 0v-1.07A8 8 0 0 1 4.07 13H5a1 1 0 0 1 0-2h-.93A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 11H19a1 1 0 0 1 0 2h.93A8 8 0 0 1 13 17.93z"/></svg>
                     <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
                 </div>
             </div>
@@ -414,9 +467,9 @@
                     <span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
                 </div>
                 
-                <div class="promo-group">
-                    <span class="promo-label-side">هل لديك كوبون خصم؟</span>
-                    <div class="promo-input-wrapper">
+                <div class="promo-accordion-container" id="promoWrapper">
+                    <div class="promo-toggle-btn" onclick="togglePromoField()">هل لديك كوبون خصم؟</div>
+                    <div class="promo-expanded-fields">
                         <input type="text" id="promo-input" placeholder="أدخل الكوبون">
                         <button type="button" id="promo-btn-id" class="promo-btn" onclick="applyPromo()">تطبيق</button>
                     </div>
@@ -469,6 +522,12 @@
     let couponActive = false;
     let appliedDiscount = 0;
     let selectedOfferText = "عبوة واحدة بسعر 275 ج.م";
+
+    // فتح وغلق كرت الكوبون التفاعلي
+    function togglePromoField() {
+        if (couponActive) return;
+        document.getElementById('promoWrapper').classList.toggle('active');
+    }
 
     function syncCounterUI() {
         document.getElementById('custom-qty-val').innerText = currentTotalPieces;
@@ -570,7 +629,7 @@
             couponActive = false;
             msg.style.display = "block";
             msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ الكوبون غير صحيح!";
+            msg.innerText = "❌ رمز الكوبون غير صحيح، يرجى المحاولة مرة أخرى!";
         }
         recalculateTotal();
     }
@@ -607,34 +666,4 @@
         formData.append("phone", phone);
         formData.append("governorate", gov);
         formData.append("address", address);
-        formData.append("offer", `العرض: ${selectedOfferText} | ملاحظات العميل: ${notes || "لا يوجد"} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون: ${couponActive ? "نشط" : "لا يوجد"}`);
-
-        fetch(webAppUrl, { method: "POST", body: formData })
-        .then(() => {
-            document.getElementById('successOverlay').classList.add('show');
-            btnSpan.innerText = "تم تسجيل الطلب ✓";
-            document.getElementById('name').value = "";
-            document.getElementById('phone').value = "";
-            document.getElementById('governorate').value = "";
-            document.getElementById('address').value = "";
-            document.getElementById('notes').value = "";
-            document.getElementById('promo-input').value = "";
-            document.getElementById('promo-input').disabled = false;
-            document.getElementById('promo-msg').style.display = "none";
-            btn.disabled = false;
-            selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م');
-        })
-        .catch(() => {
-            alert("حدث خطأ، يرجى المحاولة مرة أخرى!");
-            btnSpan.innerText = "تأكيد طلب الشحن الفوري 🛍️";
-        });
-    }
-
-    function closeSuccess() {
-        document.getElementById('successOverlay').classList.remove('show');
-        document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
-    }
-</script>
-
-</body>
-</html>
+        formData.append
