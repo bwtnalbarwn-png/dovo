@@ -205,7 +205,7 @@
         .checkout-box { background-color: #fbfbfb; border: 1px solid #e0e0e0; border-radius: 16px; padding: 20px; margin-top: 20px; }
         .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
         
-        /* 🛠️ هندسة الكوبون التفاعلي */
+        /* 🛠️ هندسة الكوبون التفاعلي - تعديل مساحة زر تطبيق */
         .promo-accordion-container {
             width: 100%;
             margin-top: 15px;
@@ -230,12 +230,15 @@
             max-height: 80px; padding-bottom: 15px; opacity: 1;
         }
         .promo-expanded-fields input {
-            flex: 1; padding: 10px 15px; border: 1px solid #d1d1d6; border-radius: 8px;
+            flex: 2; padding: 10px 15px; border: 1px solid #d1d1d6; border-radius: 8px;
             font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: right;
+            min-width: 0; /* منع تجاوز الحجم */
         }
         .promo-click-btn {
-            background-color: #1c1c1e; color: white; border: none; padding: 0 22px;
+            flex: 1; background-color: #1c1c1e; color: white; border: none; padding: 0 10px;
             border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 14px;
+            white-space: nowrap; text-align: center; display: inline-flex; align-items: center; justify-content: center;
+            min-width: 80px; /* ضمان مساحة الكلمة بالكامل */
         }
         .promo-click-btn:disabled { background-color: #ccc; cursor: not-allowed; }
         .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
@@ -497,7 +500,7 @@
                 <div class="menu-content">
                     <ul class="policy-list">
                         <li class="policy-item"><strong>جدية الطلب والشحن:</strong> بمجرد تسجيلك للبيانات، السيستم بيخصم تكلفة الشحن فوراً لحساب مندوب منطقتك ويتم حجز المنتج؛ يرجى عدم تأكيد الطلب إلا في حالة الجاهزية التامة للاستلام، منعا للمساءلة عن تكاليف الشحن والهدر.</li>
-                        <li class="policy-item"><strong>الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ في حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
+                        <li class="policy-item"><strong>الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ in حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
                         <li class="policy-item"><strong>تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
                         <li class="policy-item"><strong>قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
                         <li class="policy-item"><strong>سياسة العروض المجمعة والباقات:</strong> في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.</li>
@@ -536,7 +539,6 @@
     let appliedDiscount = 0;
     let selectedOfferText = "عبوة واحدة بسعر 275 ج.م";
 
-    // 🧠 تشغيل سيستم أنيميشن السكرول المضمون والأخف (Intersection Observer)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -545,14 +547,12 @@
         });
     }, { threshold: 0.15 });
 
-    // تفعيل المراقب على كل عناصر الصفحة بشكل تتابعي عند تحميل الـ DOM
     document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.scroll-animate, .gallery-item-wrapper, .animated-card, .price-container').forEach(el => {
             el.classList.add('scroll-animate');
             observer.observe(el);
         });
 
-        // تشغيل الـ Input Listeners للفاليديشين فوراً
         ["name", "phone", "governorate", "address"].forEach(id => {
             const field = document.getElementById(id);
             if(field) {
@@ -641,7 +641,7 @@
 
         document.getElementById('txt-subtotal').innerText = baseProductPrice + " ج.م";
         document.getElementById('top-price').innerText = (baseProductPrice / currentTotalPieces).toFixed(0) + " ج.م / للقطعة";
-        document.getElementById('txt-shipping').innerText = shippingPrice + " ج.m";
+        document.getElementById('txt-shipping').innerText = shippingPrice + " ج.م";
         document.getElementById('txt-total').innerText = finalTotal + " ج.م";
     }
 
@@ -707,22 +707,38 @@
 
     function sendOrder() {
         const webAppUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec";
+        
+        const fields = ["name", "phone", "governorate", "address"];
+        let firstInvalidField = null;
+        let valid = true;
+
+        // مراجعة الفالديشن وتحديد أول حقل فيه غلط لعمل سكرول عليه
+        fields.forEach(id => {
+            const isFieldValid = validateField(id);
+            if (!isFieldValid && !firstInvalidField) {
+                firstInvalidField = document.getElementById(id);
+            }
+            valid = isFieldValid && valid;
+        });
+
+        // 🧠 التعديل المطلب: النزول الفوري التلقائي لأول رسالة خطأ
+        if(!valid){
+            if(firstInvalidField) {
+                firstInvalidField.closest('.form-group').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                setTimeout(() => firstInvalidField.focus(), 500); // عمل فوكس بعد انتهاء الحركة
+            }
+            return;
+        }
+
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
         const gov = document.getElementById('governorate').value;
         const address = document.getElementById('address').value.trim();
         const notes = document.getElementById('notes').value.trim();
         const btnSpan = document.querySelector('.order-now-btn span');
-
-        let valid = true;
-        valid = validateField("name") && valid;
-        valid = validateField("phone") && valid;
-        valid = validateField("governorate") && valid;
-        valid = validateField("address") && valid;
-
-        if(!valid){
-            return;
-        }
 
         btnSpan.innerText = "جاري حفظ طلبك بأمان... ⏳";
 
