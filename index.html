@@ -172,7 +172,7 @@
         }
         .counter-value { font-size: 16px; font-weight: 900; color: #111; min-width: 20px; text-align: center; }
 
-        .form-group { margin-bottom: 18px; text-align: right; }
+        .form-group { margin-bottom: 18px; text-align: right; position: relative; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #444; }
         
         .input-icon-wrapper { position: relative; width: 100%; }
@@ -194,14 +194,18 @@
             box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600;
             outline: none; background-color: #fafafa; transition: all 0.2s ease-in-out; text-align: right;
         }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.08); }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
+            border: 2px solid #111; 
+            box-shadow: none; 
+            background-color: #fff; 
+        }
         .form-group input:focus ~ .icon, .form-group select:focus ~ .icon, .form-group textarea:focus ~ .icon { animation: pulseIcon 0.3s ease-in-out; fill: var(--primary-color); }
         .form-group textarea { min-height: 90px; }
 
         .checkout-box { background-color: #fbfbfb; border: 1px solid #e0e0e0; border-radius: 16px; padding: 20px; margin-top: 20px; }
         .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
         
-        /* 🛠️ هندسة الكوبون التفاعلي (مستطيل واحد يفتح الخانات بسلاسة) */
+        /* 🛠️ هندسة الكوبون التفاعلي */
         .promo-accordion-container {
             width: 100%;
             margin-top: 15px;
@@ -267,6 +271,37 @@
         .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 10px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2); }
 
         .footer-badges { text-align: center; padding: 20px; background-color: #000; color: #666; font-size: 13px; font-weight: 700; }
+        
+        /* ===== Validation Style ===== */
+        .input-error {
+            border: 2px solid #d60000 !important;
+            background:#fff !important;
+        }
+        .error-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #ef4444;
+            color: white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: bold;
+            z-index: 10;
+        }
+        .error-text {
+            color: #dc2626;
+            font-size: 14px;
+            margin-top: 8px;
+            padding-right: 8px;
+            font-weight: 700;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -274,14 +309,14 @@
     <div class="container">
         
         <div class="images-gallery">
-            <div class="gallery-item-wrapper scroll-animate">
+            <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
-                <p class="img-script-text scroll-animate" style="transition-delay: 0.2s;">✨ التركيبة العشبية الأصلية 100% لنتائج مضمونة وأمان تام يساهم في شد ورفع الأرداف يعزز من إمتلاء وتكبير الأرداف مرطب ومغذي للبشرة.</p>
+                <p class="img-script-text">✨ التركيبة العشبية الأصلية 100% لنتائج مضمونة وأمان تام يساهم في شد ورفع الأرداف يعزز من إمتلاء وتكبير الأرداف مرطب ومغذي للبشرة.</p>
             </div>
 
-            <div class="gallery-item-wrapper scroll-animate">
+            <div class="gallery-item-wrapper">
                 <img src="https://f.top4top.io/p_38283r0da1.jpg" alt="🎀DOVO كريم رفع وتكبير الأرداف 🎀" class="product-img-full">
-                <p class="img-script-text scroll-animate" style="transition-delay: 0.2s;">💖 لأن أنوثتك تستحق الإهتمام 
+                <p class="img-script-text">💖 لأن أنوثتك تستحق الإهتمام 
 هل تبحثين عن مظهر أكثر تناسقًا وجاذبية بثقة أكبر؟
 مع DOVO كريم رفع وتكبير الأرداف بتركيبة غنية بفيتامين E الطبيعي 100%، استمتعي بعناية يومية تساعد على تحسين مظهر البشرة ومنحها نعومة ومرونة ولمسة أنثوية جذابة.
 ✅ تركيبة طبيعية لطيفة على البشرة
@@ -291,26 +326,26 @@
 ✅ مناسب للاستخدام اليومي.</p>
             </div>
 
-            <div class="gallery-item-wrapper scroll-animate">
+            <div class="gallery-item-wrapper">
                 <img src="https://c.top4top.io/p_3828v8mta1.jpg" alt="🌸 لماذا تختارين DOVO؟" class="product-img-full">
-                <p class="img-script-text scroll-animate" style="transition-delay: 0.2s;">لأن الجمال يبدأ من العناية المستمرة. تم تطوير DOVO ليمنحك تجربة عناية فاخرة تساعدك على الاهتمام ببشرتك وإبراز جمال قوامك بطريقة بسيطة ومريحة.</p>
+                <p class="img-script-text">لأن الجمال يبدأ من العناية المستمرة. تم تطوير DOVO ليمنحك تجربة عناية فاخرة تساعدك على الاهتمام ببشرتك وإبراز جمال قوامك بطريقة بسيطة ومريحة.</p>
             </div>
 
-            <div class="gallery-item-wrapper scroll-animate">
+            <div class="gallery-item-wrapper">
                 <img src="https://a.top4top.io/p_38290cc1u1.jpg" alt="📦 تفاصيل المنتج" class="product-img-full">
-                <p class="img-script-text scroll-animate" style="transition-delay: 0.2s;">الوزن: 250 جرام
+                <p class="img-script-text">الوزن: 250 جرام
 تركيبة طبيعية
 غني بفيتامين E
 مناسب للعناية اليومية بالبشرة</p>
             </div>
         </div>
 
-        <div class="price-container scroll-animate">
+        <div class="price-container">
             <span class="new-price" id="top-price">275 ج.م / للقطعة</span>
             <span class="old-price">350 ج.م</span>
         </div>
 
-        <div class="animated-card card-1 scroll-animate">
+        <div class="animated-card card-1">
             <div class="offers-title">اختر العرض المناسب لك ووفر أكثر:</div>
             
             <div class="offer-box selected" id="opt-1" onclick="selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م')">
@@ -351,15 +386,17 @@
             </div>
         </div>
 
-        <div class="animated-card card-2 scroll-animate">
-            <div class="form-title">البيانات المطلوبة</div>
+        <div class="animated-card card-2">
+            <div class="form-title">📝البيانات المطلوبة</div>
             
             <div class="form-group">
-                <label>الاسم بالكامل</label>
+                <label>الاسم ثلاثي</label>
                 <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg>
                     <input type="text" id="name" placeholder="الاسم">
+                    <div class="error-icon">!</div>
                 </div>
+                <div class="error-text">هذا الحقل مطلوب</div>
             </div>
             
             <div class="form-group">
@@ -367,7 +404,9 @@
                 <div class="input-icon-wrapper">
                     <svg class="icon" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-4.28-6.59-7.09l2.2-2.21c.28-.26.36-.66.25-1.01C8.78 5.84 8.59 4.65 8.59 3.42c0-.55-.45-1-1-1H4.01c-.55 0-1 .45-1 1C3.01 12.87 11.13 21 21.01 21c.55 0 1-.45 1-1v-3.62c0-.55-.45-1-1-1z"/></svg>
                     <input type="tel" id="phone" placeholder="الرقم">
+                    <div class="error-icon">!</div>
                 </div>
+                <div class="error-text">هذا الحقل مطلوب</div>
             </div>
             
             <div class="form-group">
@@ -404,7 +443,9 @@
                         <option value="أسوان">أسوان</option>
                         <option value="البحر الأحمر">البحر الأحمر</option>
                     </select>
+                    <div class="error-icon">!</div>
                 </div>
+                <div class="error-text">هذا الحقل مطلوب</div>
             </div>
             
             <div class="form-group">
@@ -412,7 +453,9 @@
                 <div class="input-icon-wrapper">
                     <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 17.93V19a1 1 0 0 1-2 0v-1.07A8 8 0 0 1 4.07 13H5a1 1 0 0 1 0-2h-.93A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 11H19a1 1 0 0 1 0 2h.93A8 8 0 0 1 13 17.93z"/></svg>
                     <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
+                    <div class="error-icon">!</div>
                 </div>
+                <div class="error-text">هذا الحقل مطلوب</div>
             </div>
 
             <div class="form-group">
@@ -448,7 +491,7 @@
             </div>
         </div>
 
-        <div class="footer-menu-container scroll-animate">
+        <div class="footer-menu-container">
             <div class="menu-dropdown" id="policyAccordion">
                 <div class="menu-header" onclick="toggleAccordion()">⚖️ بند الالتزام والشروط الرسمية للمتجر</div>
                 <div class="menu-content">
@@ -502,10 +545,22 @@
         });
     }, { threshold: 0.15 });
 
-    // تفعيل المراقب على كل عناصر الصفحة بشكل تتابعي
-    document.querySelectorAll('.scroll-animate, .gallery-item-wrapper, .animated-card, .price-container').forEach(el => {
-        el.classList.add('scroll-animate');
-        observer.observe(el);
+    // تفعيل المراقب على كل عناصر الصفحة بشكل تتابعي عند تحميل الـ DOM
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('.scroll-animate, .gallery-item-wrapper, .animated-card, .price-container').forEach(el => {
+            el.classList.add('scroll-animate');
+            observer.observe(el);
+        });
+
+        // تشغيل الـ Input Listeners للفاليديشين فوراً
+        ["name", "phone", "governorate", "address"].forEach(id => {
+            const field = document.getElementById(id);
+            if(field) {
+                field.addEventListener("input", () => {
+                    validateField(id);
+                });
+            }
+        });
     });
 
     function syncCounterUI() {
@@ -586,11 +641,10 @@
 
         document.getElementById('txt-subtotal').innerText = baseProductPrice + " ج.م";
         document.getElementById('top-price').innerText = (baseProductPrice / currentTotalPieces).toFixed(0) + " ج.م / للقطعة";
-        document.getElementById('txt-shipping').innerText = shippingPrice + " ج.م";
+        document.getElementById('txt-shipping').innerText = shippingPrice + " ج.m";
         document.getElementById('txt-total').innerText = finalTotal + " ج.م";
     }
 
-    // فتح وغلق كرت الكوبون المنسدل بسلاسة
     function togglePromoField() {
         if (couponActive) return;
         document.getElementById('promoWrapper').classList.toggle('active');
@@ -630,6 +684,27 @@
         }
     }
 
+    function validateField(id){
+        const field = document.getElementById(id);
+        if(!field) return false;
+        
+        const group = field.closest('.form-group');
+        const icon = group.querySelector('.error-icon');
+        const msg = group.querySelector('.error-text');
+
+        if(field.value.trim() === ''){
+            field.classList.add('input-error');
+            if(icon) icon.style.display = 'flex';
+            if(msg) msg.style.display = 'block';
+            return false;
+        }
+
+        field.classList.remove('input-error');
+        if(icon) icon.style.display = 'none';
+        if(msg) msg.style.display = 'none';
+        return true;
+    }
+
     function sendOrder() {
         const webAppUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec";
         const name = document.getElementById('name').value.trim();
@@ -639,8 +714,13 @@
         const notes = document.getElementById('notes').value.trim();
         const btnSpan = document.querySelector('.order-now-btn span');
 
-        if (!name || !phone || !gov || !address) {
-            alert("يرجى ملء جميع البيانات المطلوبة لضمان الشحن السريع!");
+        let valid = true;
+        valid = validateField("name") && valid;
+        valid = validateField("phone") && valid;
+        valid = validateField("governorate") && valid;
+        valid = validateField("address") && valid;
+
+        if(!valid){
             return;
         }
 
@@ -665,8 +745,9 @@
             document.getElementById('promo-input').value = "";
             document.getElementById('promo-input').disabled = false;
             document.getElementById('promo-msg').style.display = "none";
-            btn.disabled = false;
+            document.getElementById('promo-btn-id').disabled = false;
             document.getElementById('promoWrapper').classList.remove('active');
+            couponActive = false;
             selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م');
         })
         .catch(() => {
