@@ -10,11 +10,11 @@
     
     <style>
         :root {
-            --primary-color: #a87c5d; /* كافيه دافئ أنيق وفخم */
-            --secondary-color: #5c3a21; /* بني شوكولاتة عميق وجذاب */
-            --bg-color: #f9f5f0; /* بيج ناعم كريمي */
-            --card-shadow: 0 10px 30px rgba(168, 124, 93, 0.08);
-            --border-dark: #2c221e; /* حواف بنية داكنة ملوكي بدلاً من الأسود الحاد */
+            --primary-color: #e21b79; /* بينك وردي حيوي وملفت جداً */
+            --secondary-color: #9c0e4f; /* بينك مخملي غامق وجذاب للنصوص والأسعار */
+            --bg-color: #fff5f8; /* خلفية روز ناعمة جداً تبرز بياض الكروت */
+            --card-shadow: 0 10px 30px rgba(226, 27, 121, 0.06);
+            --border-dark: #1c1c1e; /* الحواف الملوكي الحادة بناءً على طلبك */
         }
         
         /* ✨ ترسانة أنيميشن الدخول الناعم ستايل iOS المضمون ✨ */
@@ -45,7 +45,7 @@
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
-            color: #2c221e;
+            color: #222;
             padding-bottom: 120px;
         }
         .container {
@@ -53,7 +53,7 @@
             margin: 0 auto;
             background: #fff;
             padding: 0;
-            box-shadow: 0 0 40px rgba(92, 58, 33, 0.06);
+            box-shadow: 0 0 40px rgba(226, 27, 121, 0.05);
         }
         
         .images-gallery { width: 100%; display: flex; flex-direction: column; }
@@ -71,7 +71,7 @@
         .img-script-text {
             font-size: 14.5px;
             font-weight: 700;
-            color: #4a3e3d;
+            color: #3a3a3c;
             line-height: 1.7;
             padding: 18px 15px;
             margin: 0;
@@ -93,26 +93,26 @@
         .price-container {
             margin: 20px;
             text-align: right;
-            background: #fffcf9;
+            background: #fff0f6;
             padding: 15px;
             border-radius: 12px;
             border: 1.5px dashed var(--primary-color);
         }
-        .old-price { font-size: 16px; color: #a3958e; text-decoration: line-through; margin-right: 10px; font-weight: 600; float: left; }
-        .new-price { font-size: 26px; color: var(--secondary-color); font-weight: 900; }
+        .old-price { font-size: 16px; color: #999; text-decoration: line-through; margin-right: 10px; font-weight: 600; float: left; }
+        .new-price { font-size: 26px; color: var(--primary-color); font-weight: 900; }
         
         .offers-title, .form-title {
             font-size: 18px;
             font-weight: 800;
             margin-bottom: 20px;
-            color: var(--secondary-color);
+            color: #111;
             border-right: 4px solid var(--primary-color);
             padding-right: 10px;
             text-align: right;
         }
 
         .offer-box {
-            border: 1px solid #dcd1cb;
+            border: 1px solid #d1d1d6;
             border-radius: 16px;
             padding: 18px 16px;
             margin-bottom: 16px;
@@ -126,30 +126,30 @@
         .offer-box input { margin-left: 14px; transform: scale(1.4); accent-color: var(--primary-color); }
         .offer-box.selected {
             border-color: var(--primary-color);
-            background-color: #fffcf9;
+            background-color: #fff5f9;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(168, 124, 93, 0.15);
+            box-shadow: 0 8px 20px rgba(226, 27, 121, 0.12);
         }
         .best-seller-badge {
             position: absolute;
             top: -12px;
             left: 20px;
-            background: linear-gradient(45deg, #c59b7b, var(--primary-color));
+            background: linear-gradient(45deg, #ff9800, #ff5722);
             color: white;
             padding: 3px 14px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: 700;
-            box-shadow: 0 5px 10px rgba(168, 124, 93, 0.25);
+            box-shadow: 0 5px 10px rgba(255, 87, 34, 0.25);
         }
-        .offer-text { font-weight: 700; font-size: 15px; flex: 1; color: #2c221e; text-align: right; }
+        .offer-text { font-weight: 700; font-size: 15px; flex: 1; color: #111; text-align: right; }
         .offer-prices { text-align: left; font-weight: 700; }
-        .offer-old-price { font-size: 12px; color: #a3958e; text-decoration: line-through; display: block; line-height: 1; }
-        .offer-new-price { font-size: 16px; color: var(--secondary-color); }
+        .offer-old-price { font-size: 12px; color: #999; text-decoration: line-through; display: block; line-height: 1; }
+        .offer-new-price { font-size: 16px; color: #111; }
 
         .custom-qty-box {
             border: 1px dashed var(--primary-color);
-            background: #fffcf9;
+            background: #fff5f9;
             border-radius: 16px;
             padding: 15px;
             display: flex;
@@ -172,10 +172,10 @@
             cursor: pointer; color: var(--primary-color); width: 28px; height: 28px;
             display: flex; align-items: center; justify-content: center; outline: none;
         }
-        .counter-value { font-size: 16px; font-weight: 900; color: #2c221e; min-width: 20px; text-align: center; }
+        .counter-value { font-size: 16px; font-weight: 900; color: #111; min-width: 20px; text-align: center; }
 
         .form-group { margin-bottom: 18px; text-align: right; position: relative; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #4a3e3d; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #444; }
         
         .input-icon-wrapper { position: relative; width: 100%; }
         .input-icon-wrapper .icon { 
@@ -185,17 +185,16 @@
             transform: translateY(-50%); 
             width: 24px; 
             height: 24px; 
-            fill: var(--secondary-color); 
+            fill: #1c1c1e; 
             pointer-events: none; 
             transition: all 0.2s;
         }
         .form-group textarea ~ .icon { top: 25px; transform: none; }
         
         .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 15px 54px 15px 15px; border: 1px solid #dcd1cb; border-radius: 12px;
+            width: 100%; padding: 15px 54px 15px 15px; border: 1px solid #d1d1d6; border-radius: 12px;
             box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600;
-            outline: none; background-color: #faf8f6; transition: all 0.2s ease-in-out; text-align: right;
-            color: #2c221e;
+            outline: none; background-color: #fafafa; transition: all 0.2s ease-in-out; text-align: right;
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
             border: 2px solid var(--primary-color); 
@@ -205,21 +204,21 @@
         .form-group input:focus ~ .icon, .form-group select:focus ~ .icon, .form-group textarea:focus ~ .icon { animation: pulseIcon 0.3s ease-in-out; fill: var(--primary-color); }
         .form-group textarea { min-height: 90px; }
 
-        .checkout-box { background-color: #fdfbf9; border: 1px solid #ede4df; border-radius: 16px; padding: 20px; margin-top: 20px; }
-        .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #4a3e3d; direction: rtl; text-align: right; }
+        .checkout-box { background-color: #fbfbfb; border: 1px solid #e0e0e0; border-radius: 16px; padding: 20px; margin-top: 20px; }
+        .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
         
-        /* 🛠️ هندسة الكوبون التفاعلي - تعديل مساحة زر تطبيق */
+        /* 🛠️ هندسة الكوبون التفاعلي */
         .promo-accordion-container {
             width: 100%;
             margin-top: 15px;
-            border: 1px solid #dcd1cb;
+            border: 1px solid #d1d1d6;
             border-radius: 12px;
             background: #fff;
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .promo-toggle-btn {
-            padding: 14px 16px; font-size: 14px; font-weight: 700; color: #4a3e3d;
+            padding: 14px 16px; font-size: 14px; font-weight: 700; color: #444;
             cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;
         }
         .promo-toggle-btn::after { content: "▼"; font-size: 10px; transition: 0.3s; }
@@ -233,7 +232,7 @@
             max-height: 80px; padding-bottom: 15px; opacity: 1;
         }
         .promo-expanded-fields input {
-            flex: 2; padding: 10px 15px; border: 1px solid #dcd1cb; border-radius: 8px;
+            flex: 2; padding: 10px 15px; border: 1px solid #d1d1d6; border-radius: 8px;
             font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: right;
             min-width: 0;
         }
@@ -246,46 +245,46 @@
         .promo-click-btn:disabled { background-color: #ccc; cursor: not-allowed; }
         .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
 
-        /* زر الشحن الفوري - متناسق تماماً مع البني والكافيه الجذاب */
+        /* زر التثبيت والتأكيد البينك الجذاب */
         .order-now-btn {
-            background: linear-gradient(90deg, #5c3a21, #a87c5d); color: white; border: none; width: 85%; max-width: 380px;
-            padding: 14px 15px; font-size: 16px; font-weight: 800; border-radius: 50px; cursor: pointer;
-            box-shadow: 0 6px 20px rgba(92, 58, 33, 0.35); transition: all 0.3s; position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 999; font-family: 'Cairo', sans-serif;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color)); color: white; border: none; width: 85%; max-width: 380px;
+            padding: 13px 15px; font-size: 16px; font-weight: 800; border-radius: 50px; cursor: pointer;
+            box-shadow: 0 6px 20px rgba(226, 27, 121, 0.35); transition: all 0.3s; position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 999; font-family: 'Cairo', sans-serif;
         }
         .order-now-btn:hover {
             transform: translateX(-50%) scale(1.02);
-            box-shadow: 0 8px 25px rgba(92, 58, 33, 0.45);
+            box-shadow: 0 8px 25px rgba(226, 27, 121, 0.45);
         }
         
         .whatsapp-wrapper { position: fixed; bottom: 85px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
         .whatsapp-floating { background-color: #25d366; color: white; width: 50px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); cursor: pointer; text-decoration: none; position: relative; z-index: 2; }
         .whatsapp-floating .ws-icon { width: 30px; height: 30px; fill: white; }
-        .whatsapp-text-carpet { background-color: var(--secondary-color); color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: carpetRoll 8s infinite ease-in-out; }
+        .whatsapp-text-carpet { background-color: #111111; color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: carpetRoll 8s infinite ease-in-out; }
 
-        .footer-menu-container { background: #1e1613; color: #fff; padding: 5px 0; margin-top: 40px; }
-        .menu-dropdown { border-bottom: 1px solid #2c221e; }
-        .menu-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 15px; color: #ebdcd5; }
+        .footer-menu-container { background: #000; color: #fff; padding: 5px 0; margin-top: 40px; }
+        .menu-dropdown { border-bottom: 1px solid #222; }
+        .menu-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 15px; }
         .menu-header::after { content: "▼"; font-size: 11px; transition: 0.3s; }
         .menu-dropdown.active .menu-header::after { transform: rotate(180deg); }
-        .menu-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #16100e; padding: 0 20px; }
+        .menu-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #111; padding: 0 20px; }
         .menu-dropdown.active .menu-content { max-height: 2500px; padding: 20px; }
         .policy-list { list-style: none; padding: 0; margin: 0; }
-        .policy-item { position: relative; padding-right: 20px; margin-bottom: 18px; font-size: 13px; line-height: 1.6; color: #cdbfa8; text-align: right; }
+        .policy-item { position: relative; padding-right: 20px; margin-bottom: 18px; font-size: 13px; line-height: 1.6; color: #ccc; text-align: right; }
         .policy-item::before { content: "•"; position: absolute; right: 0; top: -2px; color: var(--primary-color); font-size: 18px; }
         .policy-item strong { color: #fff; display: block; margin-bottom: 2px; font-size: 13.5px; }
 
-        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(22, 16, 14, 0.6); backdrop-filter: blur(3px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; }
+        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(3px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; }
         .success-overlay.show { opacity: 1; pointer-events: auto; }
-        .success-card { background: #fdfbf9; width: 85%; max-width: 420px; border-radius: 16px; padding: 30px 20px; text-align: center; border: 2px solid var(--primary-color); box-shadow: 0 15px 35px rgba(92, 58, 33, 0.2); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); }
+        .success-card { background: #f4f5f7; width: 85%; max-width: 420px; border-radius: 16px; padding: 30px 20px; text-align: center; border: 2px solid var(--primary-color); box-shadow: 0 15px 35px rgba(226, 27, 121, 0.25); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); }
         .success-overlay.show .success-card { transform: scale(1); }
-        .success-card p { font-size: 16px; color: #2c221e; margin: 0 0 20px 0; line-height: 1.6; font-weight: 700; }
-        .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 10px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(168, 124, 93, 0.2); }
+        .success-card p { font-size: 16px; color: #111; margin: 0 0 20px 0; line-height: 1.6; font-weight: 700; }
+        .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 10px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2); }
 
-        .footer-badges { text-align: center; padding: 20px; background-color: #1e1613; color: #76645c; font-size: 13px; font-weight: 700; }
+        .footer-badges { text-align: center; padding: 20px; background-color: #000; color: #666; font-size: 13px; font-weight: 700; }
         
         /* ===== Validation Style ===== */
         .input-error {
-            border: 2px solid #a83b3b !important;
+            border: 2px solid #dc2626 !important;
             background:#fffcfc !important;
         }
         .error-icon {
@@ -296,7 +295,7 @@
             width: 26px;
             height: 26px;
             border-radius: 50%;
-            background: #a83b3b;
+            background: #dc2626;
             color: white;
             display: none;
             align-items: center;
@@ -306,7 +305,7 @@
             z-index: 10;
         }
         .error-text {
-            color: #a83b3b;
+            color: #dc2626;
             font-size: 14px;
             margin-top: 8px;
             padding-right: 8px;
@@ -486,7 +485,7 @@
                     <span>تكلفة الشحن:</span>
                     <span id="txt-shipping">60 ج.م</span>
                 </div>
-                <div class="checkout-row" style="border-top: 1px solid #ede4df; padding-top: 10px; font-size: 18px; color: #111; font-weight: 900;">
+                <div class="checkout-row" style="border-top: 1px solid #eee; padding-top: 10px; font-size: 18px; color: #111; font-weight: 900;">
                     <span>الإجمالي النهائي:</span>
                     <span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
                 </div>
@@ -668,14 +667,14 @@
         if (promo === "HAMZA10" || promo === "HA10") {
             couponActive = true;
             msg.style.display = "block";
-            msg.style.color = "#2e7d32";
+            msg.style.color = "#25d366";
             msg.innerText = "✓ تم تطبيق خصم 10% بنجاح!";
             btn.disabled = true;
             document.getElementById('promo-input').disabled = true;
         } else {
             couponActive = false;
             msg.style.display = "block";
-            msg.style.color = "#a83b3b";
+            msg.style.color = "var(--secondary-color)";
             msg.innerText = "❌ رمز الكوبون غير صحيح، يرجى المحاولة مرة أخرى!";
         }
         recalculateTotal();
@@ -786,4 +785,3 @@
 
 </body>
 </html>
-
