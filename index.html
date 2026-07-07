@@ -10,24 +10,18 @@
     
     <style>
         :root {
-            --primary-color: #e21b79; /* بينك وردي حيوي وملفت جداً */
-            --secondary-color: #9c0e4f; /* بينك مخملي غامق وجذاب للنصوص والأسعار */
-            --bg-color: #fff5f8; /* خلفية روز ناعمة جداً تبرز بياض الكروت */
-            --card-shadow: 0 10px 30px rgba(226, 27, 121, 0.06);
-            --border-dark: #1c1c1e; /* الحواف الملوكي الحادة بناءً على طلبك */
+            --primary-color: #e21b79; /* بينك البراند الأنيق */
+            --secondary-color: #d60000; /* أحمر ناري قوي */
+            --bg-color: #eff1f5; 
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
         
-        /* ✨ ترسانة أنيميشن الدخول الناعم ستايل iOS المضمون ✨ */
         .scroll-animate {
             opacity: 0;
             transform: translateY(30px) scale(0.98);
             transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        /* كلاس التفعيل اللي جافا سكريبت هتضيفه أول ما العميل يعمل سكرول */
-        .scroll-animate.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+        .scroll-animate.active { opacity: 1; transform: translateY(0) scale(1); }
         
         @keyframes carpetRoll {
             0%, 100% { width: 0; opacity: 0; padding: 0; }
@@ -43,220 +37,70 @@
         body {
             font-family: 'Cairo', sans-serif;
             background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-            color: #222;
-            padding-bottom: 120px;
+            margin: 0; padding: 0; color: #222; padding-bottom: 120px;
         }
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 0;
-            box-shadow: 0 0 40px rgba(226, 27, 121, 0.05);
-        }
-        
+        .container { max-width: 500px; margin: 0 auto; background: #fff; padding: 0; box-shadow: 0 0 40px rgba(0,0,0,0.05); }
         .images-gallery { width: 100%; display: flex; flex-direction: column; }
         
-        /* الفريمات والحواف السوداء الملوكي بناءً على طلبك */
-        .gallery-item-wrapper {
-            margin-bottom: 25px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            border: 1.5px solid var(--border-dark);
-        }
+        .gallery-item-wrapper { margin-bottom: 25px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1.5px solid #1c1c1e; }
         .product-img-full { width: 100%; height: auto; display: block; }
         
-        .img-script-text {
-            font-size: 14.5px;
-            font-weight: 700;
-            color: #3a3a3c;
-            line-height: 1.7;
-            padding: 18px 15px;
-            margin: 0;
-            text-align: right;
-            white-space: pre-line;
-            background: #fff;
-            border-top: 1.5px solid var(--border-dark);
-        }
+        .img-script-text { font-size: 14.5px; font-weight: 700; color: #3a3a3c; line-height: 1.7; padding: 18px 15px; margin: 0; text-align: right; white-space: pre-line; background: #fff; border-top: 1.5px solid #1c1c1e; }
         
-        .animated-card {
-            border-radius: 20px;
-            margin: 20px;
-            padding: 25px 20px;
-            box-shadow: var(--card-shadow);
-            border: 1.5px solid var(--border-dark);
-            background: #fff;
-        }
-
-        .price-container {
-            margin: 20px;
-            text-align: right;
-            background: #fff0f6;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1.5px dashed var(--primary-color);
-        }
+        .animated-card { border-radius: 20px; margin: 20px; padding: 25px 20px; box-shadow: var(--card-shadow); border: 1.5px solid #1c1c1e; }
+        .price-container { margin: 20px; text-align: right; background: #fff0f6; padding: 15px; border-radius: 12px; border: 1.5px dashed var(--primary-color); }
         .old-price { font-size: 16px; color: #999; text-decoration: line-through; margin-right: 10px; font-weight: 600; float: left; }
         .new-price { font-size: 26px; color: var(--primary-color); font-weight: 900; }
         
-        .offers-title, .form-title {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: #111;
-            border-right: 4px solid var(--primary-color);
-            padding-right: 10px;
-            text-align: right;
-        }
+        .offers-title, .form-title { font-size: 18px; font-weight: 800; margin-bottom: 20px; color: #111; border-right: 4px solid var(--primary-color); padding-right: 10px; text-align: right; }
 
-        .offer-box {
-            border: 1px solid #d1d1d6;
-            border-radius: 16px;
-            padding: 18px 16px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            background: #fff;
-        }
+        .offer-box { border: 1px solid #d1d1d6; border-radius: 16px; padding: 18px 16px; margin-bottom: 16px; display: flex; align-items: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; background: #fff; }
         .offer-box input { margin-left: 14px; transform: scale(1.4); accent-color: var(--primary-color); }
-        .offer-box.selected {
-            border-color: var(--primary-color);
-            background-color: #fff5f9;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(226, 27, 121, 0.12);
-        }
-        .best-seller-badge {
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: linear-gradient(45deg, #ff9800, #ff5722);
-            color: white;
-            padding: 3px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            box-shadow: 0 5px 10px rgba(255, 87, 34, 0.25);
-        }
+        .offer-box.selected { border-color: var(--primary-color); background-color: #fff5f9; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(226, 27, 121, 0.12); }
+        .best-seller-badge { position: absolute; top: -12px; left: 20px; background: linear-gradient(45deg, #ff9800, #ff5722); color: white; padding: 3px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; box-shadow: 0 5px 10px rgba(255, 87, 34, 0.25); }
         .offer-text { font-weight: 700; font-size: 15px; flex: 1; color: #111; text-align: right; }
         .offer-prices { text-align: left; font-weight: 700; }
         .offer-old-price { font-size: 12px; color: #999; text-decoration: line-through; display: block; line-height: 1; }
         .offer-new-price { font-size: 16px; color: #111; }
 
-        .custom-qty-box {
-            border: 1px dashed var(--primary-color);
-            background: #fff5f9;
-            border-radius: 16px;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
+        .custom-qty-box { border: 1px dashed var(--primary-color); background: #fff5f9; border-radius: 16px; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
         .custom-qty-label { font-size: 14px; font-weight: 800; color: var(--primary-color); }
-        .quantity-counter {
-            display: flex;
-            align-items: center;
-            background: #fff;
-            border-radius: 50px;
-            padding: 3px 12px;
-            border: 1px solid var(--primary-color);
-            gap: 15px;
-        }
-        .counter-btn {
-            background: none; border: none; font-size: 18px; font-weight: 700;
-            cursor: pointer; color: var(--primary-color); width: 28px; height: 28px;
-            display: flex; align-items: center; justify-content: center; outline: none;
-        }
+        .quantity-counter { display: flex; align-items: center; background: #fff; border-radius: 50px; padding: 3px 12px; border: 1px solid var(--primary-color); gap: 15px; }
+        .counter-btn { background: none; border: none; font-size: 18px; font-weight: 700; cursor: pointer; color: var(--primary-color); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; outline: none; }
         .counter-value { font-size: 16px; font-weight: 900; color: #111; min-width: 20px; text-align: center; }
 
-        .form-group { margin-bottom: 18px; text-align: right; position: relative; }
+        .form-group { margin-bottom: 18px; text-align: right; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #444; }
         
         .input-icon-wrapper { position: relative; width: 100%; }
-        .input-icon-wrapper .icon { 
-            position: absolute; 
-            right: 16px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            width: 24px; 
-            height: 24px; 
-            fill: #1c1c1e; 
-            pointer-events: none; 
-            transition: all 0.2s;
-        }
+        .input-icon-wrapper .icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; fill: #1c1c1e; pointer-events: none; transition: all 0.2s; }
         .form-group textarea ~ .icon { top: 25px; transform: none; }
         
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 15px 54px 15px 15px; border: 1px solid #d1d1d6; border-radius: 12px;
-            box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600;
-            outline: none; background-color: #fafafa; transition: all 0.2s ease-in-out; text-align: right;
-        }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
-            border: 2px solid var(--primary-color); 
-            box-shadow: none; 
-            background-color: #fff; 
-        }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 15px 54px 15px 15px; border: 1px solid #d1d1d6; border-radius: 12px; box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600; outline: none; background-color: #fafafa; transition: all 0.2s ease-in-out; text-align: right; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.08); }
         .form-group input:focus ~ .icon, .form-group select:focus ~ .icon, .form-group textarea:focus ~ .icon { animation: pulseIcon 0.3s ease-in-out; fill: var(--primary-color); }
         .form-group textarea { min-height: 90px; }
 
         .checkout-box { background-color: #fbfbfb; border: 1px solid #e0e0e0; border-radius: 16px; padding: 20px; margin-top: 20px; }
         .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
-        
+        .checkout-row span:last-child { font-weight: 900; }
+
         /* 🛠️ هندسة الكوبون التفاعلي */
-        .promo-accordion-container {
-            width: 100%;
-            margin-top: 15px;
-            border: 1px solid #d1d1d6;
-            border-radius: 12px;
-            background: #fff;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .promo-toggle-btn {
-            padding: 14px 16px; font-size: 14px; font-weight: 700; color: #444;
-            cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;
-        }
+        .promo-accordion-container { width: 100%; margin-top: 15px; border: 1px solid #d1d1d6; border-radius: 12px; background: #fff; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+        .promo-toggle-btn { padding: 14px 16px; font-size: 14px; font-weight: 700; color: #444; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
         .promo-toggle-btn::after { content: "▼"; font-size: 10px; transition: 0.3s; }
         .promo-accordion-container.active .promo-toggle-btn::after { transform: rotate(180deg); }
         
-        .promo-expanded-fields {
-            max-height: 0; display: flex; gap: 10px; padding: 0 15px;
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); opacity: 0;
-        }
-        .promo-accordion-container.active .promo-expanded-fields {
-            max-height: 80px; padding-bottom: 15px; opacity: 1;
-        }
-        .promo-expanded-fields input {
-            flex: 2; padding: 10px 15px; border: 1px solid #d1d1d6; border-radius: 8px;
-            font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: right;
-            min-width: 0;
-        }
-        .promo-click-btn {
-            flex: 1; background-color: var(--secondary-color); color: white; border: none; padding: 0 10px;
-            border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 14px;
-            white-space: nowrap; text-align: center; display: inline-flex; align-items: center; justify-content: center;
-            min-width: 80px;
-        }
+        .promo-expanded-fields { max-height: 0; display: flex; gap: 10px; padding: 0 15px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); opacity: 0; }
+        .promo-accordion-container.active .promo-expanded-fields { max-height: 80px; padding-bottom: 15px; opacity: 1; }
+        .promo-expanded-fields input { flex: 1; padding: 10px 15px; border: 1px solid #d1d1d6; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: right; }
+        .promo-click-btn { background-color: #1c1c1e; color: white; border: none; padding: 0 22px; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 14px; }
         .promo-click-btn:disabled { background-color: #ccc; cursor: not-allowed; }
         .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
 
-        /* زر التثبيت والتأكيد البينك الجذاب */
-        .order-now-btn {
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color)); color: white; border: none; width: 85%; max-width: 380px;
-            padding: 13px 15px; font-size: 16px; font-weight: 800; border-radius: 50px; cursor: pointer;
-            box-shadow: 0 6px 20px rgba(226, 27, 121, 0.35); transition: all 0.3s; position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 999; font-family: 'Cairo', sans-serif;
-        }
-        .order-now-btn:hover {
-            transform: translateX(-50%) scale(1.02);
-            box-shadow: 0 8px 25px rgba(226, 27, 121, 0.45);
-        }
+        .order-now-btn { background: linear-gradient(90deg, #d60000, #ff1a1a); color: white; border: none; width: 85%; max-width: 380px; padding: 12px 15px; font-size: 15.5px; font-weight: 800; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(214, 0, 0, 0.3); transition: all 0.3s; position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 999; font-family: 'Cairo', sans-serif; }
         
-        .whatsapp-wrapper { position: fixed; bottom: 85px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
+        .whatsapp-wrapper { position: fixed; bottom: 75px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
         .whatsapp-floating { background-color: #25d366; color: white; width: 50px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); cursor: pointer; text-decoration: none; position: relative; z-index: 2; }
         .whatsapp-floating .ws-icon { width: 30px; height: 30px; fill: white; }
         .whatsapp-text-carpet { background-color: #111111; color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: carpetRoll 8s infinite ease-in-out; }
@@ -270,54 +114,29 @@
         .menu-dropdown.active .menu-content { max-height: 2500px; padding: 20px; }
         .policy-list { list-style: none; padding: 0; margin: 0; }
         .policy-item { position: relative; padding-right: 20px; margin-bottom: 18px; font-size: 13px; line-height: 1.6; color: #ccc; text-align: right; }
-        .policy-item::before { content: "•"; position: absolute; right: 0; top: -2px; color: var(--primary-color); font-size: 18px; }
+        .policy-item::before { content: "•"; position: absolute; right: 0; top: -2px; color: #d4af37; font-size: 18px; }
         .policy-item strong { color: #fff; display: block; margin-bottom: 2px; font-size: 13.5px; }
 
-        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(3px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; }
+        /* 🏆 ستايل شاشة النجاح وكارت الخصومات 92980 */
+        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(5px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; }
         .success-overlay.show { opacity: 1; pointer-events: auto; }
-        .success-card { background: #f4f5f7; width: 85%; max-width: 420px; border-radius: 16px; padding: 30px 20px; text-align: center; border: 2px solid var(--primary-color); box-shadow: 0 15px 35px rgba(226, 27, 121, 0.25); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); }
+        .success-card { background: #ffffff; width: 92%; max-width: 440px; border-radius: 24px; padding: 25px 15px; text-align: center; border: 1.5px solid #1c1c1e; box-shadow: 0 20px 50px rgba(0,0,0,0.3); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); }
         .success-overlay.show .success-card { transform: scale(1); }
-        .success-card p { font-size: 16px; color: #111; margin: 0 0 20px 0; line-height: 1.6; font-weight: 700; }
-        .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 10px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2); }
+        
+        .loyalty-msg-title { font-size: 16px; font-weight: 900; color: #25d366; margin: 10px 0; }
+        .discount-card-img-box { width: 100%; border-radius: 12px; overflow: hidden; border: 1.5px solid #1c1c1e; margin: 15px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .discount-card-img { width: 100%; height: auto; display: block; }
+        
+        .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 11px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2); }
 
         .footer-badges { text-align: center; padding: 20px; background-color: #000; color: #666; font-size: 13px; font-weight: 700; }
-        
-        /* ===== Validation Style ===== */
-        .input-error {
-            border: 2px solid #dc2626 !important;
-            background:#fffcfc !important;
-        }
-        .error-icon {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: #dc2626;
-            color: white;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            font-weight: bold;
-            z-index: 10;
-        }
-        .error-text {
-            color: #dc2626;
-            font-size: 14px;
-            margin-top: 8px;
-            padding-right: 8px;
-            font-weight: 700;
-            display: none;
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
         
+        <!-- معرض الصور مع تتابع ظهور الاسكريبت مستقل بعد الصورة -->
         <div class="images-gallery">
             <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
@@ -363,7 +182,7 @@
                 <div class="offer-text">اشتري عبوة واحدة الآن بسعر 275 جنيه فقط</div>
                 <div class="offer-prices">
                     <span class="offer-old-price">350 ج.م</span>
-                    <span class="offer-new-price">275 ج.م</span>
+                    <span class="offer-new-price">275 ج.m</span>
                 </div>
             </div>
             
@@ -397,16 +216,14 @@
         </div>
 
         <div class="animated-card card-2">
-            <div class="form-title">📝البيانات المطلوبة</div>
+            <div class="form-title">البيانات المطلوبة</div>
             
             <div class="form-group">
-                <label>الاسم ثلاثي</label>
+                <label>الاسم بالكامل</label>
                 <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
                     <input type="text" id="name" placeholder="الاسم">
-                    <div class="error-icon">!</div>
                 </div>
-                <div class="error-text">هذا الحقل مطلوب</div>
             </div>
             
             <div class="form-group">
@@ -414,9 +231,7 @@
                 <div class="input-icon-wrapper">
                     <svg class="icon" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-4.28-6.59-7.09l2.2-2.21c.28-.26.36-.66.25-1.01C8.78 5.84 8.59 4.65 8.59 3.42c0-.55-.45-1-1-1H4.01c-.55 0-1 .45-1 1C3.01 12.87 11.13 21 21.01 21c.55 0 1-.45 1-1v-3.62c0-.55-.45-1-1-1z"/></svg>
                     <input type="tel" id="phone" placeholder="الرقم">
-                    <div class="error-icon">!</div>
                 </div>
-                <div class="error-text">هذا الحقل مطلوب</div>
             </div>
             
             <div class="form-group">
@@ -453,9 +268,7 @@
                         <option value="أسوان">أسوان</option>
                         <option value="البحر الأحمر">البحر الأحمر</option>
                     </select>
-                    <div class="error-icon">!</div>
                 </div>
-                <div class="error-text">هذا الحقل مطلوب</div>
             </div>
             
             <div class="form-group">
@@ -463,9 +276,7 @@
                 <div class="input-icon-wrapper">
                     <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 17.93V19a1 1 0 0 1-2 0v-1.07A8 8 0 0 1 4.07 13H5a1 1 0 0 1 0-2h-.93A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 11H19a1 1 0 0 1 0 2h.93A8 8 0 0 1 13 17.93z"/></svg>
                     <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
-                    <div class="error-icon">!</div>
                 </div>
-                <div class="error-text">هذا الحقل مطلوب</div>
             </div>
 
             <div class="form-group">
@@ -490,6 +301,7 @@
                     <span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
                 </div>
                 
+                <!-- الكوبون التفاعلي المنسدل المطور -->
                 <div class="promo-accordion-container" id="promoWrapper">
                     <div class="promo-toggle-btn" onclick="togglePromoField()">هل لديك كوبون خصم؟</div>
                     <div class="promo-expanded-fields">
@@ -511,12 +323,12 @@
                         <li class="policy-item"><strong>تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
                         <li class="policy-item"><strong>قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
                         <li class="policy-item"><strong>سياسة العروض المجمعة والباقات:</strong> في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.</li>
-                        <li class="policy-item"><strong>حد أقصى للاحتفاظ بالشحنة:</strong> في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة، يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤقت على الرقم من الطلب مجدداً.</li>
+                        <li class="policy-item"><strong>حد أقصى للاحتفاظ بالشحنة:</strong> في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة، يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤفت على الرقم من الطلب مجدداً.</li>
                         <li class="policy-item"><strong>نظام الحظر الموحد (القائمة السوداء):</strong> متجرنا مرتبط بشبكة تجارية موحدة للكشف عن جدية المشترين. في حالة رفض استلام الشحنة بعد خروجها بدون سبب طبيعي صريح، يتم إدراج (الاسم، ورقم الهاتف، والعنوان) تلقائياً في القائمة السوداء المحظورة من الشحن أوتوماتيكياً في متجرنا وأكثر من 50 متجر إلكتروني اخر.</li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-badges">Powered By Al-Hamzawi</div>
+            <div class="footer-badges">Powered By Al-Hamزامي</div>
         </div>
     </div>
 
@@ -531,9 +343,22 @@
         <span>تأكيد طلب الشحن الفوري 🛍️</span>
     </button>
 
+    <!-- 🏆 شاشة النجاح المطورة بذكاء التتبع ومكافآت كارت الخصم 92980 الحقيقية -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
-            <p>تم تسجيل طلبك بنجاح، سيتم التواصل معك في أقرب وقت، شكراً لك.</p>
+            <div style="font-size: 40px; margin-bottom: 10px;">🎉</div>
+            <p style="margin-bottom: 5px; font-weight: 900; color: #1c1c1e; font-size: 18px;">تم تسجيل طلبك بنجاح!</p>
+            <p style="font-size: 13.5px; color: #666; margin-bottom: 10px; font-weight: 600;">سيتم التواصل معك في أقرب وقت لتأكيد الشحن الفوري.</p>
+            
+            <!-- جملة المكافأة المتغيرة بناء على الأوردر -->
+            <div class="loyalty-msg-title" id="loyaltyGiftTitle">🎁 مبروك حصلت على كارت خصومات حصري!</div>
+            
+            <div class="discount-card-img-box">
+                <span class="screenshot-badge" style="display: block; background: #1c1c1e; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 0; margin-bottom: 0; border-radius: 0;">📸 خذ لقطة شاشة (Screenshot) للاحتفاظ بالكارت</span>
+                <!-- كارت الخصومات الحقيقي الحصري لمتجر الحمزاوي -->
+                <img src="https://i.ibb.co/C3m0gBwZ/92980.png" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
+            </div>
+
             <button class="success-close-btn" onclick="closeSuccess()">حسناً، إغلاق</button>
         </div>
     </div>
@@ -546,28 +371,30 @@
     let appliedDiscount = 0;
     let selectedOfferText = "عبوة واحدة بسعر 275 ج.م";
 
+    // 🧠 سيستم أنيميشن السكرول المضمون والحديد (Intersection Observer)
+    // بيخلي الصور والنصوص والكروت تظهر وتترص ورا بعضها بالملي أول ما العميل ينزل عليها بسكرول
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
             }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
 
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll('.scroll-animate, .gallery-item-wrapper, .animated-card, .price-container').forEach(el => {
-            el.classList.add('scroll-animate');
-            observer.observe(el);
-        });
+    // تفعيل المراقب على عناصر المعرض والكروت
+    document.querySelectorAll('.gallery-item-wrapper, .gallery-item-wrapper img, .img-script-text, .animated-card, .price-container').forEach(el => {
+        el.classList.add('scroll-animate');
+        observer.observe(el);
+    });
 
-        ["name", "phone", "governorate", "address"].forEach(id => {
-            const field = document.getElementById(id);
-            if(field) {
-                field.addEventListener("input", () => {
-                    validateField(id);
-                });
-            }
-        });
+    // أول ما الصفحة تفتح.. تفعيل فوري ومباشر لأول فريم عشان يظهر للزبون علطول
+    window.addEventListener('DOMContentLoaded', () => {
+        const firstFrame = document.querySelector('.gallery-item-wrapper');
+        if (firstFrame) {
+            firstFrame.classList.add('active');
+            const firstText = firstFrame.querySelector('.img-script-text');
+            if (firstText) firstText.classList.add('active');
+        }
     });
 
     function syncCounterUI() {
@@ -660,17 +487,29 @@
     function applyPromo() {
         if (couponActive) return;
 
-        const promo = document.getElementById('promo-input').value.trim().toUpperCase();
+        const promoInputEl = document.getElementById('promo-input');
+        const promo = promoInputEl.value.trim().toUpperCase();
         const msg = document.getElementById('promo-msg');
         const btn = document.getElementById('promo-btn-id');
         
+        // 🔒 فحص أمان الحديد وجهاز العميل لمنع الريفرش وتشغيل الدماغ
+        if (localStorage.getItem("used_coupon_" + promo)) {
+            msg.style.display = "block";
+            msg.style.color = "var(--secondary-color)";
+            msg.innerText = "❌ عذراً، تم استخدام هذا الكوبون من قبل على هذا الجهاز!";
+            return;
+        }
+
         if (promo === "HAMZA10" || promo === "HA10") {
             couponActive = true;
             msg.style.display = "block";
             msg.style.color = "#25d366";
             msg.innerText = "✓ تم تطبيق خصم 10% بنجاح!";
             btn.disabled = true;
-            document.getElementById('promo-input').disabled = true;
+            promoInputEl.disabled = true;
+            
+            // قفل الكوبون لجهاز العميل ده مدى الحياة
+            localStorage.setItem("used_coupon_" + promo, "true");
         } else {
             couponActive = false;
             msg.style.display = "block";
@@ -691,53 +530,8 @@
         }
     }
 
-    function validateField(id){
-        const field = document.getElementById(id);
-        if(!field) return false;
-        
-        const group = field.closest('.form-group');
-        const icon = group.querySelector('.error-icon');
-        const msg = group.querySelector('.error-text');
-
-        if(field.value.trim() === ''){
-            field.classList.add('input-error');
-            if(icon) icon.style.display = 'flex';
-            if(msg) msg.style.display = 'block';
-            return false;
-        }
-
-        field.classList.remove('input-error');
-        if(icon) icon.style.display = 'none';
-        if(msg) msg.style.display = 'none';
-        return true;
-    }
-
     function sendOrder() {
         const webAppUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec";
-        
-        const fields = ["name", "phone", "governorate", "address"];
-        let firstInvalidField = null;
-        let valid = true;
-
-        fields.forEach(id => {
-            const isFieldValid = validateField(id);
-            if (!isFieldValid && !firstInvalidField) {
-                firstInvalidField = document.getElementById(id);
-            }
-            valid = isFieldValid && valid;
-        });
-
-        if(!valid){
-            if(firstInvalidField) {
-                firstInvalidField.closest('.form-group').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center' 
-                });
-                setTimeout(() => firstInvalidField.focus(), 500);
-            }
-            return;
-        }
-
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
         const gov = document.getElementById('governorate').value;
@@ -745,14 +539,37 @@
         const notes = document.getElementById('notes').value.trim();
         const btnSpan = document.querySelector('.order-now-btn span');
 
+        if (!name || !phone || !gov || !address) {
+            alert("يرجى ملء جميع البيانات المطلوبة لضمان الشحن السريع!");
+            return;
+        }
+
         btnSpan.innerText = "جاري حفظ طلبك بأمان... ⏳";
+
+        // تسجيل عدد الأوردرات للعميل ده لبرنامج الولاء الذكي
+        let orderCount = parseInt(localStorage.getItem("alhamzawi_order_count") || "0") + 1;
+        localStorage.setItem("alhamzawi_order_count", orderCount.toString());
+
+        const finalTotalVal = parseInt(document.getElementById('txt-total').innerText);
+
+        // 🧠 تحديد رسالة المكافأة والولاء في شاشة النجاح أوتوماتيكياً حسب شروطك بالملي
+        const giftTitleEl = document.getElementById('loyaltyGiftTitle');
+        if (currentTotalPieces >= 3) {
+            giftTitleEl.innerText = "🎁 مبروك! لأنك طلبت باقة مجمعة (3 قطع)، كسبت كود الخصم الملوكي 30% [HA30] لأوردرك القادم!";
+        } else if (finalTotalVal > 500 || orderCount === 2) {
+            giftTitleEl.innerText = "🎁 مبروك! لأن أوردرك تخطى الـ 500 جنيه أو ده ثاني طلب ليك، كسبت كود خصم 10% [HAMZA10]!";
+        } else if (orderCount > 3) {
+            giftTitleEl.innerText = "🎁 شكراً لولائك الدائم لمتجرنا! لقد حصلت على كود الشحن المجاني بالكامل [FREE] لأوردرك القادم!";
+        } else {
+            giftTitleEl.innerText = "🎁 مبروك حصلت على كارت خصومات متجر الحمزاوي الحصري!";
+        }
 
         const formData = new FormData();
         formData.append("name", name);
         formData.append("phone", phone);
         formData.append("governorate", gov);
         formData.append("address", address);
-        formData.append("offer", `العرض: ${selectedOfferText} | ملاحظات العميل: ${notes || "لا يوجد"} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون: ${couponActive ? "نشط" : "لا يوجد"}`);
+        formData.append("offer", `العرض: ${selectedOfferText} | ملاحظات العميل: ${notes || "لا يوجد"} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون: ${couponActive ? "نشط" : "لا يوجد"} | رقم أوردر العميل: ${orderCount}`);
 
         fetch(webAppUrl, { method: "POST", body: formData })
         .then(() => {
@@ -768,7 +585,6 @@
             document.getElementById('promo-msg').style.display = "none";
             document.getElementById('promo-btn-id').disabled = false;
             document.getElementById('promoWrapper').classList.remove('active');
-            couponActive = false;
             selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م');
         })
         .catch(() => {
@@ -785,4 +601,3 @@
 
 </body>
 </html>
-
