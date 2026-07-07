@@ -13,12 +13,13 @@
     
     <style>
         :root {
-            --primary-color: #e21b79; 
-            --secondary-color: #d60000; 
+            --primary-color: #e21b79; /* بينك البراند الأنيق */
+            --secondary-color: #d60000; /* أحمر ناري قوي */
             --bg-color: #eff1f5; 
             --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
         
+        /* ✨ ترسانة أنيميشن الدخول الناعم وسجادة واتساب تفاعلي iOS ✨ */
         .scroll-animate {
             opacity: 0;
             transform: translateY(30px) scale(0.98);
@@ -75,41 +76,64 @@
         .form-group { margin-bottom: 22px; text-align: right; position: relative; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #444; }
         
+        /* 📱 تثبيت وتكبير مقاس أيقونات الـ SVG السوداء الصريحة داخل الفورم */
         .input-icon-wrapper { position: relative; width: 100%; }
-        .input-icon-wrapper .icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; fill: #1c1c1e; pointer-events: none; transition: all 0.2s; }
+        .input-icon-wrapper .icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; fill: #1c1c1e; pointer-events: none; transition: all 0.2s; z-index: 5; }
         .form-group textarea ~ .icon { top: 25px; transform: none; }
         
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 15px 54px 15px 15px; border: 1px solid #d1d1d6; border-radius: 12px; box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600; outline: none; background-color: #fafafa; transition: all 0.2s ease-in-out; text-align: right; }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.08); }
-        
+        .form-group input:focus ~ .icon, .form-group select:focus ~ .icon, .form-group textarea:focus ~ .icon { animation: pulseIcon 0.3s ease-in-out; fill: var(--primary-color); }
+        .form-group textarea { min-height: 90px; }
+
+        /* ⚠️ ستايل تحذير الحقول المطلوبة المطابق تماماً للصورة 86258 */
         .form-group.has-error input, .form-group.has-error select, .form-group.has-error textarea { border-color: var(--secondary-color) !important; background-color: #fffcfc !important; }
         .error-message { color: var(--secondary-color); font-size: 12px; font-weight: 700; margin-top: 6px; display: none; text-align: right; }
         .form-group.has-error .error-message { display: block; }
+        
+        .error-alert-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; fill: var(--secondary-color); display: none; pointer-events: none; z-index: 5; }
+        .form-group textarea ~ .error-alert-icon { top: 25px; transform: none; }
+        .form-group.has-error .error-alert-icon { display: block; }
 
         .checkout-box { background-color: #fbfbfb; border: 1px solid #e0e0e0; border-radius: 16px; padding: 20px; margin-top: 20px; }
         .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
+        .checkout-row span:last-child { font-weight: 900; }
 
+        /* 🛠️ هندسة الكوبون المطور (الموسع كلياً لمنع تآكل الكلمات) */
         .promo-accordion-container { width: 100%; margin-top: 15px; border: 1px solid #d1d1d6; border-radius: 12px; background: #fff; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
-        .promo-toggle-btn { padding: 16px 20px; font-size: 15px; font-weight: 700; color: #222; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .promo-toggle-btn { padding: 16px 20px; font-size: 15px; font-weight: 700; color: #222; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
         .promo-toggle-btn::after { content: "▼"; font-size: 11px; transition: 0.3s; }
         .promo-accordion-container.active .promo-toggle-btn::after { transform: rotate(180deg); }
         
-        .promo-expanded-fields { max-height: 0; display: flex; gap: 10px; padding: 0 15px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); opacity: 0; flex-direction: column; }
-        .promo-accordion-container.active .promo-expanded-fields { max-height: 190px; padding-bottom: 18px; opacity: 1; }
+        .promo-expanded-fields { max-height: 0; display: flex; gap: 12px; padding: 0 15px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); opacity: 0; flex-direction: column; }
+        .promo-accordion-container.active .promo-expanded-fields { max-height: 240px; padding-bottom: 18px; opacity: 1; }
         .promo-input-row { display: flex; gap: 10px; width: 100%; }
-        .promo-input-row input { flex: 1; padding: 12px 15px; border: 1px solid #d1d1d6; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: right; }
-        .promo-click-btn { background-color: #1c1c1e; color: white; border: none; padding: 0 25px; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 14px; white-space: nowrap; }
+        .promo-input-row input { flex: 1; padding: 14px 15px; border: 1px solid #d1d1d6; border-radius: 10px; font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: right; }
+        .promo-click-btn { background-color: #1c1c1e; color: white; border: none; padding: 0 28px; border-radius: 10px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 14.5px; white-space: nowrap; transition: 0.2s; }
+        .promo-click-btn:hover { background-color: var(--primary-color); }
+        .promo-click-btn:disabled { background-color: #ccc; cursor: not-allowed; }
         
-        .promo-upload-row { display: flex; flex-direction: column; gap: 5px; margin-top: 5px; }
-        .promo-upload-row label { font-size: 12px; font-weight: 700; color: #555; }
-        .file-upload-input { width: 100% !important; padding: 10px !important; font-size: 12px !important; background: #fafafa; border: 1px dashed #aeaeaeb3 !important; border-radius: 6px !important; }
+        .promo-upload-row { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; text-align: right; }
+        .promo-upload-row label { font-size: 12.5px; font-weight: 700; color: #444; }
+        .file-upload-input { width: 100% !important; padding: 11px !important; font-size: 12.5px !important; background: #fafafa; border: 1px dashed #aeaeaeb3 !important; border-radius: 8px !important; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
 
-        .order-now-btn { background: linear-gradient(90deg, #d60000, #ff1a1a); color: white; border: none; width: 85%; max-width: 380px; padding: 12px 15px; font-size: 15.5px; font-weight: 800; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(214, 0, 0, 0.3); transition: all 0.3s; position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 999; font-family: 'Cairo', sans-serif; }
+        /* 🛍️ زرار الطلب السريع الثابت الملوكي في أسفل الشاشة */
+        .order-now-btn { 
+            background: linear-gradient(90deg, #d60000, #ff1a1a); 
+            color: white; border: none; width: 85%; max-width: 380px; 
+            padding: 14px 15px; font-size: 16px; font-weight: 800; border-radius: 50px; cursor: pointer; 
+            box-shadow: 0 6px 20px rgba(214, 0, 0, 0.3); transition: all 0.3s; 
+            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 999; font-family: 'Cairo', sans-serif; 
+        }
+        .order-now-btn:hover { transform: translateX(-50%) translateY(-2px); box-shadow: 0 10px 25px rgba(214, 0, 0, 0.45); }
         
-        .whatsapp-wrapper { position: fixed; bottom: 75px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
-        .whatsapp-floating { background-color: #25d366; color: white; width: 50px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); text-decoration: none; position: relative; z-index: 2; }
+        /* 📱 ستايل أداة وسجادة هبوط شات واتساب التفاعلي iOS */
+        .whatsapp-wrapper { position: fixed; bottom: 85px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
+        .whatsapp-floating { background-color: #25d366; color: white; width: 52px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); text-decoration: none; position: relative; z-index: 2; transition: 0.3s; }
+        .whatsapp-floating:hover { transform: scale(1.05); }
         .whatsapp-floating .ws-icon { width: 30px; height: 30px; fill: white; }
-        .whatsapp-text-carpet { background-color: #111111; color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; animation: carpetRoll 8s infinite ease-in-out; }
+        .whatsapp-text-carpet { background-color: #111111; color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: carpetRoll 8s infinite ease-in-out; }
 
         .footer-menu-container { background: #000; color: #fff; padding: 5px 0; margin-top: 40px; }
         .menu-dropdown { border-bottom: 1px solid #222; }
@@ -138,15 +162,12 @@
         .download-badge-btn svg { width: 16px; height: 16px; fill: #fff; }
 
         .success-close-btn { background: #777; color: white; border: none; padding: 11px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; margin-top: 10px; }
-        .footer-badges { text-align: center; padding: 20px; background-color: #000; color: #666; font-size: 13px; font-weight: 700; }
-        .footer-badges a { color: #8e8e93; text-decoration: none; }
-        .footer-badges a strong { color: #fff; font-weight: 900; }
-        .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- معرض الصور المطور لمتجر الحمزاوي -->
         <div class="images-gallery">
             <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
@@ -155,6 +176,14 @@
             <div class="gallery-item-wrapper">
                 <img src="https://f.top4top.io/p_38283r0da1.jpg" alt="🎀DOVO كريم" class="product-img-full">
                 <p class="img-script-text">💖 لأن أنوثتك تستحق الإهتمام مع DOVO كريم رفع وتكبير الأرداف بتركيبة غنية بفيتامين E الطبيعي 100%.</p>
+            </div>
+            <div class="gallery-item-wrapper">
+                <img src="https://c.top4top.io/p_3828v8mta1.jpg" alt="🌸 لماذا تختارين DOVO؟" class="product-img-full">
+                <p class="img-script-text">لأن الجمال يبدأ من العناية المستمرة. تم تطوير DOVO ليمنحك تجربة عناية فاخرة تساعدك على الاهتمام ببشرتك وإبراز جمال قوامك بطريقة بسيطة ومريحة.</p>
+            </div>
+            <div class="gallery-item-wrapper">
+                <img src="https://a.top4top.io/p_38290cc1u1.jpg" alt="📦 تفاصيل المنتج" class="product-img-full">
+                <p class="img-script-text">الوزن: 250 جرام | تركيبة طبيعية | غني بفيتامين E | مناسب للعناية اليومية بالبشرة</p>
             </div>
         </div>
 
@@ -193,33 +222,82 @@
 
         <div class="animated-card card-2" id="formSection">
             <div class="form-title">البيانات المطلوبة</div>
+            
             <div class="form-group" id="group-name">
                 <label>الاسم بالكامل</label>
-                <input type="text" id="name" placeholder="الاسم" oninput="clearError('group-name')">
+                <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                    <input type="text" id="name" placeholder="الاسم" oninput="clearError('group-name')">
+                    <svg class="error-alert-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                </div>
                 <div class="error-message">هذا الحقل مطلوب</div>
             </div>
+            
             <div class="form-group" id="group-phone">
                 <label>رقم الهاتف</label>
-                <input type="tel" id="phone" placeholder="الرقم" oninput="clearError('group-phone')">
+                <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-4.28-6.59-7.09l2.2-2.21c.28-.26.36-.66.25-1.01C8.78 5.84 8.59 4.65 8.59 3.42c0-.55-.45-1-1-1H4.01c-.55 0-1 .45-1 1C3.01 12.87 11.13 21 21.01 21c.55 0 1-.45 1-1v-3.62c0-.55-.45-1-1-1z"/></svg>
+                    <input type="tel" id="phone" placeholder="الرقم" oninput="clearError('group-phone')">
+                    <svg class="error-alert-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                </div>
                 <div class="error-message">هذا الحقل مطلوب</div>
             </div>
+            
             <div class="form-group" id="group-governorate">
                 <label>المحافظة</label>
-                <select id="governorate" onchange="updateShippingByLocation(); clearError('group-governorate');">
-                    <option value="">اختر المحافظة من القائمة</option>
-                    <option value="القاهرة">القاهرة</option><option value="الجيزة">الجيزة</option><option value="القليوبية">القليوبية</option><option value="الإسكندرية">الإسكندرية</option>
-                    <option value="البحيرة">البحيرة</option><option value="الشرقية">الشرقية</option><option value="الدقهلية">الدقهلية</option><option value="الغربية">الغربية</option>
-                </select>
+                <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <select id="governorate" onchange="updateShippingByLocation(); clearError('group-governorate');">
+                        <option value="">اختر المحافظة من القائمة</option>
+                        <option value="القاهرة">القاهرة</option>
+                        <option value="الجيزة">الجيزة</option>
+                        <option value="القليوبية">القليوبية</option>
+                        <option value="الإسكندرية">الإسكندرية</option>
+                        <option value="البحيرة">البحيرة</option>
+                        <option value="مطروح">مطروح</option>
+                        <option value="الدقهلية">الدقهلية</option>
+                        <option value="كفر الشيخ">كفر الشيخ</option>
+                        <option value="الغربية">الغربية</option>
+                        <option value="المنوفية">المنوفية</option>
+                        <option value="دمياط">دمياط</option>
+                        <option value="بورسعيد">بورسعيد</option>
+                        <option value="الإسماعيلية">الإسماعيلية</option>
+                        <option value="السويس">السويس</option>
+                        <option value="الشرقية">الشرقية</option>
+                        <option value="شمال سيناء">شمال سيناء</option>
+                        <option value="جنوب سيناء">جنوب سيناء</option>
+                        <option value="بني سويف">بني سويف</option>
+                        <option value="الفيوم">الفيوم</option>
+                        <option value="المنيا">المنيا</option>
+                        <option value="أسيوط">أسيوط</option>
+                        <option value="الوادي الجديد">الوادي الجديد</option>
+                        <option value="سوهاج">سوهاج</option>
+                        <option value="قنا">قنا</option>
+                        <option value="الأقصر">الأقصر</option>
+                        <option value="أسوان">أسوان</option>
+                        <option value="البحر الأحمر">البحر الأحمر</option>
+                    </select>
+                    <svg class="error-alert-icon" viewBox="0 0 24 24" style="left: 32px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                </div>
                 <div class="error-message">هذا الحقل مطلوب</div>
             </div>
+            
             <div class="form-group" id="group-address">
                 <label>العنوان بالتفصيل</label>
-                <input type="text" id="address" placeholder="اسم الشارع، رقم العقار" oninput="clearError('group-address')">
+                <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 17.93V19a1 1 0 0 1-2 0v-1.07A8 8 0 0 1 4.07 13H5a1 1 0 0 1 0-2h-.93A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 11H19a1 1 0 0 1 0 2h.93A8 8 0 0 1 13 17.93z"/></svg>
+                    <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة" oninput="clearError('group-address')">
+                    <svg class="error-alert-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                </div>
                 <div class="error-message">هذا الحقل مطلوب</div>
             </div>
+
             <div class="form-group">
                 <label>ملاحظات إضافية (اختياري)</label>
-                <textarea id="notes" placeholder="ملاحظات الشحن..."></textarea>
+                <div class="input-icon-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    <textarea id="notes" placeholder="اكتب هنا أي ملاحظات بخصوص الشحن أو مواعيد التسليم..."></textarea>
+                </div>
             </div>
 
             <div class="checkout-box">
@@ -229,12 +307,13 @@
                     <span>الإجمالي النهائي:</span><span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
                 </div>
                 
+                <!-- الكوبون التفاعلي المنسدل المطور الشامل والموسع كلياً لمنع تآكل الكلام -->
                 <div class="promo-accordion-container" id="promoWrapper">
                     <div class="promo-toggle-btn" onclick="togglePromoField()">هل لديك كوبون خصم؟</div>
                     <div class="promo-expanded-fields">
                         <div class="promo-input-row">
                             <input type="text" id="promo-input" placeholder="أدخل كود الكوبون">
-                            <button type="button" id="promo-btn-id" class="promo-click-btn" onclick="applyPromo()">تطبيق</button>
+                            <button type="button" id="promo-btn-id" class="promo-click-btn" onclick="applyPromo()">تطبيق الكوبون</button>
                         </div>
                         <div class="promo-upload-row">
                             <label>📸 ارفع صورة الكوبون الصالحة لتأكيد الخصم:</label>
@@ -253,20 +332,30 @@
                 <div class="menu-header" onclick="toggleAccordion()">⚖️ بند الالتزام والشروط الرسمية للمتجر</div>
                 <div class="menu-content">
                     <ul class="policy-list">
-                        <li class="policy-item"><strong>جدية الطلب والشحن:</strong> بمجرد تسجيل البيانات يتم الشحن الفوري؛ يرجى الالتزام بالاستلام.</li>
+                        <li class="policy-item"><strong>جدية الطلب والشحن:</strong> بمجرد تسجيل البيانات يتم الشحن الفوري؛ يرجى الالتزام بالاستلام ومنع الهدر.</li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-badges">Powered By <a href="https://wa.me/201064752844" target="_blank"><strong>Al-Hamzawi</strong></a></div>
+            <div class="footer-badges">
+                Powered By <a href="https://wa.me/201064752844" target="_blank"><strong>Al-Hamzawi</strong></a>
+            </div>
         </div>
     </div>
 
+    <!-- 📱 أداة وسجادة هبوط شات واتساب المستردة بالكامل لايف -->
     <div class="whatsapp-wrapper">
         <a href="https://wa.me/201207362722" class="whatsapp-floating" target="_blank">
             <svg class="ws-icon" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
         </a>
+        <div class="whatsapp-text-carpet">تواصل عبر واتساب</div>
     </div>
 
+    <!-- 🛍️ زرار الطلب السريع الثابت الملوكي المسترد بالكامل في أسفل الشاشة -->
+    <button class="order-now-btn" onclick="sendOrder()">
+        <span>تأكيد طلب الشحن الفوري 🛍️</span>
+    </button>
+
+    <!-- شاشة النجاح المتطورة بكروت الخصم الحصرية الديناميكية 7 أيام -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div style="font-size: 40px; margin-bottom: 10px;">🎉</div>
@@ -275,7 +364,6 @@
             
             <div class="loyalty-msg-title" id="loyaltyGiftTitle">🎁 مبروك حصلت على كارت خصومات حصري!</div>
             
-            <!-- منطقة الالتقاط المجهزة لتبديل روابط الصور لايف -->
             <div class="discount-capture-area" id="captureCardSection">
                 <div class="discount-card-img-box">
                     <img src="https://i.ibb.co/C3m0gBwZ/92980.png" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
@@ -420,6 +508,9 @@
             if(!phoneEl.value.trim()) document.getElementById('group-phone').classList.add('has-error');
             if(!govEl.value) document.getElementById('group-governorate').classList.add('has-error');
             if(!addressEl.value.trim()) document.getElementById('group-address').classList.add('has-error');
+            
+            const firstErr = document.querySelector('.has-error');
+            if(firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
@@ -433,24 +524,23 @@
         const nowTimestamp = new Date().getTime();
         activeGeneratedCode = "";
 
-        // 🧠 تفريع الشروط وضخ روابط الصور التلاتة الحصرية لايف بالملي
         if (orderCount >= 15 && baseProductPrice >= 500) {
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! حصلت على كود شحن مجاني لأوردرك القادم!";
-            cardImgEl.src = "https://i.top4top.io/p_3840wntvc1.jpg"; // رابط الكارت المجاني الحقيقي
+            cardImgEl.src = "https://i.top4top.io/p_3840wntvc1.jpg"; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
         } else if (orderCount > 6 && baseProductPrice >= 500) {
             activeGeneratedCode = "HA30";
             giftTitleEl.innerText = "🌟 مبروك! كسبت كود خصم 30% لأوردرك القادم!";
-            cardImgEl.src = "https://k.top4top.io/p_38400po0p1.jpg"; // رابط كارت الـ 30% الحقيقي
+            cardImgEl.src = "https://k.top4top.io/p_38400po0p1.jpg"; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
         } else if (orderCount === 6) {
             activeGeneratedCode = "HAMZA10";
             giftTitleEl.innerText = "🎁 مبروك! بمناسبة الأوردر السادس كسبت خصم 10%!";
-            cardImgEl.src = "https://a.top4top.io/p_38404u1vb1.jpg"; // رابط كارت الـ 10% الحقيقي
+            cardImgEl.src = "https://a.top4top.io/p_38404u1vb1.jpg"; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HAMZA10 ] - صالح لـ 7 أيام";
         } else {
-            cardImgEl.src = "https://i.ibb.co/C3m0gBwZ/92980.png"; // الكارت الافتراضي
+            cardImgEl.src = "https://i.ibb.co/C3m0gBwZ/92980.png"; 
             cardTextEl.innerText = "كارت خصومات متجر الحمزاوي الحصري والمتميز دائماً";
         }
 
@@ -494,4 +584,4 @@
     }
 </script>
 </body>
-</html
+</html>
