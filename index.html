@@ -8,10 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
+    <!-- مكتبة تحويل الـ HTML إلى صورة لتنزيل الكارت فوراً -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
     <style>
         :root {
-            --primary-color: #e21b79; /* بينك البراند الأنيق */
-            --secondary-color: #d60000; /* أحمر ناري قوي */
+            --primary-color: #e21b79; 
+            --secondary-color: #d60000; 
             --bg-color: #eff1f5; 
             --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
@@ -69,7 +72,7 @@
         .counter-btn { background: none; border: none; font-size: 18px; font-weight: 700; cursor: pointer; color: var(--primary-color); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; outline: none; }
         .counter-value { font-size: 16px; font-weight: 900; color: #111; min-width: 20px; text-align: center; }
 
-        .form-group { margin-bottom: 18px; text-align: right; }
+        .form-group { margin-bottom: 22px; text-align: right; position: relative; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 14px; color: #444; }
         
         .input-icon-wrapper { position: relative; width: 100%; }
@@ -78,94 +81,80 @@
         
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 15px 54px 15px 15px; border: 1px solid #d1d1d6; border-radius: 12px; box-sizing: border-box; font-size: 15px; font-family: 'Cairo', sans-serif; font-weight: 600; outline: none; background-color: #fafafa; transition: all 0.2s ease-in-out; text-align: right; }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(226, 27, 121, 0.08); }
-        .form-group input:focus ~ .icon, .form-group select:focus ~ .icon, .form-group textarea:focus ~ .icon { animation: pulseIcon 0.3s ease-in-out; fill: var(--primary-color); }
-        .form-group textarea { min-height: 90px; }
+        
+        .form-group.has-error input, .form-group.has-error select, .form-group.has-error textarea { border-color: var(--secondary-color) !important; background-color: #fffcfc !important; }
+        .error-message { color: var(--secondary-color); font-size: 12px; font-weight: 700; margin-top: 6px; display: none; text-align: right; }
+        .form-group.has-error .error-message { display: block; }
 
         .checkout-box { background-color: #fbfbfb; border: 1px solid #e0e0e0; border-radius: 16px; padding: 20px; margin-top: 20px; }
         .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
-        .checkout-row span:last-child { font-weight: 900; }
 
-        /* 🛠️ هندسة الكوبون التفاعلي */
         .promo-accordion-container { width: 100%; margin-top: 15px; border: 1px solid #d1d1d6; border-radius: 12px; background: #fff; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
-        .promo-toggle-btn { padding: 14px 16px; font-size: 14px; font-weight: 700; color: #444; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
-        .promo-toggle-btn::after { content: "▼"; font-size: 10px; transition: 0.3s; }
+        .promo-toggle-btn { padding: 16px 20px; font-size: 15px; font-weight: 700; color: #222; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .promo-toggle-btn::after { content: "▼"; font-size: 11px; transition: 0.3s; }
         .promo-accordion-container.active .promo-toggle-btn::after { transform: rotate(180deg); }
         
-        .promo-expanded-fields { max-height: 0; display: flex; gap: 10px; padding: 0 15px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); opacity: 0; }
-        .promo-accordion-container.active .promo-expanded-fields { max-height: 80px; padding-bottom: 15px; opacity: 1; }
-        .promo-expanded-fields input { flex: 1; padding: 10px 15px; border: 1px solid #d1d1d6; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: right; }
-        .promo-click-btn { background-color: #1c1c1e; color: white; border: none; padding: 0 22px; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 14px; }
-        .promo-click-btn:disabled { background-color: #ccc; cursor: not-allowed; }
-        .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
+        .promo-expanded-fields { max-height: 0; display: flex; gap: 10px; padding: 0 15px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); opacity: 0; flex-direction: column; }
+        .promo-accordion-container.active .promo-expanded-fields { max-height: 190px; padding-bottom: 18px; opacity: 1; }
+        .promo-input-row { display: flex; gap: 10px; width: 100%; }
+        .promo-input-row input { flex: 1; padding: 12px 15px; border: 1px solid #d1d1d6; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 14px; outline: none; text-align: right; }
+        .promo-click-btn { background-color: #1c1c1e; color: white; border: none; padding: 0 25px; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 14px; white-space: nowrap; }
+        
+        .promo-upload-row { display: flex; flex-direction: column; gap: 5px; margin-top: 5px; }
+        .promo-upload-row label { font-size: 12px; font-weight: 700; color: #555; }
+        .file-upload-input { width: 100% !important; padding: 10px !important; font-size: 12px !important; background: #fafafa; border: 1px dashed #aeaeaeb3 !important; border-radius: 6px !important; }
 
         .order-now-btn { background: linear-gradient(90deg, #d60000, #ff1a1a); color: white; border: none; width: 85%; max-width: 380px; padding: 12px 15px; font-size: 15.5px; font-weight: 800; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(214, 0, 0, 0.3); transition: all 0.3s; position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 999; font-family: 'Cairo', sans-serif; }
         
         .whatsapp-wrapper { position: fixed; bottom: 75px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
-        .whatsapp-floating { background-color: #25d366; color: white; width: 50px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); cursor: pointer; text-decoration: none; position: relative; z-index: 2; }
+        .whatsapp-floating { background-color: #25d366; color: white; width: 50px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); text-decoration: none; position: relative; z-index: 2; }
         .whatsapp-floating .ws-icon { width: 30px; height: 30px; fill: white; }
-        .whatsapp-text-carpet { background-color: #111111; color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: carpetRoll 8s infinite ease-in-out; }
+        .whatsapp-text-carpet { background-color: #111111; color: #ffffff; font-size: 11px; font-weight: 700; font-family: 'Cairo', sans-serif; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 0 20px 20px 0; margin-left: -25px; z-index: 1; white-space: nowrap; overflow: hidden; width: 0; opacity: 0; animation: carpetRoll 8s infinite ease-in-out; }
 
         .footer-menu-container { background: #000; color: #fff; padding: 5px 0; margin-top: 40px; }
         .menu-dropdown { border-bottom: 1px solid #222; }
         .menu-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 15px; }
         .menu-header::after { content: "▼"; font-size: 11px; transition: 0.3s; }
-        .menu-dropdown.active .menu-header::after { transform: rotate(180deg); }
-        .menu-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #111; padding: 0 20px; }
         .menu-dropdown.active .menu-content { max-height: 2500px; padding: 20px; }
+        .menu-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #111; padding: 0 20px; }
         .policy-list { list-style: none; padding: 0; margin: 0; }
         .policy-item { position: relative; padding-right: 20px; margin-bottom: 18px; font-size: 13px; line-height: 1.6; color: #ccc; text-align: right; }
         .policy-item::before { content: "•"; position: absolute; right: 0; top: -2px; color: #d4af37; font-size: 18px; }
         .policy-item strong { color: #fff; display: block; margin-bottom: 2px; font-size: 13.5px; }
 
-        /* 🏆 ستايل شاشة النجاح وكارت الخصومات 92980 */
         .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(5px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; }
         .success-overlay.show { opacity: 1; pointer-events: auto; }
         .success-card { background: #ffffff; width: 92%; max-width: 440px; border-radius: 24px; padding: 25px 15px; text-align: center; border: 1.5px solid #1c1c1e; box-shadow: 0 20px 50px rgba(0,0,0,0.3); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); }
         .success-overlay.show .success-card { transform: scale(1); }
         
-        .loyalty-msg-title { font-size: 16px; font-weight: 900; color: #25d366; margin: 10px 0; }
-        .discount-card-img-box { width: 100%; border-radius: 12px; overflow: hidden; border: 1.5px solid #1c1c1e; margin: 15px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .loyalty-msg-title { font-size: 14.5px; font-weight: 800; color: #25d366; margin: 10px 0; line-height: 1.5; }
+        
+        .discount-capture-area { background: #ffffff; padding: 10px; border-radius: 14px; border: 1.5px solid #1c1c1e; margin: 15px 0; position: relative; }
+        .discount-card-img-box { width: 100%; border-radius: 8px; overflow: hidden; position: relative; }
         .discount-card-img { width: 100%; height: auto; display: block; }
         
-        .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 11px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(226, 27, 121, 0.2); }
+        .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 10px; width: 100%; border: none; border-radius: 8px; margin-top: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
+        .download-badge-btn:hover { background: var(--primary-color); }
+        .download-badge-btn svg { width: 16px; height: 16px; fill: #fff; }
 
+        .success-close-btn { background: #777; color: white; border: none; padding: 11px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; margin-top: 10px; }
         .footer-badges { text-align: center; padding: 20px; background-color: #000; color: #666; font-size: 13px; font-weight: 700; }
+        .footer-badges a { color: #8e8e93; text-decoration: none; }
+        .footer-badges a strong { color: #fff; font-weight: 900; }
+        .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        
-        <!-- معرض الصور مع تتابع ظهور الاسكريبت مستقل بعد الصورة -->
         <div class="images-gallery">
             <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
                 <p class="img-script-text">✨ التركيبة العشبية الأصلية 100% لنتائج مضمونة وأمان تام يساهم في شد ورفع الأرداف يعزز من إمتلاء وتكبير الأرداف مرطب ومغذي للبشرة.</p>
             </div>
-
             <div class="gallery-item-wrapper">
-                <img src="https://f.top4top.io/p_38283r0da1.jpg" alt="🎀DOVO كريم رفع وتكبير الأرداف 🎀" class="product-img-full">
-                <p class="img-script-text">💖 لأن أنوثتك تستحق الإهتمام 
-هل تبحثين عن مظهر أكثر تناسقًا وجاذبية بثقة أكبر؟
-مع DOVO كريم رفع وتكبير الأرداف بتركيبة غنية بفيتامين E الطبيعي 100%، استمتعي بعناية يومية تساعد على تحسين مظهر البشرة ومنحها نعومة ومرونة ولمسة أنثوية جذابة.
-✅ تركيبة طبيعية لطيفة على البشرة
-✅ غني بفيتامين E المغذي
-✅ يساعد على تحسين مظهر الجلد ومرونته
-✅ سهل الاستخدام ويمتص بسرعة
-✅ مناسب للاستخدام اليومي.</p>
-            </div>
-
-            <div class="gallery-item-wrapper">
-                <img src="https://c.top4top.io/p_3828v8mta1.jpg" alt="🌸 لماذا تختارين DOVO؟" class="product-img-full">
-                <p class="img-script-text">لأن الجمال يبدأ من العناية المستمرة. تم تطوير DOVO ليمنحك تجربة عناية فاخرة تساعدك على الاهتمام ببشرتك وإبراز جمال قوامك بطريقة بسيطة ومريحة.</p>
-            </div>
-
-            <div class="gallery-item-wrapper">
-                <img src="https://a.top4top.io/p_38290cc1u1.jpg" alt="📦 تفاصيل المنتج" class="product-img-full">
-                <p class="img-script-text">الوزن: 250 جرام
-تركيبة طبيعية
-غني بفيتامين E
-مناسب للعناية اليومية بالبشرة</p>
+                <img src="https://f.top4top.io/p_38283r0da1.jpg" alt="🎀DOVO كريم" class="product-img-full">
+                <p class="img-script-text">💖 لأن أنوثتك تستحق الإهتمام مع DOVO كريم رفع وتكبير الأرداف بتركيبة غنية بفيتامين E الطبيعي 100%.</p>
             </div>
         </div>
 
@@ -176,35 +165,22 @@
 
         <div class="animated-card card-1">
             <div class="offers-title">اختر العرض المناسب لك ووفر أكثر:</div>
-            
             <div class="offer-box selected" id="opt-1" onclick="selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م')">
                 <input type="radio" name="offer" checked>
                 <div class="offer-text">اشتري عبوة واحدة الآن بسعر 275 جنيه فقط</div>
-                <div class="offer-prices">
-                    <span class="offer-old-price">350 ج.م</span>
-                    <span class="offer-new-price">275 ج.m</span>
-                </div>
+                <div class="offer-prices"><span class="offer-old-price">350 ج.م</span><span class="offer-new-price">275 ج.م</span></div>
             </div>
-            
             <div class="offer-box" id="opt-2" onclick="selectFixedOffer(2, 500, 'عرض العبوتين بسعر 500 ج.م')">
                 <input type="radio" name="offer">
-                <div class="offer-text">عرض العبوتين بسعر 500 ج.م فقط 🌟 (وفرت 50 جنيه)</div>
-                <div class="offer-prices">
-                    <span class="offer-old-price">550 ج.م</span>
-                    <span class="offer-new-price">500 ج.م</span>
-                </div>
+                <div class="offer-text">عرض العبوتين بسعر 500 ج.م فقط 🌟</div>
+                <div class="offer-prices"><span class="offer-old-price">550 ج.م</span><span class="offer-new-price">500 ج.م</span></div>
             </div>
-            
             <div class="offer-box" id="opt-3" onclick="selectFixedOffer(3, 720, '3 عبوات بسعر 720 ج.م')">
                 <span class="best-seller-badge">🔥 الأكثر مبيعاً</span>
                 <input type="radio" name="offer">
-                <div class="offer-text">عرض الـ 3 عبوات بسعر 720 ج.م فقط لفترة محدودة! 🔥</div>
-                <div class="offer-prices">
-                    <span class="offer-old-price">825 ج.م</span>
-                    <span class="offer-new-price">720 ج.م</span>
-                </div>
+                <div class="offer-text">عرض الـ 3 عبوات بسعر 720 ج.م فقط! 🔥</div>
+                <div class="offer-prices"><span class="offer-old-price">825 ج.م</span><span class="offer-new-price">720 ج.م</span></div>
             </div>
-
             <div class="custom-qty-box">
                 <span class="custom-qty-label">🔢 حدد كمية مخصصة بالقطع:</span>
                 <div class="quantity-counter">
@@ -215,98 +191,57 @@
             </div>
         </div>
 
-        <div class="animated-card card-2">
+        <div class="animated-card card-2" id="formSection">
             <div class="form-title">البيانات المطلوبة</div>
-            
-            <div class="form-group">
+            <div class="form-group" id="group-name">
                 <label>الاسم بالكامل</label>
-                <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                    <input type="text" id="name" placeholder="الاسم">
-                </div>
+                <input type="text" id="name" placeholder="الاسم" oninput="clearError('group-name')">
+                <div class="error-message">هذا الحقل مطلوب</div>
             </div>
-            
-            <div class="form-group">
+            <div class="form-group" id="group-phone">
                 <label>رقم الهاتف</label>
-                <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-4.28-6.59-7.09l2.2-2.21c.28-.26.36-.66.25-1.01C8.78 5.84 8.59 4.65 8.59 3.42c0-.55-.45-1-1-1H4.01c-.55 0-1 .45-1 1C3.01 12.87 11.13 21 21.01 21c.55 0 1-.45 1-1v-3.62c0-.55-.45-1-1-1z"/></svg>
-                    <input type="tel" id="phone" placeholder="الرقم">
-                </div>
+                <input type="tel" id="phone" placeholder="الرقم" oninput="clearError('group-phone')">
+                <div class="error-message">هذا الحقل مطلوب</div>
             </div>
-            
-            <div class="form-group">
+            <div class="form-group" id="group-governorate">
                 <label>المحافظة</label>
-                <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    <select id="governorate" onchange="updateShippingByLocation()">
-                        <option value="">اختر المحافظة من القائمة</option>
-                        <option value="القاهرة">القاهرة</option>
-                        <option value="الجيزة">الجيزة</option>
-                        <option value="القليوبية">القليوبية</option>
-                        <option value="الإسكندرية">الإسكندرية</option>
-                        <option value="البحيرة">البحيرة</option>
-                        <option value="مطروح">مطروح</option>
-                        <option value="الدقهلية">الدقهلية</option>
-                        <option value="كفر الشيخ">كفر الشيخ</option>
-                        <option value="الغربية">الغربية</option>
-                        <option value="المنوفية">المنوفية</option>
-                        <option value="دمياط">دمياط</option>
-                        <option value="بورسعيد">بورسعيد</option>
-                        <option value="الإسماعيلية">الإسماعيلية</option>
-                        <option value="السويس">السويس</option>
-                        <option value="الشرقية">الشرقية</option>
-                        <option value="شمال سيناء">شمال سيناء</option>
-                        <option value="جنوب سيناء">جنوب سيناء</option>
-                        <option value="بني سويف">بني سويف</option>
-                        <option value="الفيوم">الفيوم</option>
-                        <option value="المنيا">المنيا</option>
-                        <option value="أسيوط">أسيوط</option>
-                        <option value="الوادي الجديد">الوادي الجديد</option>
-                        <option value="سوهاج">سوهاج</option>
-                        <option value="قنا">قنا</option>
-                        <option value="الأقصر">الأقصر</option>
-                        <option value="أسوان">أسوان</option>
-                        <option value="البحر الأحمر">البحر الأحمر</option>
-                    </select>
-                </div>
+                <select id="governorate" onchange="updateShippingByLocation(); clearError('group-governorate');">
+                    <option value="">اختر المحافظة من القائمة</option>
+                    <option value="القاهرة">القاهرة</option><option value="الجيزة">الجيزة</option><option value="القليوبية">القليوبية</option><option value="الإسكندرية">الإسكندرية</option>
+                    <option value="البحيرة">البحيرة</option><option value="الشرقية">الشرقية</option><option value="الدقهلية">الدقهلية</option><option value="الغربية">الغربية</option>
+                </select>
+                <div class="error-message">هذا الحقل مطلوب</div>
             </div>
-            
-            <div class="form-group">
+            <div class="form-group" id="group-address">
                 <label>العنوان بالتفصيل</label>
-                <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 17.93V19a1 1 0 0 1-2 0v-1.07A8 8 0 0 1 4.07 13H5a1 1 0 0 1 0-2h-.93A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 11H19a1 1 0 0 1 0 2h.93A8 8 0 0 1 13 17.93z"/></svg>
-                    <input type="text" id="address" placeholder="اسم الشارع، رقم العقار، الدور، أو علامة مميزة">
-                </div>
+                <input type="text" id="address" placeholder="اسم الشارع، رقم العقار" oninput="clearError('group-address')">
+                <div class="error-message">هذا الحقل مطلوب</div>
             </div>
-
             <div class="form-group">
                 <label>ملاحظات إضافية (اختياري)</label>
-                <div class="input-icon-wrapper">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                    <textarea id="notes" placeholder="اكتب هنا أي ملاحظات بخصوص الشحن أو مواعيد التسليم..."></textarea>
-                </div>
+                <textarea id="notes" placeholder="ملاحظات الشحن..."></textarea>
             </div>
 
             <div class="checkout-box">
-                <div class="checkout-row">
-                    <span>قيمة المنتج الإجمالية:</span>
-                    <span id="txt-subtotal">275 ج.م</span>
-                </div>
-                <div class="checkout-row">
-                    <span>تكلفة الشحن:</span>
-                    <span id="txt-shipping">60 ج.م</span>
-                </div>
+                <div class="checkout-row"><span>قيمة المنتج الإجمالية:</span><span id="txt-subtotal">275 ج.م</span></div>
+                <div class="checkout-row"><span>تكلفة الشحن:</span><span id="txt-shipping">60 ج.م</span></div>
                 <div class="checkout-row" style="border-top: 1px solid #eee; padding-top: 10px; font-size: 18px; color: #111; font-weight: 900;">
-                    <span>الإجمالي النهائي:</span>
-                    <span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
+                    <span>الإجمالي النهائي:</span><span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
                 </div>
                 
-                <!-- الكوبون التفاعلي المنسدل المطور -->
                 <div class="promo-accordion-container" id="promoWrapper">
                     <div class="promo-toggle-btn" onclick="togglePromoField()">هل لديك كوبون خصم؟</div>
                     <div class="promo-expanded-fields">
-                        <input type="text" id="promo-input" placeholder="أدخل الكوبون">
-                        <button type="button" id="promo-btn-id" class="promo-click-btn" onclick="applyPromo()">تطبيق</button>
+                        <div class="promo-input-row">
+                            <input type="text" id="promo-input" placeholder="أدخل كود الكوبون">
+                            <button type="button" id="promo-btn-id" class="promo-click-btn" onclick="applyPromo()">تطبيق</button>
+                        </div>
+                        <div class="promo-upload-row">
+                            <label>📸 ارفع صورة الكوبون الصالحة لتأكيد الخصم:</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="promo-file" class="file-upload-input" accept="image/*">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="promo-msg" class="promo-message"></div>
@@ -318,46 +253,40 @@
                 <div class="menu-header" onclick="toggleAccordion()">⚖️ بند الالتزام والشروط الرسمية للمتجر</div>
                 <div class="menu-content">
                     <ul class="policy-list">
-                        <li class="policy-item"><strong>جدية الطلب والشحن:</strong> بمجرد تسجيلك للبيانات، السيستم بيخصم تكلفة الشحن فوراً لحساب مندوب منطقتك ويتم حجز المنتج؛ يرجى عدم تأكيد الطلب إلا في حالة الجاهزية التامة للاستلام، منعا للمساءلة عن تكاليف الشحن والهدر.</li>
-                        <li class="policy-item"><strong>الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ في حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
-                        <li class="policy-item"><strong>تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
-                        <li class="policy-item"><strong>قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
-                        <li class="policy-item"><strong>سياسة العروض المجمعة والباقات:</strong> في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.</li>
-                        <li class="policy-item"><strong>حد أقصى للاحتفاظ بالشحنة:</strong> في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة، يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤفت على الرقم من الطلب مجدداً.</li>
-                        <li class="policy-item"><strong>نظام الحظر الموحد (القائمة السوداء):</strong> متجرنا مرتبط بشبكة تجارية موحدة للكشف عن جدية المشترين. في حالة رفض استلام الشحنة بعد خروجها بدون سبب طبيعي صريح، يتم إدراج (الاسم، ورقم الهاتف، والعنوان) تلقائياً في القائمة السوداء المحظورة من الشحن أوتوماتيكياً في متجرنا وأكثر من 50 متجر إلكتروني اخر.</li>
+                        <li class="policy-item"><strong>جدية الطلب والشحن:</strong> بمجرد تسجيل البيانات يتم الشحن الفوري؛ يرجى الالتزام بالاستلام.</li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-badges">Powered By Al-Hamزامي</div>
+            <div class="footer-badges">Powered By <a href="https://wa.me/201064752844" target="_blank"><strong>Al-Hamzawi</strong></a></div>
         </div>
     </div>
 
     <div class="whatsapp-wrapper">
-        <a href="https://wa.me/201207362722?text=أهلاً متجر الحمزاوي، عندي استفسار." class="whatsapp-floating" target="_blank">
+        <a href="https://wa.me/201207362722" class="whatsapp-floating" target="_blank">
             <svg class="ws-icon" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
         </a>
-        <div class="whatsapp-text-carpet">تواصل عبر واتساب</div>
     </div>
 
-    <button class="order-now-btn" onclick="sendOrder()">
-        <span>تأكيد طلب الشحن الفوري 🛍️</span>
-    </button>
-
-    <!-- 🏆 شاشة النجاح المطورة بذكاء التتبع ومكافآت كارت الخصم 92980 الحقيقية -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div style="font-size: 40px; margin-bottom: 10px;">🎉</div>
             <p style="margin-bottom: 5px; font-weight: 900; color: #1c1c1e; font-size: 18px;">تم تسجيل طلبك بنجاح!</p>
-            <p style="font-size: 13.5px; color: #666; margin-bottom: 10px; font-weight: 600;">سيتم التواصل معك في أقرب وقت لتأكيد الشحن الفوري.</p>
+            <p style="font-size: 13.5px; color: #666; margin-bottom: 10px; font-weight: 600;">سيتم التواصل معك لتأكيد الشحن الفوري.</p>
             
-            <!-- جملة المكافأة المتغيرة بناء على الأوردر -->
             <div class="loyalty-msg-title" id="loyaltyGiftTitle">🎁 مبروك حصلت على كارت خصومات حصري!</div>
             
-            <div class="discount-card-img-box">
-                <span class="screenshot-badge" style="display: block; background: #1c1c1e; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 0; margin-bottom: 0; border-radius: 0;">📸 خذ لقطة شاشة (Screenshot) للاحتفاظ بالكارت</span>
-                <!-- كارت الخصومات الحقيقي الحصري لمتجر الحمزاوي -->
-                <img src="https://i.ibb.co/C3m0gBwZ/92980.png" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
+            <!-- منطقة الالتقاط المجهزة لتبديل روابط الصور لايف -->
+            <div class="discount-capture-area" id="captureCardSection">
+                <div class="discount-card-img-box">
+                    <img src="https://i.ibb.co/C3m0gBwZ/92980.png" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
+                </div>
+                <div id="dynamicCouponTextOnCard" style="font-size: 11px; font-weight: 800; color: #e21b79; margin-top: 5px; background: #fff0f6; padding: 4px; border-radius: 4px; border: 1px dashed #e21b79;">كارت خصومات متجر الحمزاوي الحصري والمتميز دائماً</div>
             </div>
+
+            <button type="button" class="download-badge-btn" onclick="downloadCouponAsImage()">
+                <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                <span>اضغط هنا لتنزيل كارت الخصم في الاستوديو ⬇️</span>
+            </button>
 
             <button class="success-close-btn" onclick="closeSuccess()">حسناً، إغلاق</button>
         </div>
@@ -370,234 +299,199 @@
     let couponActive = false;
     let appliedDiscount = 0;
     let selectedOfferText = "عبوة واحدة بسعر 275 ج.م";
+    let activeGeneratedCode = ""; 
 
-    // 🧠 سيستم أنيميشن السكرول المضمون والحديد (Intersection Observer)
-    // بيخلي الصور والنصوص والكروت تظهر وتترص ورا بعضها بالملي أول ما العميل ينزل عليها بسكرول
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, { threshold: 0.1 });
 
-    // تفعيل المراقب على عناصر المعرض والكروت
-    document.querySelectorAll('.gallery-item-wrapper, .gallery-item-wrapper img, .img-script-text, .animated-card, .price-container').forEach(el => {
+    document.querySelectorAll('.gallery-item-wrapper, .animated-card, .price-container').forEach(el => {
         el.classList.add('scroll-animate');
         observer.observe(el);
     });
 
-    // أول ما الصفحة تفتح.. تفعيل فوري ومباشر لأول فريم عشان يظهر للزبون علطول
-    window.addEventListener('DOMContentLoaded', () => {
-        const firstFrame = document.querySelector('.gallery-item-wrapper');
-        if (firstFrame) {
-            firstFrame.classList.add('active');
-            const firstText = firstFrame.querySelector('.img-script-text');
-            if (firstText) firstText.classList.add('active');
-        }
-    });
-
-    function syncCounterUI() {
-        document.getElementById('custom-qty-val').innerText = currentTotalPieces;
-    }
-
     function selectFixedOffer(qty, price, text) {
-        currentTotalPieces = qty;
-        baseProductPrice = price;
-        selectedOfferText = text;
-        
+        currentTotalPieces = qty; baseProductPrice = price; selectedOfferText = text;
         document.querySelectorAll('.offer-box').forEach(box => box.classList.remove('selected'));
-        document.querySelectorAll('.offer-box input').forEach(input => input.checked = false);
-        
         const selectedBox = document.getElementById('opt-' + qty);
-        if(selectedBox) {
-            selectedBox.classList.add('selected');
-            selectedBox.querySelector('input').checked = true;
-        }
-
-        syncCounterUI();
+        if(selectedBox) { selectedBox.classList.add('selected'); selectedBox.querySelector('input').checked = true; }
+        document.getElementById('custom-qty-val').innerText = currentTotalPieces;
         recalculateTotal();
     }
 
     function stepCustomQty(val) {
-        let targetQty = currentTotalPieces + val;
-        if (targetQty < 1) return; 
-        
+        let targetQty = currentTotalPieces + val; if (targetQty < 1) return;
         currentTotalPieces = targetQty;
-        
         document.querySelectorAll('.offer-box').forEach(box => box.classList.remove('selected'));
-        document.querySelectorAll('.offer-box input').forEach(input => input.checked = false);
-
-        if (currentTotalPieces === 1) {
-            baseProductPrice = 275;
-            selectedOfferText = "عبوة واحدة بسعر 275 ج.م";
-            document.getElementById('opt-1').classList.add('selected');
-            document.getElementById('opt-1').querySelector('input').checked = true;
-        } else if (currentTotalPieces === 2) {
-            baseProductPrice = 500;
-            selectedOfferText = "عرض العبوتين بسعر 500 ج.م";
-            document.getElementById('opt-2').classList.add('selected');
-            document.getElementById('opt-2').querySelector('input').checked = true;
-        } else if (currentTotalPieces === 3) {
-            baseProductPrice = 720;
-            selectedOfferText = "3 عبوات بسعر 720 ج.م";
-            document.getElementById('opt-3').classList.add('selected');
-            document.getElementById('opt-3').querySelector('input').checked = true;
-        } else {
+        if (currentTotalPieces === 1) { selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م'); }
+        else if (currentTotalPieces === 2) { selectFixedOffer(2, 500, 'عرض العبوتين بسعر 500 ج.م'); }
+        else if (currentTotalPieces === 3) { selectFixedOffer(3, 720, '3 عبوات بسعر 720 ج.م'); }
+        else {
             baseProductPrice = currentTotalPieces * 275;
-            selectedOfferText = `كمية مخصصة: ${currentTotalPieces} قطعة بسعر 275 ج.م للقطعة`;
+            selectedOfferText = `كمية مخصصة: ${currentTotalPieces} قطعة`;
+            document.getElementById('custom-qty-val').innerText = currentTotalPieces;
+            recalculateTotal();
         }
-
-        syncCounterUI();
-        recalculateTotal();
     }
 
     function updateShippingByLocation() {
         const gov = document.getElementById('governorate').value;
-        if (gov === "القاهرة" || gov === "الجيزة" || gov === "القليوبية") {
-            shippingPrice = 60;
-        } else if (gov !== "") {
-            shippingPrice = 80;
-        } else {
-            shippingPrice = 60;
-        }
+        shippingPrice = (gov === "القاهرة" || gov === "الجيزة" || gov === "القليوبية") ? 60 : 80;
         recalculateTotal();
     }
 
     function recalculateTotal() {
         if (couponActive) {
-            appliedDiscount = Math.round(baseProductPrice * 0.1);
-        } else {
-            appliedDiscount = 0;
-        }
-
+            if (document.getElementById('promo-input').value.trim().toUpperCase() === "FREE") {
+                appliedDiscount = 0; shippingPrice = 0;
+            } else { appliedDiscount = Math.round(baseProductPrice * 0.1); }
+        } else { appliedDiscount = 0; updateShippingByLocation(); }
         const finalTotal = (baseProductPrice - appliedDiscount) + shippingPrice;
-
         document.getElementById('txt-subtotal').innerText = baseProductPrice + " ج.م";
         document.getElementById('top-price').innerText = (baseProductPrice / currentTotalPieces).toFixed(0) + " ج.م / للقطعة";
         document.getElementById('txt-shipping').innerText = shippingPrice + " ج.م";
         document.getElementById('txt-total').innerText = finalTotal + " ج.م";
     }
 
-    function togglePromoField() {
-        if (couponActive) return;
-        document.getElementById('promoWrapper').classList.toggle('active');
-    }
+    function togglePromoField() { if (!couponActive) document.getElementById('promoWrapper').classList.toggle('active'); }
 
     function applyPromo() {
         if (couponActive) return;
-
         const promoInputEl = document.getElementById('promo-input');
         const promo = promoInputEl.value.trim().toUpperCase();
         const msg = document.getElementById('promo-msg');
-        const btn = document.getElementById('promo-btn-id');
         
-        // 🔒 فحص أمان الحديد وجهاز العميل لمنع الريفرش وتشغيل الدماغ
+        if (localStorage.getItem("generated_this_session_" + promo) === "true") {
+            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
+            msg.innerText = "❌ هذا الكوبون مخصص للاستخدام في أوردرك القادم فقط!"; return;
+        }
+        const generationTime = localStorage.getItem("coupon_time_" + promo);
+        if (generationTime) {
+            if (new Date().getTime() - parseInt(generationTime) > 7 * 24 * 60 * 60 * 1000) {
+                msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
+                msg.innerText = "❌ عذراً، انتهت صلاحية الكوبون (صالح 7 أيام فقط)!"; return;
+            }
+        }
         if (localStorage.getItem("used_coupon_" + promo)) {
-            msg.style.display = "block";
-            msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ عذراً، تم استخدام هذا الكوبون من قبل على هذا الجهاز!";
-            return;
+            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
+            msg.innerText = "❌ عذراً، تم استخدام الكوبون مسبقاً على هذا الجهاز!"; return;
         }
 
-        if (promo === "HAMZA10" || promo === "HA10") {
-            couponActive = true;
-            msg.style.display = "block";
-            msg.style.color = "#25d366";
-            msg.innerText = "✓ تم تطبيق خصم 10% بنجاح!";
-            btn.disabled = true;
-            promoInputEl.disabled = true;
-            
-            // قفل الكوبون لجهاز العميل ده مدى الحياة
-            localStorage.setItem("used_coupon_" + promo, "true");
+        if (promo === "HAMZA10" || promo === "HA10" || promo === "HA30" || promo === "FREE") {
+            couponActive = true; msg.style.display = "block"; msg.style.color = "#25d366"; msg.innerText = "✓ تم تطبيق الخصم وصورة الكوبون جاهزة للمراجعة!";
+            promoInputEl.disabled = true; localStorage.setItem("used_coupon_" + promo, "true");
         } else {
-            couponActive = false;
-            msg.style.display = "block";
-            msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ رمز الكوبون غير صحيح، يرجى المحاولة مرة أخرى!";
+            msg.style.display = "block"; msg.style.color = "var(--secondary-color)"; msg.innerText = "❌ رمز الكوبون غير صحيح!";
         }
         recalculateTotal();
     }
 
-    function toggleAccordion() {
-        const el = document.getElementById('policyAccordion');
-        el.classList.toggle('active');
-        const content = el.querySelector('.menu-content');
-        if (el.classList.contains('active')) {
-            content.style.maxHeight = content.scrollHeight + "px";
-        } else {
-            content.style.maxHeight = "0";
-        }
+    function clearError(groupId) { document.getElementById(groupId).classList.remove('has-error'); }
+    function toggleAccordion() { document.getElementById('policyAccordion').classList.toggle('active'); }
+
+    function downloadCouponAsImage() {
+        const targetSection = document.getElementById('captureCardSection');
+        const btn = document.querySelector('.download-badge-btn span');
+        btn.innerText = "جاري الحفظ والتحميل... 🔄";
+        
+        html2canvas(targetSection, { useCORS: true, scale: 2 }).then(canvas => {
+            const imageURL = canvas.toDataURL("image/png");
+            const downloadLink = document.createElement('a');
+            downloadLink.href = imageURL;
+            downloadLink.download = `AlHamzawi-Coupon-${activeGeneratedCode || 'GIFT'}.png`;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            btn.innerText = "تم حفظ الكارت بنجاح في الإستوديو! ✅";
+        }).catch(() => {
+            btn.innerText = "فشل التنزيل تلقائياً، يرجى لقطة الشاشة 📸";
+        });
     }
 
     function sendOrder() {
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec";
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const gov = document.getElementById('governorate').value;
-        const address = document.getElementById('address').value.trim();
-        const notes = document.getElementById('notes').value.trim();
-        const btnSpan = document.querySelector('.order-now-btn span');
+        const nameEl = document.getElementById('name'); const phoneEl = document.getElementById('phone');
+        const govEl = document.getElementById('governorate'); const addressEl = document.getElementById('address');
+        const promoInputEl = document.getElementById('promo-input');
 
-        if (!name || !phone || !gov || !address) {
-            alert("يرجى ملء جميع البيانات المطلوبة لضمان الشحن السريع!");
+        if (!nameEl.value.trim() || !phoneEl.value.trim() || !govEl.value || !addressEl.value.trim()) {
+            if(!nameEl.value.trim()) document.getElementById('group-name').classList.add('has-error');
+            if(!phoneEl.value.trim()) document.getElementById('group-phone').classList.add('has-error');
+            if(!govEl.value) document.getElementById('group-governorate').classList.add('has-error');
+            if(!addressEl.value.trim()) document.getElementById('group-address').classList.add('has-error');
             return;
         }
 
-        btnSpan.innerText = "جاري حفظ طلبك بأمان... ⏳";
-
-        // تسجيل عدد الأوردرات للعميل ده لبرنامج الولاء الذكي
+        document.querySelector('.order-now-btn span').innerText = "جاري حفظ طلبك بأمان... ⏳";
         let orderCount = parseInt(localStorage.getItem("alhamzawi_order_count") || "0") + 1;
         localStorage.setItem("alhamzawi_order_count", orderCount.toString());
 
-        const finalTotalVal = parseInt(document.getElementById('txt-total').innerText);
-
-        // 🧠 تحديد رسالة المكافأة والولاء في شاشة النجاح أوتوماتيكياً حسب شروطك بالملي
         const giftTitleEl = document.getElementById('loyaltyGiftTitle');
-        if (currentTotalPieces >= 3) {
-            giftTitleEl.innerText = "🎁 مبروك! لأنك طلبت باقة مجمعة (3 قطع)، كسبت كود الخصم الملوكي 30% [HA30] لأوردرك القادم!";
-        } else if (finalTotalVal > 500 || orderCount === 2) {
-            giftTitleEl.innerText = "🎁 مبروك! لأن أوردرك تخطى الـ 500 جنيه أو ده ثاني طلب ليك، كسبت كود خصم 10% [HAMZA10]!";
-        } else if (orderCount > 3) {
-            giftTitleEl.innerText = "🎁 شكراً لولائك الدائم لمتجرنا! لقد حصلت على كود الشحن المجاني بالكامل [FREE] لأوردرك القادم!";
+        const cardTextEl = document.getElementById('dynamicCouponTextOnCard');
+        const cardImgEl = document.querySelector('.discount-card-img');
+        const nowTimestamp = new Date().getTime();
+        activeGeneratedCode = "";
+
+        // 🧠 تفريع الشروط وضخ روابط الصور التلاتة الحصرية لايف بالملي
+        if (orderCount >= 15 && baseProductPrice >= 500) {
+            activeGeneratedCode = "FREE";
+            giftTitleEl.innerText = "🎉 مبروك! حصلت على كود شحن مجاني لأوردرك القادم!";
+            cardImgEl.src = "https://i.top4top.io/p_3840wntvc1.jpg"; // رابط الكارت المجاني الحقيقي
+            cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
+        } else if (orderCount > 6 && baseProductPrice >= 500) {
+            activeGeneratedCode = "HA30";
+            giftTitleEl.innerText = "🌟 مبروك! كسبت كود خصم 30% لأوردرك القادم!";
+            cardImgEl.src = "https://k.top4top.io/p_38400po0p1.jpg"; // رابط كارت الـ 30% الحقيقي
+            cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
+        } else if (orderCount === 6) {
+            activeGeneratedCode = "HAMZA10";
+            giftTitleEl.innerText = "🎁 مبروك! بمناسبة الأوردر السادس كسبت خصم 10%!";
+            cardImgEl.src = "https://a.top4top.io/p_38404u1vb1.jpg"; // رابط كارت الـ 10% الحقيقي
+            cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HAMZA10 ] - صالح لـ 7 أيام";
         } else {
-            giftTitleEl.innerText = "🎁 مبروك حصلت على كارت خصومات متجر الحمزاوي الحصري!";
+            cardImgEl.src = "https://i.ibb.co/C3m0gBwZ/92980.png"; // الكارت الافتراضي
+            cardTextEl.innerText = "كارت خصومات متجر الحمزاوي الحصري والمتميز دائماً";
+        }
+
+        if (activeGeneratedCode !== "") {
+            localStorage.setItem("generated_this_session_" + activeGeneratedCode, "true");
+            localStorage.setItem("coupon_time_" + activeGeneratedCode, nowTimestamp.toString());
         }
 
         const formData = new FormData();
-        formData.append("name", name);
-        formData.append("phone", phone);
-        formData.append("governorate", gov);
-        formData.append("address", address);
-        formData.append("offer", `العرض: ${selectedOfferText} | ملاحظات العميل: ${notes || "لا يوجد"} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون: ${couponActive ? "نشط" : "لا يوجد"} | رقم أوردر العميل: ${orderCount}`);
+        formData.append("name", nameEl.value.trim());
+        formData.append("phone", phoneEl.value.trim());
+        formData.append("governorate", govEl.value);
+        formData.append("address", addressEl.value.trim());
+        formData.append("offer", `العرض: ${selectedOfferText} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون الحالي المستخدم: ${couponActive ? promoInputEl.value.trim().toUpperCase() : "لا يوجد"} | رقم الأوردر الحالي: ${orderCount}`);
+
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec";
 
         fetch(webAppUrl, { method: "POST", body: formData })
         .then(() => {
             document.getElementById('successOverlay').classList.add('show');
-            btnSpan.innerText = "تم تسجيل الطلب ✓";
-            document.getElementById('name').value = "";
-            document.getElementById('phone').value = "";
-            document.getElementById('governorate').value = "";
-            document.getElementById('address').value = "";
-            document.getElementById('notes').value = "";
-            document.getElementById('promo-input').value = "";
-            document.getElementById('promo-input').disabled = false;
-            document.getElementById('promo-msg').style.display = "none";
-            document.getElementById('promo-btn-id').disabled = false;
-            document.getElementById('promoWrapper').classList.remove('active');
-            selectFixedOffer(1, 275, 'عبوة واحدة بسعر 275 ج.م');
+            document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
+            
+            if (activeGeneratedCode !== "") {
+                setTimeout(() => { localStorage.removeItem("generated_this_session_" + activeGeneratedCode); }, 5000);
+            }
+            nameEl.value = ""; phoneEl.value = ""; govEl.value = ""; addressEl.value = "";
+            document.getElementById('notes').value = ""; promoInputEl.value = "";
+            document.getElementById('promo-file').value = "";
+            couponActive = false; recalculateTotal();
         })
         .catch(() => {
             alert("حدث خطأ، يرجى المحاولة مرة أخرى!");
-            btnSpan.innerText = "تأكيد طلب الشحن الفوري 🛍️";
+            document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
         });
     }
 
     function closeSuccess() {
         document.getElementById('successOverlay').classList.remove('show');
         document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
+        document.querySelector('.download-badge-btn span').innerText = "اضغط هنا لتنزيل كارت الخصم في الاستوديو ⬇️";
     }
 </script>
-
 </body>
-</html>
+</html
