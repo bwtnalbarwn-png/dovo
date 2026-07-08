@@ -115,7 +115,7 @@
         .file-upload-input { width: 100% !important; padding: 10px !important; font-size: 12px !important; background: #fafafa; border: 1px dashed #aeaeaeb3 !important; border-radius: 8px !important; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
         .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
 
-        /* 🛍️ زرار الطلب السريع الثابت الملوكي المعدل والمظبوط */
+        /* 🛍️ زرار الطلب السريع الثابت الملوكي (تم تعديل الـ Hover وإلغاء القفشة تماماً) */
         .order-now-btn { 
             background: linear-gradient(90deg, #d60000, #ff1a1a); 
             color: white; border: none; width: 85%; max-width: 380px; 
@@ -125,6 +125,7 @@
         }
         .order-now-btn:hover { transform: translateX(-50%) translateY(-2px); box-shadow: 0 10px 25px rgba(214, 0, 0, 0.45); }
         
+        /* 📱 ستايل أداة وسجادة هبوط شات واتساب التفاعلي iOS العائم */
         .whatsapp-wrapper { position: fixed; bottom: 85px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
         .whatsapp-floating { background-color: #25d366; color: white; width: 52px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); text-decoration: none; position: relative; z-index: 2; transition: 0.3s; }
         .whatsapp-floating:hover { transform: scale(1.05); }
@@ -159,6 +160,7 @@
         .discount-capture-area.reveal { display: block; }
         .discount-card-img-box { width: 100%; aspect-ratio: 16 / 9; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; position: relative; }
         
+        /* ضبط الصورة بالمقاس الملوكي 16:9 أوتوماتيكياً برمجياً لتفرش كامل المساحة النظيفة */
         .discount-card-img { width: 100%; height: 100%; object-fit: fill; display: block; background: #000; }
         
         .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 12px; width: 100%; max-width: 440px; border: none; border-radius: 8px; margin: 8px auto 0 auto; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-sizing: border-box; }
@@ -183,7 +185,7 @@
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
                 <p class="img-script-text">🎀 DOVO كريم رفع وتكبير الأرداف 🎀
 💖 لأن أنوثتك تستحق الإهتمام
-هل تبحثين عن مظهر أكثر تناسقًا وجاذبية بثقة أكبر?
+هل تبحثين عن مظهر أكثر تناسقًا وجاذبية بثقة أكبر؟
 مع DOVO كريم رفع وتكبير الأرداف بتركيبة غنية بفيتامين E الطبيعي 100%، استمتعي بعناية يومية تساعد على تحسين مظهر البشرة ومنحها نعومة ومرونة ولمسة أنثوية جذابة.
 ✅ تركيبة طبيعية لطيفة على البشرة
 ✅ غني بفيتامين E المغذي
@@ -193,7 +195,7 @@
             </div>
             <div class="gallery-item-wrapper">
                 <img src="https://f.top4top.io/p_38283r0da1.jpg" alt="العناية بالبشرة" class="product-img-full">
-                <p class="img-script-text">🌸 العناية المتكاملة تبدأ من الطبيعة. كريم DOVO مصمم خصيصاً ليمنح قوامك المرونة والنعومة الفائقة بفضل ذرات فيتامين E النشطة التي تتغلغل عميقاً في خلايا البشرة لتمنحك مظهراً متناسقاً وثقة تدوم طوال اليوم.</p>
+                <p class="img-script-text">🌸 العناية المتكاملة تبدأ من الطبيعة. كريم DOVO مصمم خصيصاً ليمنح قوامك المرونة والنعومة الفائقة بفضل ذرات فيتامين E النشطة التي تتغلغل عميقاً in خلايا البشرة لتمنحك مظهراً متناسقاً وثقة تدوم طوال اليوم.</p>
             </div>
             <div class="gallery-item-wrapper">
                 <img src="https://c.top4top.io/p_3828v8mta1.jpg" alt="🌸 لماذا تختارين DOVO؟" class="product-img-full">
@@ -372,6 +374,11 @@
         </a>
         <div class="whatsapp-text-carpet">تواصل عبر واتساب</div>
     </div>
+
+    <!-- 🛍️ زرار الطلب السريع الثابت الملوكي (مظبوط وشغال 100%) -->
+    <button class="order-now-btn" onclick="sendOrder()">
+        <span>تأكيد طلب الشحن الفوري 🛍️</span>
+    </button>
 
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
@@ -610,21 +617,21 @@
             giftTitleEl.innerText = "🎉 مبروك! بمناسبة وصولك للطلب الـ 15 وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
             cardImgEl.crossOrigin = "anonymous";
             cardImgEl.src = "https://k.top4top.io/p_3841gf99u1.jpg"; 
-            cardTextEl.innerText = "كود الخصم الفعلي المستقبلية: [ FREE ] - صالح لـ 7 أيام";
+            cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount === 10 && currentOrderValue >= 500) {
             activeGeneratedCode = "HA30";
             giftTitleEl.innerText = "🌟 مبروك! بمناسبة وصولك للطلب العاشر وفاتورتك الحالية فوق الـ 500 جنيه، كسبت كود خصم 30% لأوردرك القادم: [HA30] 🔥!";
             cardImgEl.crossOrigin = "anonymous";
             cardImgEl.src = "https://j.top4top.io/p_384176qvc1.jpg"; 
-            cardTextEl.innerText = "كود الخصم الفعلي المستقبلية: [ HA30 ] - صالح لـ 7 أيام";
+            cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount === 6 && currentOrderValue >= 500) {
             activeGeneratedCode = "HAMZA10";
             giftTitleEl.innerText = "🎁 مبروك! بمناسبة وصولك للطلب السادس معنا وفاتورتك الحالية فوق الـ 500 جنيه، حصلت على كود خصم 10% لطلبك القادم: [HAMZA10] ✨!";
             cardImgEl.crossOrigin = "anonymous";
             cardImgEl.src = "https://a.top4top.io/p_3841y5vqt1.jpg"; 
-            cardTextEl.innerText = "كود الخصم الفعلي المستقبلية: [ HAMZA10 ] - صالح لـ 7 أيام";
+            cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HAMZA10 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         }
 
