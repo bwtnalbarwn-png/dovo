@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
-    <!-- مكتبة تحويل الـ HTML إلى صورة لتنزيل الكارت فوراً -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
@@ -182,7 +181,6 @@
 <body>
 
     <div class="container">
-        <!-- معرض الصور المطور لمتجر الحمزاوي بالاسكريبت الكامل -->
         <div class="images-gallery">
             <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
@@ -381,7 +379,6 @@
         <span>تأكيد طلب الشحن الفوري 🛍️</span>
     </button>
 
-    <!-- شاشة النجاح الوردية في أبيض الكلاسيكية الشيك المحدثة لمنع قرف تآكل الصور الحجم الكبير -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div style="font-size: 40px; margin-bottom: 12px;">🎉</div>
@@ -390,10 +387,9 @@
             
             <div class="loyalty-msg-title" id="loyaltyGiftTitle" style="display: none;"></div>
             
-            <!-- 📸 منطقة الالتقاط والمقاس المطور الحامي من قرف تآكل الكروت الضخمة -->
             <div class="discount-capture-area" id="captureCardSection">
                 <div class="discount-card-img-box">
-                    <img src="https://i.ibb.co/C3m0gBwZ/92980.png" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
+                    <img id="couponDynamicImg" src="" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
                 </div>
                 <div id="dynamicCouponTextOnCard" style="font-size: 11px; font-weight: 800; color: #e21b79; margin-top: 5px; background: #fff0f6; padding: 4px; border-radius: 4px; border: 1px dashed #e21b79;">كود الخصم الفعلي المستقبلي</div>
             </div>
@@ -452,20 +448,18 @@
         }
     }
 
-    // 🚚 الشحن المنفصل والمضبوط 100%: القاهرة والجيزة والقليوبية 60 وباقي مصر 80 بالتمام والكمال
     function updateShippingByLocation() {
         const gov = document.getElementById('governorate').value;
         if (gov === "القاهرة" || gov === "الجيزة" || gov === "القليوبية") {
             shippingPrice = 60;
         } else if (gov === "") {
-            shippingPrice = 60; // الافتراضي فارغ
+            shippingPrice = 60;
         } else {
             shippingPrice = 80;
         }
         recalculateTotal();
     }
 
-    // 🔢 العداد الذكي المطور لحساب وتحديث سعر القطعة فوق لايف طبقاً لرغبتك بالملي
     function recalculateTotal() {
         if (couponActive) {
             if (document.getElementById('promo-input').value.trim().toUpperCase() === "FREE") {
@@ -473,10 +467,8 @@
             } else { appliedDiscount = Math.round(baseProductPrice * 0.1); }
         } else { appliedDiscount = 0; }
         
-        // حساب إجمالي الفاتورة مع الشحن المنفصل الصاحي
         const finalTotal = (baseProductPrice - appliedDiscount) + shippingPrice;
         
-        // هندسة وتحديث السعر الفردي للقطعة فوق لايف طبقاً للعروض أو خارج العروض
         let unitPriceText = "275 ج.م / للقطعة";
         if (currentTotalPieces === 1) {
             unitPriceText = "275 ج.م / للقطعة";
@@ -485,7 +477,6 @@
         } else if (currentTotalPieces === 3 && baseProductPrice === 720) {
             unitPriceText = "240 ج.م / للقطعة";
         } else {
-            // خارج العروض الـ 3 بيقفل السعر للقطعة على 275 ج.م تلقائياً كقيمة ثابتة للكميات المخصصة
             unitPriceText = "275 ج.م / للقطعة";
         }
 
@@ -568,41 +559,36 @@
 
         document.querySelector('.order-now-btn span').innerText = "جاري حفظ طلبك بأمان... ⏳";
         
-        // 🔒 سيستم تتبع عدد مرات الطلب الفعلي لجهاز العميل
         let orderCount = parseInt(localStorage.getItem("alhamzawi_order_count") || "0") + 1;
         localStorage.setItem("alhamzawi_order_count", orderCount.toString());
 
         const currentOrderValue = baseProductPrice; 
         const giftTitleEl = document.getElementById('loyaltyGiftTitle');
         const cardTextEl = document.getElementById('dynamicCouponTextOnCard');
-        const cardImgEl = document.querySelector('.discount-card-img');
+        const cardImgEl = document.getElementById('couponDynamicImg');
         const captureArea = document.getElementById('captureCardSection');
         const downloadBtn = document.getElementById('downloadCardBtn');
         const nowTimestamp = new Date().getTime();
         activeGeneratedCode = "";
 
-        // إخفاء الكروت كوضع افتراضي لكل الناس في شاشة الشكر الكلاسيك البيرفكت
         giftTitleEl.style.display = "none";
         captureArea.classList.remove('reveal');
         downloadBtn.classList.remove('reveal');
 
-        // 🧠 تشغيل فلتر شروط الولاء التصاعدي بالمرة الحسابية الدقيقة:
+        // الربط بالصور المرفوعة على توب فور توب وجيت هاب مباشرة لتنزيل الكوبونات الصحيحة
         if (orderCount >= 15 && currentOrderValue >= 500) {
-            // المستوى التالت: بعد المرة الـ 15 وأكتر والطلب فوق 500 ج.م -> شحن فري مجاني
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! لأنك قفلت 15 طلب وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
             cardImgEl.src = "https://i.top4top.io/p_3840wntvc1.jpg"; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount > 6 && currentOrderValue >= 500) {
-            // المستوى التاني: بيطلب كتير (تخطى الـ 6 مرات) وأوردره بـ 500 جنيه أو فوق -> كود 30%
             activeGeneratedCode = "HA30";
             giftTitleEl.innerText = "🌟 مبروك! لأنك عميل دائم وتخطيت الـ 6 طلبات وأوردرك الحالي فوق الـ 500 جنيه، كسبت كود خصم 30% لأوردرك القادم: [HA30] 🔥!";
             cardImgEl.src = "https://k.top4top.io/p_38400po0p1.jpg"; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount === 6) {
-            // المستوى الأول: المرة الـ 6 بالظبط يفتح كود الـ 10% الحقيقي المرفوع
             activeGeneratedCode = "HAMZA10";
             giftTitleEl.innerText = "🎁 مبروك! بمناسبة وصولك للطلب السادس معنا، حصلت على كود خصم 10% لطلبك القادم: [HAMZA10] ✨!";
             cardImgEl.src = "https://a.top4top.io/p_38404u1vb1.jpg"; 
