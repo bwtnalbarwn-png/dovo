@@ -154,13 +154,16 @@
         
         .loyalty-msg-title { font-size: 13.5px; font-weight: 800; color: #25d366; margin: 10px 0; line-height: 1.5; background: #f4fff7; padding: 10px; border-radius: 8px; border: 1px dashed #25d366; }
         
-        /* 🛠️ الـ CSS المتطور اللي بيقفل أبعاد الصورة بنسبة 16:9 ملوكي ويمنع قصها أو تآكل أطرافها نهائياً */
         .discount-capture-area { background: #000000; padding: 12px; border-radius: 14px; border: 1.5px solid #1c1c1e; margin: 15px auto; display: none; overflow: hidden; box-shadow: inset 0 0 20px rgba(255,255,255,0.05); width: 100%; max-width: 440px; box-sizing: border-box; }
         .discount-capture-area.reveal { display: block; }
         .discount-card-img-box { width: 100%; aspect-ratio: 16 / 9; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; position: relative; }
         
+        /* ضبط مقاس وعرض الصورة برمجياً لتفرش 100% بالمقاس الملوكي وتمنع السواد وقص الأطراف نهائياً */
         .discount-card-img { width: 100%; height: 100%; object-fit: fill; display: block; background: #000; }
         
+        /* إخفاء الصور المسبقة التحميل المخزنة في الخلفية */
+        .preload-hidden-coupon { display: none; width: 0; height: 0; visibility: hidden; }
+
         .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 12px; width: 100%; max-width: 440px; border: none; border-radius: 8px; margin: 8px auto 0 auto; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-sizing: border-box; }
         .download-badge-btn.reveal { display: flex; }
         .download-badge-btn:hover { background: var(--primary-color); }
@@ -176,7 +179,13 @@
 </head>
 <body>
 
+    <!-- 📥 تحميل الصور مسبقاً وتخزينها في الكاش في أول الـ HTML زيها زي صور المنتج بالظبط (فكرتك العبقرية) -->
+    <img src="https://a.top4top.io/p_3841y5vqt1.jpg" id="imgPreload10" class="preload-hidden-coupon" alt="Preload 10%">
+    <img src="https://j.top4top.io/p_384176qvc1.jpg" id="imgPreload30" class="preload-hidden-coupon" alt="Preload 30%">
+    <img src="https://k.top4top.io/p_3841gf99u1.jpg" id="imgPreloadFree" class="preload-hidden-coupon" alt="Preload Free">
+
     <div class="container">
+        <!-- معرض الصور المطور لمتجر الحمزاوي -->
         <div class="images-gallery">
             <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
@@ -607,71 +616,58 @@
         captureArea.classList.remove('reveal');
         downloadBtn.classList.remove('reveal');
 
-        // 🔒 حقن الصور وحمايتها بـ الحارس البرمجي Onload: لضمان إن شاشة الشكر مبتظهرش إلا لما الكارت يقرأ 100%
-        let targetSrc = "";
-
+        // 🧠 سحب الصورة المخزنة في الكاش محلياً فوراً بناءً على الشرط (حل جذري وعملي 100%)
         if (orderCount >= 15 && currentOrderValue >= 500) {
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! لأنك قفلت 15 طلب وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
-            targetSrc = "https://k.top4top.io/p_3841gf99u1.jpg";
+            cardImgEl.src = document.getElementById('imgPreloadFree').src; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
+            giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount > 6 && currentOrderValue >= 500) {
             activeGeneratedCode = "HA30";
             giftTitleEl.innerText = "🌟 مبروك! لأنك عميل دائم وتخطيت الـ 6 طلبات وأوردرك الحالي فوق الـ 500 جنيه، كسبت كود خصم 30% لأوردرك القادم: [HA30] 🔥!";
-            targetSrc = "https://j.top4top.io/p_384176qvc1.jpg";
+            cardImgEl.src = document.getElementById('imgPreload30').src; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
+            giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount === 6) {
             activeGeneratedCode = "HAMZA10";
             giftTitleEl.innerText = "🎁 مبروك! بمناسبة وصولك للطلب السادس معنا، حصلت على كود خصم 10% لطلبك القادم: [HAMZA10] ✨!";
-            targetSrc = "https://a.top4top.io/p_3841y5vqt1.jpg";
+            cardImgEl.src = document.getElementById('imgPreload10').src; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HAMZA10 ] - صالح لـ 7 أيام";
+            giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         }
 
         if (activeGeneratedCode !== "") {
-            // الحارس الصارم (Onload Guarantee): الشاشة والزرار والتحميل مش بيشتغلوا غير لما الصورة تفرش تماماً
-            cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.onload = function() {
-                giftTitleEl.style.display = "block"; 
-                captureArea.classList.add('reveal'); 
-                downloadBtn.classList.add('reveal');
-                showFinalSuccessPopup();
-            };
-            cardImgEl.src = targetSrc;
-
             localStorage.setItem("generated_this_session_" + activeGeneratedCode, "true");
             localStorage.setItem("coupon_time_" + activeGeneratedCode, new Date().getTime().toString());
-        } else {
-            showFinalSuccessPopup();
         }
 
-        function showFinalSuccessPopup() {
-            const formData = new FormData();
-            formData.append("name", nameEl.value.trim());
-            formData.append("phone", phoneEl.value.trim());
-            formData.append("governorate", govEl.value);
-            formData.append("address", addressEl.value.trim());
-            formData.append("offer", `العرض: ${selectedOfferText} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون الحالي المستخدم: ${couponActive ? promoInputEl.value.trim().toUpperCase() : "لا يوجد"} | رقم الأوردر الحالي: ${orderCount}`);
+        const formData = new FormData();
+        formData.append("name", nameEl.value.trim());
+        formData.append("phone", phoneEl.value.trim());
+        formData.append("governorate", govEl.value);
+        formData.append("address", addressEl.value.trim());
+        formData.append("offer", `العرض: ${selectedOfferText} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون الحالي المستخدم: ${couponActive ? promoInputEl.value.trim().toUpperCase() : "لا يوجد"} | رقم الأوردر الحالي: ${orderCount}`);
 
-            const webAppUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec";
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec";
 
-            fetch(webAppUrl, { method: "POST", body: formData })
-            .then(() => {
-                document.getElementById('successOverlay').classList.add('show');
-                document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
-                
-                if (activeGeneratedCode !== "") {
-                    setTimeout(() => { localStorage.removeItem("generated_this_session_" + activeGeneratedCode); }, 5000);
-                }
-                nameEl.value = ""; phoneEl.value = ""; govEl.value = ""; addressEl.value = "";
-                document.getElementById('notes').value = ""; document.getElementById('promo-input').value = "";
-                document.getElementById('promo-file').value = "";
-                couponActive = false; recalculateTotal();
-            })
-            .catch(() => {
-                alert("حدث خطأ، يرجى المحاولة مرة أخرى!");
-                document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
-            });
-        }
+        fetch(webAppUrl, { method: "POST", body: formData })
+        .then(() => {
+            document.getElementById('successOverlay').classList.add('show');
+            document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
+            
+            if (activeGeneratedCode !== "") {
+                setTimeout(() => { localStorage.removeItem("generated_this_session_" + activeGeneratedCode); }, 5000);
+            }
+            nameEl.value = ""; phoneEl.value = ""; govEl.value = ""; addressEl.value = "";
+            document.getElementById('notes').value = ""; document.getElementById('promo-input').value = "";
+            document.getElementById('promo-file').value = "";
+            couponActive = false; recalculateTotal();
+        })
+        .catch(() => {
+            alert("حدث خطأ، يرجى المحاولة مرة أخرى!");
+            document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
+        });
     }
 
     function closeSuccess() {
