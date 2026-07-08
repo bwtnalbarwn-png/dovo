@@ -96,7 +96,6 @@
         .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
         .checkout-row span:last-child { font-weight: 900; }
 
-        /* 🎫 هندسة الكوبون المطور والمقفل بالملي لمنع التآكل تماماً */
         .promo-accordion-container { width: 100%; margin-top: 15px; border: 1px solid #d1d1d6; border-radius: 12px; background: #fff; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
         .promo-toggle-btn { padding: 16px 20px; font-size: 15px; font-weight: 700; color: #222; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
         .promo-toggle-btn::after { content: "▼"; font-size: 11px; transition: 0.3s; }
@@ -116,7 +115,6 @@
         .file-upload-input { width: 100% !important; padding: 10px !important; font-size: 12px !important; background: #fafafa; border: 1px dashed #aeaeaeb3 !important; border-radius: 8px !important; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
         .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
 
-        /* 🛍️ زرار الطلب السريع الثابت الملوكي في أسفل الشاشة */
         .order-now-btn { 
             background: linear-gradient(90deg, #d60000, #ff1a1a); 
             color: white; border: none; width: 85%; max-width: 380px; 
@@ -126,7 +124,6 @@
         }
         .order-now-btn:hover { transform: translateX(-50%) translateY(-2px); box-shadow: 0 10px 25px rgba(214, 0, 0, 0.45); }
         
-        /* 📱 ستايل أداة وسجادة هبوط شات واتساب التفاعلي iOS */
         .whatsapp-wrapper { position: fixed; bottom: 85px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
         .whatsapp-floating { background-color: #25d366; color: white; width: 52px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); text-decoration: none; position: relative; z-index: 2; transition: 0.3s; }
         .whatsapp-floating:hover { transform: scale(1.05); }
@@ -146,10 +143,11 @@
         .policy-item::before { content: "•"; position: absolute; right: 0; top: -2px; color: #d4af37; font-size: 18px; }
         .policy-item strong { color: #fff; display: block; margin-bottom: 2px; font-size: 13.5px; }
 
-        /* 🌸 ستايل شاشة النجاح الوردي في أبيض الكلاسيكية الشيك المريحة للعين */
         .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; }
         .success-overlay.show { opacity: 1; pointer-events: auto; }
-        .success-card { background: #ffffff; width: 92%; max-width: 440px; border-radius: 24px; padding: 30px 20px; text-align: center; border: 2.5px solid var(--primary-color); box-shadow: 0 15px 40px rgba(226, 27, 121, 0.2); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); }
+        
+        /* 📐 ضبط مقاس الكارت ريسبونسيف كامل للتابلت والكمبيوتر واللاب توب والموبايل بدون أي تآكل */
+        .success-card { background: #ffffff; width: 92%; max-width: 500px; border-radius: 24px; padding: 25px 15px; text-align: center; border: 2.5px solid var(--primary-color); box-shadow: 0 15px 40px rgba(226, 27, 121, 0.2); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); max-height: 90vh; overflow-y: auto; box-sizing: border-box; }
         .success-overlay.show .success-card { transform: scale(1); }
         
         .success-card p.main-thanks-msg { font-size: 16.5px; color: #111; margin: 0 0 10px 0; line-height: 1.6; font-weight: 800; }
@@ -157,22 +155,19 @@
         
         .loyalty-msg-title { font-size: 13.5px; font-weight: 800; color: #25d366; margin: 10px 0; line-height: 1.5; background: #f4fff7; padding: 10px; border-radius: 8px; border: 1px dashed #25d366; }
         
-        /* 🛠️ هندسة الأبعاد الذكية لحفظ الصورة الضخمة من التآكل (ستايل الأمان المطور لمنع قرف التآكل) */
-        .discount-capture-area { background: #000000; padding: 12px; border-radius: 14px; border: 1.5px solid #1c1c1e; margin: 15px 0; display: none; overflow: hidden; box-shadow: inset 0 0 20px rgba(255,255,255,0.05); }
+        .discount-capture-area { background: #000000; padding: 12px; border-radius: 14px; border: 1.5px solid #1c1c1e; margin: 15px auto; display: none; overflow: hidden; box-shadow: inset 0 0 20px rgba(255,255,255,0.05); width: 100%; max-width: 440px; box-sizing: border-box; }
         .discount-capture-area.reveal { display: block; }
         .discount-card-img-box { width: 100%; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; }
         
-        /* تقييد الارتفاع لضمان عدم تآكل الصورة الضخمة وظهورها كاملة 100% فوق وتحت */
         .discount-card-img { width: 100%; max-height: 250px; object-fit: contain; display: block; background: #000; }
         
-        .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 10px; width: 100%; border: none; border-radius: 8px; margin-top: 8px; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
+        .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 12px; width: 100%; max-width: 440px; border: none; border-radius: 8px; margin: 8px auto 0 auto; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-sizing: border-box; }
         .download-badge-btn.reveal { display: flex; }
         .download-badge-btn:hover { background: var(--primary-color); }
         .download-badge-btn svg { width: 16px; height: 16px; fill: #fff; }
 
-        .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 11px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(226, 27, 121, 0.15); margin-top: 10px; }
+        .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 11px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; max-width: 440px; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(226, 27, 121, 0.15); margin: 10px auto 0 auto; display: block; }
         
-        /* 🔵 الفوتر متسنتر تماماً في النص وباللون الرمادي الفاتح الملوكي الشيك */
         .footer-badges { text-align: center; padding: 25px 20px; background-color: #000; color: #888888; font-size: 14px; font-weight: 700; border-top: 1px solid #222; }
         .footer-badges a { color: #aaaaaa; text-decoration: none; transition: 0.2s; }
         .footer-badges a strong { font-weight: 900; font-size: 15px; color: #cccccc; }
@@ -182,7 +177,7 @@
 <body>
 
     <div class="container">
-        <!-- معرض الصور المطور لمتجر الحمزاوي بالاسكريبت الكامل -->
+        <!-- معرض الصور المطور لمتجر الحمزاوي -->
         <div class="images-gallery">
             <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
@@ -381,7 +376,6 @@
         <span>تأكيد طلب الشحن الفوري 🛍️</span>
     </button>
 
-    <!-- شاشة النجاح المحدثة لمنع تآكل الصور وبخلفية جيت هاب / توب فور توب التلقائية الصافية -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div style="font-size: 40px; margin-bottom: 12px;">🎉</div>
@@ -390,7 +384,6 @@
             
             <div class="loyalty-msg-title" id="loyaltyGiftTitle" style="display: none;"></div>
             
-            <!-- 📸 منطقة الالتقاط والمقاس المطور المتوافق مع الـ CORS وحامي الكروت -->
             <div class="discount-capture-area" id="captureCardSection">
                 <div class="discount-card-img-box">
                     <img id="couponDynamicImg" src="" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
@@ -492,7 +485,7 @@
 
     function togglePromoField() { if (!couponActive) document.getElementById('promoWrapper').classList.toggle('active'); }
 
-    // 🔒 فلتر الأمان الجديد: العميل يقدرش يطبق الكوبون إلا لما يسجل خانات البيانات كاملة
+    // 🔒 التحقق الصارم والمربوط بعدد أوردرات جهاز العميل الحالي ومستحيل يشتغل بالتخمين
     function applyPromo() {
         if (couponActive) return;
         
@@ -504,10 +497,8 @@
         const promoInputEl = document.getElementById('promo-input');
         const promo = promoInputEl.value.trim().toUpperCase();
 
-        // لو البيانات مش كاملة يوقف العملية ويعطيه خطأ فوري ويرفعه فوق
         if (!nameEl.value.trim() || !phoneEl.value.trim() || !govEl.value || !addressEl.value.trim()) {
-            msg.style.display = "block"; 
-            msg.style.color = "var(--secondary-color)";
+            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
             msg.innerText = "❌ برجاء ملء البيانات المطلوبة أولاً قبل تطبيق الكوبون!";
             
             if(!nameEl.value.trim()) document.getElementById('group-name').classList.add('has-error');
@@ -520,28 +511,42 @@
             return;
         }
 
+        let localOrderCount = parseInt(localStorage.getItem("alhamzawi_order_count") || "0") + 1;
+
+        // فحص الشروط الصارمة لجهاز العميل المطابق للعدد
+        if (promo === "HAMZA10" && localOrderCount !== 6) {
+            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
+            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب السادس فقط!";
+            return;
+        }
+        if (promo === "HA30" && localOrderCount <= 6) {
+            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
+            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء الدائمين بعد الطلب السادس!";
+            return;
+        }
+        if (promo === "FREE" && localOrderCount < 15) {
+            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
+            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب الـ 15 فما فوق!";
+            return;
+        }
+
+        if (promo !== "HAMZA10" && promo !== "HA30" && promo !== "FREE" && promo !== "HA10") {
+            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
+            msg.innerText = "❌ رمز الكوبون غير صحيح!";
+            return;
+        }
+
         if (localStorage.getItem("generated_this_session_" + promo) === "true") {
             msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
             msg.innerText = "❌ هذا الكوبون مخصص للاستخدام في أوردرك القادم فقط!"; return;
         }
-        const generationTime = localStorage.getItem("coupon_time_" + promo);
-        if (generationTime) {
-            if (new Date().getTime() - parseInt(generationTime) > 7 * 24 * 60 * 60 * 1000) {
-                msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-                msg.innerText = "❌ عذراً، انتهت صلاحية الكوبون (صالح 7 أيام فقط)!"; return;
-            }
-        }
-        if (localStorage.getItem("used_coupon_" + promo)) {
-            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ عذراً، تم استخدام الكوبون مسبقاً على هذا الجهاز!"; return;
-        }
 
-        if (promo === "HAMZA10" || promo === "HA10" || promo === "HA30" || promo === "FREE") {
-            couponActive = true; msg.style.display = "block"; msg.style.color = "#25d366"; msg.innerText = "✓ تم تطبيق الخصم وصورة الكوبون جاهزة للمراجعة!";
-            promoInputEl.disabled = true; localStorage.setItem("used_coupon_" + promo, "true");
-        } else {
-            msg.style.display = "block"; msg.style.color = "var(--secondary-color)"; msg.innerText = "❌ رمز الكوبون غير صحيح!";
-        }
+        couponActive = true; 
+        msg.style.display = "block"; msg.style.color = "#25d366"; 
+        msg.innerText = "✓ تم تطبيق الخصم بنجاح وصورة الكارت جاهزة لحسابك!";
+        promoInputEl.disabled = true; 
+        localStorage.setItem("used_coupon_" + promo, "true");
+        
         recalculateTotal();
     }
 
@@ -608,25 +613,23 @@
 
         let cacheBuster = "?t=" + nowTimestamp;
 
+        // المسارات النسبية المباشرة لملفات جيت هاب لضمان عدم السواد والسرعة
         if (orderCount >= 15 && currentOrderValue >= 500) {
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! لأنك قفلت 15 طلب وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
-            cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.src = "https://i.top4top.io/p_3840wntvc1.jpg" + cacheBuster; 
+            cardImgEl.src = "free-card.jpg" + cacheBuster; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount > 6 && currentOrderValue >= 500) {
             activeGeneratedCode = "HA30";
             giftTitleEl.innerText = "🌟 مبروك! لأنك عميل دائم وتخطيت الـ 6 طلبات وأوردرك الحالي فوق الـ 500 جنيه، كسبت كود خصم 30% لأوردرك القادم: [HA30] 🔥!";
-            cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.src = "https://k.top4top.io/p_38400po0p1.jpg" + cacheBuster; 
+            cardImgEl.src = "ha30-card.jpg" + cacheBuster; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount === 6) {
             activeGeneratedCode = "HAMZA10";
             giftTitleEl.innerText = "🎁 مبروك! بمناسبة وصولك للطلب السادس معنا، حصلت على كود خصم 10% لطلبك القادم: [HAMZA10] ✨!";
-            cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.src = "https://a.top4top.io/p_38404u1vb1.jpg" + cacheBuster; 
+            cardImgEl.src = "hamza10-card.jpg" + cacheBuster; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HAMZA10 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         }
