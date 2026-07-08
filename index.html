@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
-    <!-- مكتبة تحويل الـ HTML إلى صورة لتنزيل الكارت فوراً -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
@@ -154,11 +153,12 @@
         
         .loyalty-msg-title { font-size: 13.5px; font-weight: 800; color: #25d366; margin: 10px 0; line-height: 1.5; background: #f4fff7; padding: 10px; border-radius: 8px; border: 1px dashed #25d366; }
         
+        /* 🛠️ الـ CSS الذكي اللي بيجبر الكارت ياخد أبعاد الـ 16:9 (1080x608) برمجياً عشان يمنع السواد تماماً */
         .discount-capture-area { background: #000000; padding: 12px; border-radius: 14px; border: 1.5px solid #1c1c1e; margin: 15px auto; display: none; overflow: hidden; box-shadow: inset 0 0 20px rgba(255,255,255,0.05); width: 100%; max-width: 440px; box-sizing: border-box; }
         .discount-capture-area.reveal { display: block; }
-        .discount-card-img-box { width: 100%; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; }
+        .discount-card-img-box { width: 100%; aspect-ratio: 16 / 9; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; position: relative; }
         
-        .discount-card-img { width: 100%; max-height: 250px; object-fit: contain; display: block; background: #000; }
+        .discount-card-img { width: 100%; height: 100%; object-fit: fill; display: block; background: #000; }
         
         .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 12px; width: 100%; max-width: 440px; border: none; border-radius: 8px; margin: 8px auto 0 auto; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-sizing: border-box; }
         .download-badge-btn.reveal { display: flex; }
@@ -348,7 +348,7 @@
                 <div class="menu-content">
                     <ul class="policy-list">
                         <li class="policy-item"><strong>1. جدية الطلب والشحن:</strong> بمجرد تسجيلك للبيانات، السيستم بيخصم تكلفة الشحن فوراً لحساب مندوب منطقتك؛ يرجى الالتزام الكامل بالاستلام منعا للمساءلة القانونية والحظر.</li>
-                        <li class="policy-item"><strong>2. الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ in حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
+                        <li class="policy-item"><strong>2. الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ في حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
                         <li class="policy-item"><strong>3. تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
                         <li class="policy-item"><strong>4. قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
                         <li class="policy-item"><strong>5. سياسة العروض المجمعة والباقات:</strong> في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.</li>
@@ -483,7 +483,6 @@
 
     function togglePromoField() { if (!couponActive) document.getElementById('promoWrapper').classList.toggle('active'); }
 
-    // 🔒 دالة التحقق المعدلة: مربوطة بالـ العداد الحقيقي الزيرو، ومجمدة تماماً لمنع التحايل والتخمين
     function applyPromo() {
         if (couponActive) return;
         
@@ -509,7 +508,6 @@
             return;
         }
 
-        // قراءة العداد الحقيقي الزيرو المخزن حالياً (بدون إضافة الـ 1 الوهمية إلا وقت تحريك زرار الإرسال الفعلي)
         let localOrderCount = parseInt(localStorage.getItem("alhamzawi_order_count") || "0") + 1;
 
         if (promo === "HAMZA10" && localOrderCount !== 6) {
@@ -602,44 +600,39 @@
         const cardImgEl = document.getElementById('couponDynamicImg');
         const captureArea = document.getElementById('captureCardSection');
         const downloadBtn = document.getElementById('downloadCardBtn');
-        const nowTimestamp = new Date().getTime();
         activeGeneratedCode = "";
 
         giftTitleEl.style.display = "none";
         captureArea.classList.remove('reveal');
         downloadBtn.classList.remove('reveal');
 
-        let cacheBuster = "?t=" + nowTimestamp;
-        
-        // 🛠️ دمج وتوليد مسار جيت هاب بيجز الكامل لايف من المتصفح لضمان فك شفرة السواد تماماً
-        let basePath = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-
+        // 🚀 حقن الروابط المباشرة الجديدة النظيفة من توب فور توب (مقاومة للسواد 100%)
         if (orderCount >= 15 && currentOrderValue >= 500) {
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! لأنك قفلت 15 طلب وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
             cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.src = basePath + "free-card.jpg" + cacheBuster; 
+            cardImgEl.src = "https://k.top4top.io/p_3841gf99u1.jpg"; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount > 6 && currentOrderValue >= 500) {
             activeGeneratedCode = "HA30";
             giftTitleEl.innerText = "🌟 مبروك! لأنك عميل دائم وتخطيت الـ 6 طلبات وأوردرك الحالي فوق الـ 500 جنيه، كسبت كود خصم 30% لأوردرك القادم: [HA30] 🔥!";
             cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.src = basePath + "ha30-card.jpg" + cacheBuster; 
+            cardImgEl.src = "https://j.top4top.io/p_384176qvc1.jpg"; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount === 6) {
             activeGeneratedCode = "HAMZA10";
             giftTitleEl.innerText = "🎁 مبروك! بمناسبة وصولك للطلب السادس معنا، حصلت على كود خصم 10% لطلبك القادم: [HAMZA10] ✨!";
             cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.src = basePath + "hamza10-card.jpg" + cacheBuster; 
+            cardImgEl.src = "https://a.top4top.io/p_3841y5vqt1.jpg"; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HAMZA10 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         }
 
         if (activeGeneratedCode !== "") {
             localStorage.setItem("generated_this_session_" + activeGeneratedCode, "true");
-            localStorage.setItem("coupon_time_" + activeGeneratedCode, nowTimestamp.toString());
+            localStorage.setItem("coupon_time_" + activeGeneratedCode, new Date().getTime().toString());
         }
 
         const formData = new FormData();
