@@ -115,6 +115,7 @@
         .file-upload-input { width: 100% !important; padding: 10px !important; font-size: 12px !important; background: #fafafa; border: 1px dashed #aeaeaeb3 !important; border-radius: 8px !important; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
         .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
 
+        /* 🛍️ زرار الطلب السريع الثابت الملوكي (تم تصليح الـ Hover المقفول 100%) */
         .order-now-btn { 
             background: linear-gradient(90deg, #d60000, #ff1a1a); 
             color: white; border: none; width: 85%; max-width: 380px; 
@@ -158,7 +159,6 @@
         .discount-capture-area.reveal { display: block; }
         .discount-card-img-box { width: 100%; aspect-ratio: 16 / 9; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; position: relative; }
         
-        /* ضبط الصورة بالمقاس الملوكي 16:9 أوتوماتيكياً برمجياً لتفرش كامل المساحة النظيفة */
         .discount-card-img { width: 100%; height: 100%; object-fit: fill; display: block; background: #000; }
         
         .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 12px; width: 100%; max-width: 440px; border: none; border-radius: 8px; margin: 8px auto 0 auto; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-sizing: border-box; }
@@ -354,7 +354,7 @@
                         <li class="policy-item"><strong>3. تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
                         <li class="policy-item"><strong>4. قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
                         <li class="policy-item"><strong>5. سياسة العروض المجمعة والباقات:</strong> في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.</li>
-                        <li class="policy-item"><strong>6. حد أقصى للاحتفاظ بالشحنة:</strong> في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة، يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤفت على الرقم من الطلب مجدداً.</li>
+                        <li class="policy-item"><strong>6. حد أقصى للاحتفاظ بالشحنة:</strong> في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة, يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤفت على الرقم من الطلب مجدداً.</li>
                         <li class="policy-item"><strong>7. نظام الحظر الموحد (القائمة السوداء):</strong> متجرنا مرتبط بشبكة تجارية موحدة للكشف عن جدية المشترين. في حالة رفض استلام الشحنة بعد خروجها بدون سبب طبيعي صريح، يتم إدراج (الاسم، ورقم الهاتف، والعنوان) تلقائياً في القائمة السوداء المحظورة من الشحن أوتوماتيكياً في متجرنا وأكثر من 50 متجر إلكتروني آخر.</li>
                     </ul>
                 </div>
@@ -365,12 +365,10 @@
         </div>
     </div>
 
-    <div class="whatsapp-wrapper">
-        <a href="https://wa.me/201207362722" class="whatsapp-floating" target="_blank">
-            <svg class="ws-icon" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-        </a>
-        <div class="whatsapp-text-carpet">تواصل عبر واتساب</div>
-    </div>
+    <!-- الزرار الملوكي الثابت مكانه والجاهز للشغل الحريقة -->
+    <button class="order-now-btn" onclick="sendOrder()">
+        <span>تأكيد طلب الشحن الفوري 🛍️</span>
+    </button>
 
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
@@ -508,7 +506,6 @@
 
         let localOrderCount = parseInt(localStorage.getItem("alhamzawi_order_count") || "0") + 1;
 
-        // الشروط التصاعدية الرقمية الصارمة والنهائية لرحلة العميل بالملي لمنع التلاعب والمشاركة
         if (promo === "HAMZA10" && localOrderCount !== 6) {
             msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
             msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب السادس بالظبط!";
@@ -548,7 +545,6 @@
     function clearError(groupId) { document.getElementById(groupId).classList.remove('has-error'); }
     function toggleAccordion() { document.getElementById('policyAccordion').classList.toggle('active'); }
 
-    // 🎨 حل مشكلة السواد الجذري بتفعيل خيار allowTaint بشكل كامل لقراءة العناصر المحلية
     function downloadCouponAsImage() {
         const targetSection = document.getElementById('captureCardSection');
         const btn = document.querySelector('.download-badge-btn span');
@@ -606,7 +602,6 @@
         captureArea.classList.remove('reveal');
         downloadBtn.classList.remove('reveal');
 
-        // 🧠 استدعاء الكوبونات الحصرية المباشرة بالتفصيل والأرقام (6، 10، 15 بالظبط)
         if (orderCount === 15 && currentOrderValue >= 500) {
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! بمناسبة وصولك للطلب الـ 15 وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
