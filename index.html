@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
+    <!-- مكتبة تحويل الـ HTML إلى صورة لتنزيل الكارت فوراً -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
@@ -181,6 +182,7 @@
 <body>
 
     <div class="container">
+        <!-- معرض الصور المطور لمتجر الحمزاوي بالاسكريبت الكامل -->
         <div class="images-gallery">
             <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
@@ -379,6 +381,7 @@
         <span>تأكيد طلب الشحن الفوري 🛍️</span>
     </button>
 
+    <!-- شاشة النجاح المحدثة لمنع تآكل الصور وبخلفية جيت هاب / توب فور توب التلقائية الصافية -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div style="font-size: 40px; margin-bottom: 12px;">🎉</div>
@@ -387,6 +390,7 @@
             
             <div class="loyalty-msg-title" id="loyaltyGiftTitle" style="display: none;"></div>
             
+            <!-- 📸 منطقة الالتقاط والمقاس المطور المتوافق مع الـ CORS وحامي الكروت -->
             <div class="discount-capture-area" id="captureCardSection">
                 <div class="discount-card-img-box">
                     <img id="couponDynamicImg" src="" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
@@ -488,12 +492,34 @@
 
     function togglePromoField() { if (!couponActive) document.getElementById('promoWrapper').classList.toggle('active'); }
 
+    // 🔒 فلتر الأمان الجديد: العميل يقدرش يطبق الكوبون إلا لما يسجل خانات البيانات كاملة
     function applyPromo() {
         if (couponActive) return;
+        
+        const nameEl = document.getElementById('name'); 
+        const phoneEl = document.getElementById('phone');
+        const govEl = document.getElementById('governorate'); 
+        const addressEl = document.getElementById('address');
+        const msg = document.getElementById('promo-msg');
         const promoInputEl = document.getElementById('promo-input');
         const promo = promoInputEl.value.trim().toUpperCase();
-        const msg = document.getElementById('promo-msg');
-        
+
+        // لو البيانات مش كاملة يوقف العملية ويعطيه خطأ فوري ويرفعه فوق
+        if (!nameEl.value.trim() || !phoneEl.value.trim() || !govEl.value || !addressEl.value.trim()) {
+            msg.style.display = "block"; 
+            msg.style.color = "var(--secondary-color)";
+            msg.innerText = "❌ برجاء ملء البيانات المطلوبة أولاً قبل تطبيق الكوبون!";
+            
+            if(!nameEl.value.trim()) document.getElementById('group-name').classList.add('has-error');
+            if(!phoneEl.value.trim()) document.getElementById('group-phone').classList.add('has-error');
+            if(!govEl.value) document.getElementById('group-governorate').classList.add('has-error');
+            if(!addressEl.value.trim()) document.getElementById('group-address').classList.add('has-error');
+            
+            const firstErr = document.querySelector('.has-error');
+            if(firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
         if (localStorage.getItem("generated_this_session_" + promo) === "true") {
             msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
             msg.innerText = "❌ هذا الكوبون مخصص للاستخدام في أوردرك القادم فقط!"; return;
@@ -527,7 +553,12 @@
         const btn = document.querySelector('.download-badge-btn span');
         btn.innerText = "جاري الحفظ والتحميل... 🔄";
         
-        html2canvas(targetSection, { useCORS: true, scale: 2 }).then(canvas => {
+        html2canvas(targetSection, { 
+            useCORS: true, 
+            allowTaint: false,
+            logging: false,
+            scale: 2 
+        }).then(canvas => {
             const imageURL = canvas.toDataURL("image/png");
             const downloadLink = document.createElement('a');
             downloadLink.href = imageURL;
@@ -575,23 +606,27 @@
         captureArea.classList.remove('reveal');
         downloadBtn.classList.remove('reveal');
 
-        // الربط بالصور المرفوعة على توب فور توب وجيت هاب مباشرة لتنزيل الكوبونات الصحيحة
+        let cacheBuster = "?t=" + nowTimestamp;
+
         if (orderCount >= 15 && currentOrderValue >= 500) {
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! لأنك قفلت 15 طلب وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
-            cardImgEl.src = "https://i.top4top.io/p_3840wntvc1.jpg"; 
+            cardImgEl.crossOrigin = "anonymous";
+            cardImgEl.src = "https://i.top4top.io/p_3840wntvc1.jpg" + cacheBuster; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount > 6 && currentOrderValue >= 500) {
             activeGeneratedCode = "HA30";
             giftTitleEl.innerText = "🌟 مبروك! لأنك عميل دائم وتخطيت الـ 6 طلبات وأوردرك الحالي فوق الـ 500 جنيه، كسبت كود خصم 30% لأوردرك القادم: [HA30] 🔥!";
-            cardImgEl.src = "https://k.top4top.io/p_38400po0p1.jpg"; 
+            cardImgEl.crossOrigin = "anonymous";
+            cardImgEl.src = "https://k.top4top.io/p_38400po0p1.jpg" + cacheBuster; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount === 6) {
             activeGeneratedCode = "HAMZA10";
             giftTitleEl.innerText = "🎁 مبروك! بمناسبة وصولك للطلب السادس معنا، حصلت على كود خصم 10% لطلبك القادم: [HAMZA10] ✨!";
-            cardImgEl.src = "https://a.top4top.io/p_38404u1vb1.jpg"; 
+            cardImgEl.crossOrigin = "anonymous";
+            cardImgEl.src = "https://a.top4top.io/p_38404u1vb1.jpg" + cacheBuster; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HAMZA10 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         }
