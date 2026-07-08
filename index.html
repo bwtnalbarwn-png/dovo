@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
+    <!-- مكتبة تحويل الـ HTML إلى صورة لتنزيل الكارت فوراً -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
@@ -95,7 +96,7 @@
         .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
         .checkout-row span:last-child { font-weight: 900; }
 
-        /* 🛠️ هندسة الكوبون المطور والمقفل بالملي لمنع التآكل تماماً */
+        /* 🎫 هندسة الكوبون المطور والمقفل بالملي لمنع التآكل تماماً */
         .promo-accordion-container { width: 100%; margin-top: 15px; border: 1px solid #d1d1d6; border-radius: 12px; background: #fff; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
         .promo-toggle-btn { padding: 16px 20px; font-size: 15px; font-weight: 700; color: #222; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
         .promo-toggle-btn::after { content: "▼"; font-size: 11px; transition: 0.3s; }
@@ -136,15 +137,16 @@
         .menu-dropdown { border-bottom: 1px solid #222; }
         .menu-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 15px; }
         .menu-header::after { content: "▼"; font-size: 11px; transition: 0.3s; }
-        .menu-dropdown.active .menu-content { max-height: 2500px; padding: 20px; }
+        .menu-dropdown.active .menu-header::after { transform: rotate(180deg); }
         .menu-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #111; padding: 0 20px; }
+        .menu-dropdown.active .menu-content { max-height: 2500px; padding: 20px; }
         
         .policy-list { list-style: none; padding: 0; margin: 0; }
         .policy-item { position: relative; padding-right: 20px; margin-bottom: 18px; font-size: 13px; line-height: 1.6; color: #ccc; text-align: right; }
         .policy-item::before { content: "•"; position: absolute; right: 0; top: -2px; color: #d4af37; font-size: 18px; }
         .policy-item strong { color: #fff; display: block; margin-bottom: 2px; font-size: 13.5px; }
 
-        /* 🌸 ستايل شاشة النجاح الوردي في أبيض الكلاسيك المريحة للعين */
+        /* 🌸 ستايل شاشة النجاح الوردي في أبيض الكلاسيكية الشيك المريحة للعين */
         .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; }
         .success-overlay.show { opacity: 1; pointer-events: auto; }
         .success-card { background: #ffffff; width: 92%; max-width: 440px; border-radius: 24px; padding: 30px 20px; text-align: center; border: 2.5px solid var(--primary-color); box-shadow: 0 15px 40px rgba(226, 27, 121, 0.2); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); }
@@ -154,8 +156,14 @@
         .success-card p.sub-thanks-msg { font-size: 13.5px; color: #666; margin: 0 0 20px 0; font-weight: 600; }
         
         .loyalty-msg-title { font-size: 13.5px; font-weight: 800; color: #25d366; margin: 10px 0; line-height: 1.5; background: #f4fff7; padding: 10px; border-radius: 8px; border: 1px dashed #25d366; }
-        .discount-capture-area { background: #ffffff; padding: 8px; border-radius: 12px; border: 1.5px solid #1c1c1e; margin: 15px 0; display: none; }
+        
+        /* 🛠️ هندسة الأبعاد الذكية لحفظ الصورة الضخمة من التآكل (ستايل الأمان المطور لمنع قرف التآكل) */
+        .discount-capture-area { background: #000000; padding: 12px; border-radius: 14px; border: 1.5px solid #1c1c1e; margin: 15px 0; display: none; overflow: hidden; box-shadow: inset 0 0 20px rgba(255,255,255,0.05); }
         .discount-capture-area.reveal { display: block; }
+        .discount-card-img-box { width: 100%; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; }
+        
+        /* تقييد الارتفاع لضمان عدم تآكل الصورة الضخمة وظهورها كاملة 100% فوق وتحت */
+        .discount-card-img { width: 100%; max-height: 250px; object-fit: contain; display: block; background: #000; }
         
         .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 10px; width: 100%; border: none; border-radius: 8px; margin-top: 8px; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
         .download-badge-btn.reveal { display: flex; }
@@ -174,6 +182,7 @@
 <body>
 
     <div class="container">
+        <!-- معرض الصور المطور لمتجر الحمزاوي بالاسكريبت الكامل -->
         <div class="images-gallery">
             <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
@@ -310,7 +319,7 @@
                 <label>ملاحظات إضافية (اختياري)</label>
                 <div class="input-icon-wrapper">
                     <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                    <textarea id="notes" placeholder="اكتب هنا أي ملاحظات بخصوص الشحن أو مواعيد التسليم..."></textarea>
+                    <textarea id="notes" placeholder="ملاحظات الشحن..."></textarea>
                 </div>
             </div>
 
@@ -345,7 +354,7 @@
                 <div class="menu-header" onclick="toggleAccordion()">⚖️ بند الالتزام والشروط الرسمية للمتجر</div>
                 <div class="menu-content">
                     <ul class="policy-list">
-                        <li class="policy-item"><strong>1. جدية الطلب والشحن:</strong> بمجرد تسجيلك للبيانات، السيستم بيخصم تكلفة الشحن فوراً لحساب مندوب منطقتك ويتم حجز المنتج؛ يرجى عدم تأكيد الطلب إلا في حالة الجاهزية التامة للاستلام، منعا للمساءلة عن تكاليف الشحن والهدر.</li>
+                        <li class="policy-item"><strong>1. جدية الطلب والشحن:</strong> بمجرد تسجيلك للبيانات، السيستم بيخصم تكلفة الشحن فوراً لحساب مندوب منطقتك؛ يرجى الالتزام الكامل بالاستلام منعا للمساءلة القانونية والحظر.</li>
                         <li class="policy-item"><strong>2. الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ في حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
                         <li class="policy-item"><strong>3. تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
                         <li class="policy-item"><strong>4. قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
@@ -372,6 +381,7 @@
         <span>تأكيد طلب الشحن الفوري 🛍️</span>
     </button>
 
+    <!-- شاشة النجاح الوردية في أبيض الكلاسيكية الشيك المحدثة لمنع قرف تآكل الصور الحجم الكبير -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div style="font-size: 40px; margin-bottom: 12px;">🎉</div>
@@ -380,6 +390,7 @@
             
             <div class="loyalty-msg-title" id="loyaltyGiftTitle" style="display: none;"></div>
             
+            <!-- 📸 منطقة الالتقاط والمقاس المطور الحامي من قرف تآكل الكروت الضخمة -->
             <div class="discount-capture-area" id="captureCardSection">
                 <div class="discount-card-img-box">
                     <img src="https://i.ibb.co/C3m0gBwZ/92980.png" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
@@ -416,15 +427,6 @@
         observer.observe(el);
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
-        const firstFrame = document.querySelector('.gallery-item-wrapper');
-        if (firstFrame) {
-            firstFrame.classList.add('active');
-            const firstText = firstFrame.querySelector('.img-script-text');
-            if (firstText) firstText.classList.add('active');
-        }
-    });
-
     function selectFixedOffer(qty, price, text) {
         currentTotalPieces = qty; baseProductPrice = price; selectedOfferText = text;
         document.querySelectorAll('.offer-box').forEach(box => box.classList.remove('selected'));
@@ -450,32 +452,40 @@
         }
     }
 
-    // 🚚 الشحن المنفصل والمضبوط 100%: القاهرة والجيزة والقليوبية 60 وباقي مصر 80
+    // 🚚 الشحن المنفصل والمضبوط 100%: القاهرة والجيزة والقليوبية 60 وباقي مصر 80 بالتمام والكمال
     function updateShippingByLocation() {
         const gov = document.getElementById('governorate').value;
         if (gov === "القاهرة" || gov === "الجيزة" || gov === "القليوبية") {
             shippingPrice = 60;
+        } else if (gov === "") {
+            shippingPrice = 60; // الافتراضي فارغ
         } else {
             shippingPrice = 80;
         }
         recalculateTotal();
     }
 
+    // 🔢 العداد الذكي المطور لحساب وتحديث سعر القطعة فوق لايف طبقاً لرغبتك بالملي
     function recalculateTotal() {
         if (couponActive) {
             if (document.getElementById('promo-input').value.trim().toUpperCase() === "FREE") {
                 appliedDiscount = 0; shippingPrice = 0;
             } else { appliedDiscount = Math.round(baseProductPrice * 0.1); }
-        } else { appliedDiscount = 0; updateShippingByLocation(); }
+        } else { appliedDiscount = 0; }
         
+        // حساب إجمالي الفاتورة مع الشحن المنفصل الصاحي
         const finalTotal = (baseProductPrice - appliedDiscount) + shippingPrice;
         
+        // هندسة وتحديث السعر الفردي للقطعة فوق لايف طبقاً للعروض أو خارج العروض
         let unitPriceText = "275 ج.م / للقطعة";
-        if (currentTotalPieces === 2 && baseProductPrice === 500) {
+        if (currentTotalPieces === 1) {
+            unitPriceText = "275 ج.م / للقطعة";
+        } else if (currentTotalPieces === 2 && baseProductPrice === 500) {
             unitPriceText = "250 ج.م / للقطعة";
         } else if (currentTotalPieces === 3 && baseProductPrice === 720) {
             unitPriceText = "240 ج.م / للقطعة";
         } else {
+            // خارج العروض الـ 3 بيقفل السعر للقطعة على 275 ج.م تلقائياً كقيمة ثابتة للكميات المخصصة
             unitPriceText = "275 ج.م / للقطعة";
         }
 
@@ -571,14 +581,14 @@
         const nowTimestamp = new Date().getTime();
         activeGeneratedCode = "";
 
-        // إخفاء الكروت كوضع افتراضي لكل الناس
+        // إخفاء الكروت كوضع افتراضي لكل الناس في شاشة الشكر الكلاسيك البيرفكت
         giftTitleEl.style.display = "none";
         captureArea.classList.remove('reveal');
         downloadBtn.classList.remove('reveal');
 
-        // 🧠 تشغيل فلتر شروط الولاء التصاعدي بالملي:
+        // 🧠 تشغيل فلتر شروط الولاء التصاعدي بالمرة الحسابية الدقيقة:
         if (orderCount >= 15 && currentOrderValue >= 500) {
-            // المستوى التالت: المرة الـ 15 وأكتر والطلب فوق 500 ج.م -> شحن فري مجاني
+            // المستوى التالت: بعد المرة الـ 15 وأكتر والطلب فوق 500 ج.م -> شحن فري مجاني
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! لأنك قفلت 15 طلب وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
             cardImgEl.src = "https://i.top4top.io/p_3840wntvc1.jpg"; 
@@ -592,7 +602,7 @@
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount === 6) {
-            // المستوى الأول: المرة الـ 6 بالظبط يفتح كود الـ 10%
+            // المستوى الأول: المرة الـ 6 بالظبط يفتح كود الـ 10% الحقيقي المرفوع
             activeGeneratedCode = "HAMZA10";
             giftTitleEl.innerText = "🎁 مبروك! بمناسبة وصولك للطلب السادس معنا، حصلت على كود خصم 10% لطلبك القادم: [HAMZA10] ✨!";
             cardImgEl.src = "https://a.top4top.io/p_38404u1vb1.jpg"; 
@@ -623,7 +633,7 @@
                 setTimeout(() => { localStorage.removeItem("generated_this_session_" + activeGeneratedCode); }, 5000);
             }
             nameEl.value = ""; phoneEl.value = ""; govEl.value = ""; addressEl.value = "";
-            document.getElementById('notes').value = ""; promoInputEl.value = "";
+            document.getElementById('notes').value = ""; document.getElementById('promo-input').value = "";
             document.getElementById('promo-file').value = "";
             couponActive = false; recalculateTotal();
         })
