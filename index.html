@@ -146,7 +146,6 @@
         .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; }
         .success-overlay.show { opacity: 1; pointer-events: auto; }
         
-        /* 📐 ضبط مقاس الكارت ريسبونسيف كامل للتابلت والكمبيوتر واللاب توب والموبايل بدون أي تآكل */
         .success-card { background: #ffffff; width: 92%; max-width: 500px; border-radius: 24px; padding: 25px 15px; text-align: center; border: 2.5px solid var(--primary-color); box-shadow: 0 15px 40px rgba(226, 27, 121, 0.2); transform: scale(0.8); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15); max-height: 90vh; overflow-y: auto; box-sizing: border-box; }
         .success-overlay.show .success-card { transform: scale(1); }
         
@@ -177,7 +176,6 @@
 <body>
 
     <div class="container">
-        <!-- معرض الصور المطور لمتجر الحمزاوي -->
         <div class="images-gallery">
             <div class="gallery-item-wrapper">
                 <img src="https://e.top4top.io/p_3828eqfl01.jpg" alt="كريم DOVO الأصلي" class="product-img-full">
@@ -350,7 +348,7 @@
                 <div class="menu-content">
                     <ul class="policy-list">
                         <li class="policy-item"><strong>1. جدية الطلب والشحن:</strong> بمجرد تسجيلك للبيانات، السيستم بيخصم تكلفة الشحن فوراً لحساب مندوب منطقتك؛ يرجى الالتزام الكامل بالاستلام منعا للمساءلة القانونية والحظر.</li>
-                        <li class="policy-item"><strong>2. الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ في حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
+                        <li class="policy-item"><strong>2. الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ in حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
                         <li class="policy-item"><strong>3. تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
                         <li class="policy-item"><strong>4. قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
                         <li class="policy-item"><strong>5. سياسة العروض المجمعة والباقات:</strong> في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.</li>
@@ -485,7 +483,7 @@
 
     function togglePromoField() { if (!couponActive) document.getElementById('promoWrapper').classList.toggle('active'); }
 
-    // 🔒 التحقق الصارم والمربوط بعدد أوردرات جهاز العميل الحالي ومستحيل يشتغل بالتخمين
+    // 🔒 دالة التحقق المعدلة: مربوطة بالـ العداد الحقيقي الزيرو، ومجمدة تماماً لمنع التحايل والتخمين
     function applyPromo() {
         if (couponActive) return;
         
@@ -511,9 +509,9 @@
             return;
         }
 
+        // قراءة العداد الحقيقي الزيرو المخزن حالياً (بدون إضافة الـ 1 الوهمية إلا وقت تحريك زرار الإرسال الفعلي)
         let localOrderCount = parseInt(localStorage.getItem("alhamzawi_order_count") || "0") + 1;
 
-        // فحص الشروط الصارمة لجهاز العميل المطابق للعدد
         if (promo === "HAMZA10" && localOrderCount !== 6) {
             msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
             msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب السادس فقط!";
@@ -612,24 +610,29 @@
         downloadBtn.classList.remove('reveal');
 
         let cacheBuster = "?t=" + nowTimestamp;
+        
+        // 🛠️ دمج وتوليد مسار جيت هاب بيجز الكامل لايف من المتصفح لضمان فك شفرة السواد تماماً
+        let basePath = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
 
-        // المسارات النسبية المباشرة لملفات جيت هاب لضمان عدم السواد والسرعة
         if (orderCount >= 15 && currentOrderValue >= 500) {
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! لأنك قفلت 15 طلب وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
-            cardImgEl.src = "free-card.jpg" + cacheBuster; 
+            cardImgEl.crossOrigin = "anonymous";
+            cardImgEl.src = basePath + "free-card.jpg" + cacheBuster; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount > 6 && currentOrderValue >= 500) {
             activeGeneratedCode = "HA30";
             giftTitleEl.innerText = "🌟 مبروك! لأنك عميل دائم وتخطيت الـ 6 طلبات وأوردرك الحالي فوق الـ 500 جنيه، كسبت كود خصم 30% لأوردرك القادم: [HA30] 🔥!";
-            cardImgEl.src = "ha30-card.jpg" + cacheBuster; 
+            cardImgEl.crossOrigin = "anonymous";
+            cardImgEl.src = basePath + "ha30-card.jpg" + cacheBuster; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         } else if (orderCount === 6) {
             activeGeneratedCode = "HAMZA10";
             giftTitleEl.innerText = "🎁 مبروك! بمناسبة وصولك للطلب السادس معنا، حصلت على كود خصم 10% لطلبك القادم: [HAMZA10] ✨!";
-            cardImgEl.src = "hamza10-card.jpg" + cacheBuster; 
+            cardImgEl.crossOrigin = "anonymous";
+            cardImgEl.src = basePath + "hamza10-card.jpg" + cacheBuster; 
             cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HAMZA10 ] - صالح لـ 7 أيام";
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         }
