@@ -115,7 +115,6 @@
         .file-upload-input { width: 100% !important; padding: 10px !important; font-size: 12px !important; background: #fafafa; border: 1px dashed #aeaeaeb3 !important; border-radius: 8px !important; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
         .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
 
-        /* 🛍️ زرار الطلب السريع الثابت الملوكي (تم تعديل الـ Hover وإلغاء القفشة تماماً) */
         .order-now-btn { 
             background: linear-gradient(90deg, #d60000, #ff1a1a); 
             color: white; border: none; width: 85%; max-width: 380px; 
@@ -125,7 +124,6 @@
         }
         .order-now-btn:hover { transform: translateX(-50%) translateY(-2px); box-shadow: 0 10px 25px rgba(214, 0, 0, 0.45); }
         
-        /* 📱 ستايل أداة وسجادة هبوط شات واتساب التفاعلي iOS العائم */
         .whatsapp-wrapper { position: fixed; bottom: 85px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
         .whatsapp-floating { background-color: #25d366; color: white; width: 52px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); text-decoration: none; position: relative; z-index: 2; transition: 0.3s; }
         .whatsapp-floating:hover { transform: scale(1.05); }
@@ -160,7 +158,6 @@
         .discount-capture-area.reveal { display: block; }
         .discount-card-img-box { width: 100%; aspect-ratio: 16 / 9; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; position: relative; }
         
-        /* ضبط الصورة بالمقاس الملوكي 16:9 أوتوماتيكياً برمجياً لتفرش كامل المساحة النظيفة */
         .discount-card-img { width: 100%; height: 100%; object-fit: fill; display: block; background: #000; }
         
         .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 12px; width: 100%; max-width: 440px; border: none; border-radius: 8px; margin: 8px auto 0 auto; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-sizing: border-box; }
@@ -195,7 +192,7 @@
             </div>
             <div class="gallery-item-wrapper">
                 <img src="https://f.top4top.io/p_38283r0da1.jpg" alt="العناية بالبشرة" class="product-img-full">
-                <p class="img-script-text">🌸 العناية المتكاملة تبدأ من الطبيعة. كريم DOVO مصمم خصيصاً ليمنح قوامك المرونة والنعومة الفائقة بفضل ذرات فيتامين E النشطة التي تتغلغل عميقاً in خلايا البشرة لتمنحك مظهراً متناسقاً وثقة تدوم طوال اليوم.</p>
+                <p class="img-script-text">🌸 العناية المتكاملة تبدأ من الطبيعة. كريم DOVO مصمم خصيصاً ليمنح قوامك المرونة والنعومة الفائقة بفضل ذرات فيتامين E النشطة التي تتغلغل عميقاً في خلايا البشرة لتمنحك مظهراً متناسقاً وثقة تدوم طوال اليوم.</p>
             </div>
             <div class="gallery-item-wrapper">
                 <img src="https://c.top4top.io/p_3828v8mta1.jpg" alt="🌸 لماذا تختارين DOVO؟" class="product-img-full">
@@ -221,7 +218,7 @@
             </div>
             <div class="offer-box" id="opt-2" onclick="selectFixedOffer(2, 500, 'عرض العبوتين بسعر 500 ج.م')">
                 <input type="radio" name="offer">
-                <div class="offer-text">عرض العبوتين بسعر 500 ج.م فقط 🌟 (وفرت 50 جنيه)</div>
+                <div class="offer-text">عرض العبوتين بسعر 500🌟 (وفرت 50 جنيه)</div>
                 <div class="offer-prices"><span class="offer-old-price">550 ج.م</span><span class="offer-new-price">500 ج.م</span></div>
             </div>
             <div class="offer-box" id="opt-3" onclick="selectFixedOffer(3, 720, '3 عبوات بسعر 720 ج.م')">
@@ -241,20 +238,20 @@
         </div>
 
         <div class="animated-card card-2" id="formSection">
-            <div class="form-title">البيانات المطلوبة</div>
+            <div class="form-title">📝البيانات المطلوبة</div>
             
             <div class="form-group" id="group-name">
-                <label>الاسم بالكامل</label>
+                <label>اكتب أسمك</label>
                 <div class="input-icon-wrapper">
                     <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                    <input type="text" id="name" placeholder="الاسم" oninput="clearError('group-name')">
+                    <input type="text" id="name" placeholder="الأسم" oninput="clearError('group-name')">
                     <svg class="error-alert-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
                 </div>
                 <div class="error-message">هذا الحقل مطلوب</div>
             </div>
             
             <div class="form-group" id="group-phone">
-                <label>رقم الهاتف</label>
+                <label>أكتب رقمك</label>
                 <div class="input-icon-wrapper">
                     <svg class="icon" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-4.28-6.59-7.09l2.2-2.21c.28-.26.36-.66.25-1.01C8.78 5.84 8.59 4.65 8.59 3.42c0-.55-.45-1-1-1H4.01c-.55 0-1 .45-1 1C3.01 12.87 11.13 21 21.01 21c.55 0 1-.45 1-1v-3.62c0-.55-.45-1-1-1z"/></svg>
                     <input type="tel" id="phone" placeholder="الرقم" oninput="clearError('group-phone')">
@@ -335,7 +332,7 @@
                             <button type="button" id="promo-btn-id" class="promo-click-btn" onclick="applyPromo()">تطبيق</button>
                         </div>
                         <div class="promo-upload-row">
-                            <label>📸 ارفع صورة الكوبون الصالحة لتأكيد الخصم:</label>
+                            <label>📸 ارفع صورة الكوبون لتأكيد الخصم:</label>
                             <div class="file-upload-wrapper">
                                 <input type="file" id="promo-file" class="file-upload-input" accept="image/*">
                             </div>
@@ -354,7 +351,7 @@
                         <li class="policy-item"><strong>1. جدية الطلب والشحن:</strong> بمجرد تسجيلك للبيانات، السيستم بيخصم تكلفة الشحن فوراً لحساب مندوب منطقتك؛ يرجى الالتزام الكامل بالاستلام منعا للمساءلة القانونية والحظر.</li>
                         <li class="policy-item"><strong>2. الالتزام القانوني بالاستلام:</strong> تأكيدك للطلب يعتبر عقداً مبدئياً بجدية الشراء؛ في حال رفض الاستلام بعد خروج المندوب بدون سبب قهري، يتم إدراج الرقم في قائمة الحظر الموحدة لشركات الشحن، ويتحمل العميل الملاحقة بتعويض قيمة المشوار.</li>
                         <li class="policy-item"><strong>3. تثبيت خط السير والأولوية:</strong> بعد الضغط على تأكيد، يتم تسجيل الأوردر برقم تسلسلي وربطه بخط سير المندوب فوراً ولا يمكن تعديل العنوان أو موعد الاستلام. في حالة عدم تواجدك، يرجى التنسيق مع شخص ينوب عنك للاستلام، حيث لا يتم إعادة جدولة الشحنة مرة أخرى ودفع الشحن مجدداً.</li>
-                        <li class="policy-item"><strong>4. قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش في السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
+                        <li class="policy-item"><strong>4. قطعية الأسعار والمصاريف:</strong> جميع الأسعار وتكاليف الشحن الصادرة من السيستم نهائية ومبرمجة داخل بوليصة الشحن الرسمية للمندوب. مندوب التوصيل هو جهة تسليم وتحصيل فقط، ولا يملك أي صلاحية للنقاش in السعر أو الفصال أو تقديم خصومات، وفي حال الامتناع عن دفع المبلغ المثبت بالكامل يُلغى الأوردر ويتحمل العميل كلفة المشوار.</li>
                         <li class="policy-item"><strong>5. سياسة العروض المجمعة والباقات:</strong> في حال الاستفادة من عروض العبوتين أو الـ 3 عبوات، يعتبر العرض وحدة واحدة لا تتجزأ. لا يُسمح نهائياً باسترجاع جزء من العرض والاحتفاظ بالجزء الآخر، وفي حالة الرغبة في الإرجاع يتم تسليم العرض كاملاً بنفس حالته الأصلية ودفع مصاريف الشحن للمندوب نظراً لتكلفة المشوار.</li>
                         <li class="policy-item"><strong>6. حد أقصى للاحتفاظ بالشحنة:</strong> في حالة طلب العميل تأجيل الاستلام لأي سبب شخصي، يقوم السيستم بحجز الشحنة في مقر شركة الشحن لمدة أقصاها 48 ساعة فقط من تاريخ وصولها للمحافظة. بعد مرور هذه المدة، يتم إلغاء الأوردر أوتوماتيكياً وإرجاعه للمخازن مع فرض حظر مؤفت على الرقم من الطلب مجدداً.</li>
                         <li class="policy-item"><strong>7. نظام الحظر الموحد (القائمة السوداء):</strong> متجرنا مرتبط بشبكة تجارية موحدة للكشف عن جدية المشترين. في حالة رفض استلام الشحنة بعد خروجها بدون سبب طبيعي صريح، يتم إدراج (الاسم، ورقم الهاتف، والعنوان) تلقائياً في القائمة السوداء المحظورة من الشحن أوتوماتيكياً في متجرنا وأكثر من 50 متجر إلكتروني آخر.</li>
@@ -367,7 +364,7 @@
         </div>
     </div>
 
-    <!-- 🟢 أداة شات واتساب التفاعلية iOS العائمة ورجعت مكانها لوز اللوز -->
+    <!-- 🟢 أداة شات واتساب التفاعلية iOS العائمة -->
     <div class="whatsapp-wrapper">
         <a href="https://wa.me/201207362722" class="whatsapp-floating" target="_blank">
             <svg class="ws-icon" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
@@ -375,16 +372,16 @@
         <div class="whatsapp-text-carpet">تواصل عبر واتساب</div>
     </div>
 
-    <!-- 🛍️ زرار الطلب السريع الثابت الملوكي (مظبوط وشغال 100%) -->
+    <!-- 🛍️ زرار الطلب السريع الثابت الملوكي -->
     <button class="order-now-btn" onclick="sendOrder()">
-        <span>تأكيد طلب الشحن الفوري 🛍️</span>
+        <span>أطلب الآن 🛍️</span>
     </button>
 
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div style="font-size: 40px; margin-bottom: 12px;">🎉</div>
             <p class="main-thanks-msg">تم تسجيل طلبك بنجاح!</p>
-            <p class="sub-thanks-msg">سيتم التواصل معك في أقرب وقت لتأكيد الشحن الفوري.</p>
+            <p class="sub-thanks-msg">سيتم التواصل معك في أقرب وقت لتأكيد الشحن الفوري شكراًلك.</p>
             
             <div class="loyalty-msg-title" id="loyaltyGiftTitle" style="display: none;"></div>
             
@@ -489,6 +486,7 @@
 
     function togglePromoField() { if (!couponActive) document.getElementById('promoWrapper').classList.toggle('active'); }
 
+    // 🔒 نظام فحص الكوبونات: تم فك الحظر عن الأجهزة المخزنة لتجرب براحتك + تأمين الاستخدام لمرة واحدة
     function applyPromo() {
         if (couponActive) return;
         
@@ -518,17 +516,17 @@
 
         if (promo === "HAMZA10" && localOrderCount !== 6) {
             msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب السادس بالظبط!";
+            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب السادس!";
             return;
         }
         if (promo === "HA30" && localOrderCount !== 10) {
             msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب العاشر بالظبط!";
+            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب العاشر!";
             return;
         }
         if (promo === "FREE" && localOrderCount !== 15) {
             msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب الـ 15 بالظبط!";
+            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب الـ 15 !";
             return;
         }
 
@@ -538,16 +536,17 @@
             return;
         }
 
-        if (localStorage.getItem("generated_this_session_" + promo) === "true") {
+        // قفل الكوبون ليعمل مرة واحدة بعد استهلاكه في الجلسة الحالية
+        if (localStorage.getItem("used_coupon_this_session_" + promo) === "true") {
             msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ هذا الكوبون مخصص للاستخدام في أوردرك القادم فقط!"; return;
+            msg.innerText = "❌ عذراً، تم استخدام وتفعيل هذا الكوبون مسبقاً!"; return;
         }
 
         couponActive = true; 
         msg.style.display = "block"; msg.style.color = "#25d366"; 
         msg.innerText = "✓ تم تطبيق الخصم بنجاح وصورة الكارت جاهزة لحسابك!";
         promoInputEl.disabled = true; 
-        localStorage.setItem("used_coupon_" + promo, "true");
+        localStorage.setItem("used_coupon_this_session_" + promo, "true");
         
         recalculateTotal();
     }
@@ -575,7 +574,7 @@
             document.body.removeChild(downloadLink);
             btn.innerText = "تم حفظ الكارت بنجاح في الإستوديو! ✅";
         }).catch(() => {
-            btn.innerText = "فشل التنزيل تلقائياً، يرجى لقطة الشاشة 📸";
+            btn.innerText = "فشل التنزيل تلقائياً، يرجى أخذ لقطة شاشة(اسكرين شوت) 📸";
         });
     }
 
@@ -612,6 +611,7 @@
         captureArea.classList.remove('reveal');
         downloadBtn.classList.remove('reveal');
 
+        // 🛠️ التحديث الفوري: ربط حقن وتحديث السورس برمجياً بالكامل مع لحظة التوليد لضمان الظهور لايف
         if (orderCount === 15 && currentOrderValue >= 500) {
             activeGeneratedCode = "FREE";
             giftTitleEl.innerText = "🎉 مبروك! بمناسبة وصولك للطلب الـ 15 وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
@@ -635,11 +635,6 @@
             giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
         }
 
-        if (activeGeneratedCode !== "") {
-            localStorage.setItem("generated_this_session_" + activeGeneratedCode, "true");
-            localStorage.setItem("coupon_time_" + activeGeneratedCode, new Date().getTime().toString());
-        }
-
         const formData = new FormData();
         formData.append("name", nameEl.value.trim());
         formData.append("phone", phoneEl.value.trim());
@@ -652,11 +647,8 @@
         fetch(webAppUrl, { method: "POST", body: formData })
         .then(() => {
             document.getElementById('successOverlay').classList.add('show');
-            document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
+            document.querySelector('.order-now-btn span').innerText = "أطلب الآن🛍️";
             
-            if (activeGeneratedCode !== "") {
-                setTimeout(() => { localStorage.removeItem("generated_this_session_" + activeGeneratedCode); }, 5000);
-            }
             nameEl.value = ""; phoneEl.value = ""; govEl.value = ""; addressEl.value = "";
             document.getElementById('notes').value = ""; document.getElementById('promo-input').value = "";
             document.getElementById('promo-file').value = "";
@@ -664,13 +656,13 @@
         })
         .catch(() => {
             alert("حدث خطأ، يرجى المحاولة مرة أخرى!");
-            document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
+            document.querySelector('.order-now-btn span').innerText = "أطلب الآن 🛍️";
         });
     }
 
     function closeSuccess() {
         document.getElementById('successOverlay').classList.remove('show');
-        document.querySelector('.order-now-btn span').innerText = "تأكيد طلب الشحن الفوري 🛍️";
+        document.querySelector('.order-now-btn span').innerText = "أطلب الآن 🛍️";
         document.querySelector('.download-badge-btn span').innerText = "اضغط هنا لتنزيل كارت الخصم في الاستوديو ⬇️";
     }
 </script>
