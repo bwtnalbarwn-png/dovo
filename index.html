@@ -7,10 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
-    <!-- مكتبة تحويل الـ HTML إلى صورة لتنزيل الكارت فوراً -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
+
     <style>
         :root {
             --primary-color: #e21b79; /* بينك البراند الأنيق */
@@ -96,25 +93,6 @@
         .checkout-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #444; direction: rtl; text-align: right; }
         .checkout-row span:last-child { font-weight: 900; }
 
-        .promo-accordion-container { width: 100%; margin-top: 15px; border: 1px solid #d1d1d6; border-radius: 12px; background: #fff; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
-        .promo-toggle-btn { padding: 16px 20px; font-size: 15px; font-weight: 700; color: #222; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
-        .promo-toggle-btn::after { content: "▼"; font-size: 11px; transition: 0.3s; }
-        .promo-accordion-container.active .promo-toggle-btn::after { transform: rotate(180deg); }
-        
-        .promo-expanded-fields { max-height: 0; display: flex; gap: 10px; padding: 0 15px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); opacity: 0; flex-direction: column; }
-        .promo-accordion-container.active .promo-expanded-fields { max-height: 240px; padding-bottom: 18px; opacity: 1; }
-        .promo-input-row { display: flex; gap: 8px; width: 100%; }
-        .promo-input-row input { flex: 1; padding: 10px 12px; border: 1px solid #d1d1d6; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 600; font-size: 13.5px; outline: none; text-align: right; }
-        
-        .promo-click-btn { background-color: #1c1c1e; color: white; border: none; padding: 0 15px; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; font-size: 12.5px; white-space: nowrap; transition: 0.2s; max-width: 90px; }
-        .promo-click-btn:hover { background-color: var(--primary-color); }
-        .promo-click-btn:disabled { background-color: #ccc; cursor: not-allowed; }
-        
-        .promo-upload-row { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; text-align: right; }
-        .promo-upload-row label { font-size: 12px; font-weight: 700; color: #444; }
-        .file-upload-input { width: 100% !important; padding: 10px !important; font-size: 12px !important; background: #fafafa; border: 1px dashed #aeaeaeb3 !important; border-radius: 8px !important; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        .promo-message { font-size: 13px; font-weight: 700; margin-top: 8px; display: none; text-align: right; padding-right: 5px; }
-
         .order-now-btn { 
             background: linear-gradient(90deg, #d60000, #ff1a1a); 
             color: white; border: none; width: 85%; max-width: 380px; 
@@ -123,6 +101,7 @@
             position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 999; font-family: 'Cairo', sans-serif; 
         }
         .order-now-btn:hover { transform: translateX(-50%) translateY(-2px); box-shadow: 0 10px 25px rgba(214, 0, 0, 0.45); }
+        .order-now-btn:disabled { opacity: 0.7; cursor: not-allowed; }
         
         .whatsapp-wrapper { position: fixed; bottom: 85px; left: 20px; display: flex; align-items: center; z-index: 998; direction: ltr; }
         .whatsapp-floating { background-color: #25d366; color: white; width: 52px; height: 50px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.18); text-decoration: none; position: relative; z-index: 2; transition: 0.3s; }
@@ -151,19 +130,6 @@
         
         .success-card p.main-thanks-msg { font-size: 16.5px; color: #111; margin: 0 0 10px 0; line-height: 1.6; font-weight: 800; }
         .success-card p.sub-thanks-msg { font-size: 13.5px; color: #666; margin: 0 0 20px 0; font-weight: 600; }
-        
-        .loyalty-msg-title { font-size: 13.5px; font-weight: 800; color: #25d366; margin: 10px 0; line-height: 1.5; background: #f4fff7; padding: 10px; border-radius: 8px; border: 1px dashed #25d366; }
-        
-        .discount-capture-area { background: #000000; padding: 12px; border-radius: 14px; border: 1.5px solid #1c1c1e; margin: 15px auto; display: none; overflow: hidden; box-shadow: inset 0 0 20px rgba(255,255,255,0.05); width: 100%; max-width: 440px; box-sizing: border-box; }
-        .discount-capture-area.reveal { display: block; }
-        .discount-card-img-box { width: 100%; aspect-ratio: 16 / 9; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; position: relative; }
-        
-        .discount-card-img { width: 100%; height: 100%; object-fit: fill; display: block; background: #000; }
-        
-        .download-badge-btn { background: #1c1c1e; color: #ffffff; font-size: 12px; font-weight: 800; padding: 12px; width: 100%; max-width: 440px; border: none; border-radius: 8px; margin: 8px auto 0 auto; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-sizing: border-box; }
-        .download-badge-btn.reveal { display: flex; }
-        .download-badge-btn:hover { background: var(--primary-color); }
-        .download-badge-btn svg { width: 16px; height: 16px; fill: #fff; }
 
         .success-close-btn { background: var(--primary-color); color: white; border: none; padding: 11px 30px; font-size: 14px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; max-width: 440px; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 12px rgba(226, 27, 121, 0.15); margin: 10px auto 0 auto; display: block; }
         
@@ -323,23 +289,6 @@
                 <div class="checkout-row" style="border-top: 1px solid #eee; padding-top: 10px; font-size: 18px; color: #111; font-weight: 900;">
                     <span>الإجمالي النهائي:</span><span id="txt-total" style="color: var(--secondary-color);">335 ج.م</span>
                 </div>
-                
-                <div class="promo-accordion-container" id="promoWrapper">
-                    <div class="promo-toggle-btn" onclick="togglePromoField()">هل لديك كوبون خصم؟</div>
-                    <div class="promo-expanded-fields">
-                        <div class="promo-input-row">
-                            <input type="text" id="promo-input" placeholder="أدخل كود الكوبون">
-                            <button type="button" id="promo-btn-id" class="promo-click-btn" onclick="applyPromo()">تطبيق</button>
-                        </div>
-                        <div class="promo-upload-row">
-                            <label>📸 ارفع صورة الكوبون لتأكيد الخصم:</label>
-                            <div class="file-upload-wrapper">
-                                <input type="file" id="promo-file" class="file-upload-input" accept="image/*">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="promo-msg" class="promo-message"></div>
             </div>
         </div>
 
@@ -373,7 +322,7 @@
     </div>
 
     <!-- 🛍️ زرار الطلب السريع الثابت الملوكي -->
-    <button class="order-now-btn" onclick="sendOrder()">
+    <button class="order-now-btn" id="orderBtn" onclick="sendOrder()">
         <span>أطلب الآن 🛍️</span>
     </button>
 
@@ -382,21 +331,6 @@
             <div style="font-size: 40px; margin-bottom: 12px;">🎉</div>
             <p class="main-thanks-msg">تم تسجيل طلبك بنجاح!</p>
             <p class="sub-thanks-msg">سيتم التواصل معك في أقرب وقت لتأكيد الشحن الفوري شكراًلك.</p>
-            
-            <div class="loyalty-msg-title" id="loyaltyGiftTitle" style="display: none;"></div>
-            
-            <div class="discount-capture-area" id="captureCardSection">
-                <div class="discount-card-img-box">
-                    <img id="couponDynamicImg" src="" alt="كارت خصومات متجر الحمزاوي" class="discount-card-img">
-                </div>
-                <div id="dynamicCouponTextOnCard" style="font-size: 11px; font-weight: 800; color: #e21b79; margin-top: 5px; background: #fff0f6; padding: 4px; border-radius: 4px; border: 1px dashed #e21b79;">كود الخصم الفعلي المستقبلي</div>
-            </div>
-
-            <button type="button" class="download-badge-btn" id="downloadCardBtn" onclick="downloadCouponAsImage()">
-                <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-                <span>اضغط هنا لتنزيل كارت الخصم في الاستوديو ⬇️</span>
-            </button>
-
             <button class="success-close-btn" onclick="closeSuccess()">حسناً، إغلاق</button>
         </div>
     </div>
@@ -405,10 +339,7 @@
     let currentTotalPieces = 1;
     let baseProductPrice = 275;
     let shippingPrice = 60;
-    let couponActive = false;
-    let appliedDiscount = 0;
     let selectedOfferText = "عبوة واحدة بسعر 275 ج.م";
-    let activeGeneratedCode = ""; 
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -459,13 +390,7 @@
     }
 
     function recalculateTotal() {
-        if (couponActive) {
-            if (document.getElementById('promo-input').value.trim().toUpperCase() === "FREE") {
-                appliedDiscount = 0; shippingPrice = 0;
-            } else { appliedDiscount = Math.round(baseProductPrice * 0.1); }
-        } else { appliedDiscount = 0; }
-        
-        const finalTotal = (baseProductPrice - appliedDiscount) + shippingPrice;
+        const finalTotal = baseProductPrice + shippingPrice;
         
         let unitPriceText = "275 ج.م / للقطعة";
         if (currentTotalPieces === 1) {
@@ -484,104 +409,13 @@
         document.getElementById('txt-total').innerText = finalTotal + " ج.م";
     }
 
-    function togglePromoField() { if (!couponActive) document.getElementById('promoWrapper').classList.toggle('active'); }
-
-    // 🔒 نظام فحص الكوبونات: تم فك الحظر عن الأجهزة المخزنة لتجرب براحتك + تأمين الاستخدام لمرة واحدة
-    function applyPromo() {
-        if (couponActive) return;
-        
-        const nameEl = document.getElementById('name'); 
-        const phoneEl = document.getElementById('phone');
-        const govEl = document.getElementById('governorate'); 
-        const addressEl = document.getElementById('address');
-        const msg = document.getElementById('promo-msg');
-        const promoInputEl = document.getElementById('promo-input');
-        const promo = promoInputEl.value.trim().toUpperCase();
-
-        if (!nameEl.value.trim() || !phoneEl.value.trim() || !govEl.value || !addressEl.value.trim()) {
-            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ برجاء ملء البيانات المطلوبة أولاً قبل تطبيق الكوبون!";
-            
-            if(!nameEl.value.trim()) document.getElementById('group-name').classList.add('has-error');
-            if(!phoneEl.value.trim()) document.getElementById('group-phone').classList.add('has-error');
-            if(!govEl.value) document.getElementById('group-governorate').classList.add('has-error');
-            if(!addressEl.value.trim()) document.getElementById('group-address').classList.add('has-error');
-            
-            const firstErr = document.querySelector('.has-error');
-            if(firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return;
-        }
-
-        let localOrderCount = parseInt(localStorage.getItem("alhamzawi_order_count") || "0") + 1;
-
-        if (promo === "HAMZA10" && localOrderCount !== 6) {
-            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب السادس!";
-            return;
-        }
-        if (promo === "HA30" && localOrderCount !== 10) {
-            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب العاشر!";
-            return;
-        }
-        if (promo === "FREE" && localOrderCount !== 15) {
-            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ عذراً، هذا الكوبون مخصص للعملاء عند الطلب الـ 15 !";
-            return;
-        }
-
-        if (promo !== "HAMZA10" && promo !== "HA30" && promo !== "FREE") {
-            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ رمز الكوبون غير صحيح أو غير متاح لحسابك حالياً!";
-            return;
-        }
-
-        // قفل الكوبون ليعمل مرة واحدة بعد استهلاكه في الجلسة الحالية
-        if (localStorage.getItem("used_coupon_this_session_" + promo) === "true") {
-            msg.style.display = "block"; msg.style.color = "var(--secondary-color)";
-            msg.innerText = "❌ عذراً، تم استخدام وتفعيل هذا الكوبون مسبقاً!"; return;
-        }
-
-        couponActive = true; 
-        msg.style.display = "block"; msg.style.color = "#25d366"; 
-        msg.innerText = "✓ تم تطبيق الخصم بنجاح وصورة الكارت جاهزة لحسابك!";
-        promoInputEl.disabled = true; 
-        localStorage.setItem("used_coupon_this_session_" + promo, "true");
-        
-        recalculateTotal();
-    }
-
     function clearError(groupId) { document.getElementById(groupId).classList.remove('has-error'); }
     function toggleAccordion() { document.getElementById('policyAccordion').classList.toggle('active'); }
-
-    function downloadCouponAsImage() {
-        const targetSection = document.getElementById('captureCardSection');
-        const btn = document.querySelector('.download-badge-btn span');
-        btn.innerText = "جاري الحفظ والتحميل... 🔄";
-        
-        html2canvas(targetSection, { 
-            useCORS: true, 
-            allowTaint: true,
-            logging: false,
-            scale: 2 
-        }).then(canvas => {
-            const imageURL = canvas.toDataURL("image/png");
-            const downloadLink = document.createElement('a');
-            downloadLink.href = imageURL;
-            downloadLink.download = `AlHamzawi-Coupon-${activeGeneratedCode || 'GIFT'}.png`;
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
-            btn.innerText = "تم حفظ الكارت بنجاح في الإستوديو! ✅";
-        }).catch(() => {
-            btn.innerText = "فشل التنزيل تلقائياً، يرجى أخذ لقطة شاشة(اسكرين شوت) 📸";
-        });
-    }
 
     function sendOrder() {
         const nameEl = document.getElementById('name'); const phoneEl = document.getElementById('phone');
         const govEl = document.getElementById('governorate'); const addressEl = document.getElementById('address');
-        const promoInputEl = document.getElementById('promo-input');
+        const orderBtn = document.getElementById('orderBtn');
 
         if (!nameEl.value.trim() || !phoneEl.value.trim() || !govEl.value || !addressEl.value.trim()) {
             if(!nameEl.value.trim()) document.getElementById('group-name').classList.add('has-error');
@@ -594,76 +428,36 @@
             return;
         }
 
+        orderBtn.disabled = true;
         document.querySelector('.order-now-btn span').innerText = "جاري حفظ طلبك بأمان... ⏳";
-        
-        let orderCount = parseInt(localStorage.getItem("alhamzawi_order_count") || "0") + 1;
-        localStorage.setItem("alhamzawi_order_count", orderCount.toString());
-
-        const currentOrderValue = baseProductPrice; 
-        const giftTitleEl = document.getElementById('loyaltyGiftTitle');
-        const cardTextEl = document.getElementById('dynamicCouponTextOnCard');
-        const cardImgEl = document.getElementById('couponDynamicImg');
-        const captureArea = document.getElementById('captureCardSection');
-        const downloadBtn = document.getElementById('downloadCardBtn');
-        activeGeneratedCode = "";
-
-        giftTitleEl.style.display = "none";
-        captureArea.classList.remove('reveal');
-        downloadBtn.classList.remove('reveal');
-
-        // 🛠️ التحديث الفوري: ربط حقن وتحديث السورس برمجياً بالكامل مع لحظة التوليد لضمان الظهور لايف
-        if (orderCount === 15 && currentOrderValue >= 500) {
-            activeGeneratedCode = "FREE";
-            giftTitleEl.innerText = "🎉 مبروك! بمناسبة وصولك للطلب الـ 15 وفاتورتك فوق الـ 500 جنيه، حصلت على كود الشحن المجاني لأوردرك القادم: [FREE] 🚚!";
-            cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.src = "https://k.top4top.io/p_3841gf99u1.jpg"; 
-            cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ FREE ] - صالح لـ 7 أيام";
-            giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
-        } else if (orderCount === 10 && currentOrderValue >= 500) {
-            activeGeneratedCode = "HA30";
-            giftTitleEl.innerText = "🌟 مبروك! بمناسبة وصولك للطلب العاشر وفاتورتك الحالية فوق الـ 500 جنيه، كسبت كود خصم 30% لأوردرك القادم: [HA30] 🔥!";
-            cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.src = "https://j.top4top.io/p_384176qvc1.jpg"; 
-            cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HA30 ] - صالح لـ 7 أيام";
-            giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
-        } else if (orderCount === 6 && currentOrderValue >= 500) {
-            activeGeneratedCode = "HAMZA10";
-            giftTitleEl.innerText = "🎁 مبروك! بمناسبة وصولك للطلب السادس معنا وفاتورتك الحالية فوق الـ 500 جنيه، حصلت على كود خصم 10% لطلبك القادم: [HAMZA10] ✨!";
-            cardImgEl.crossOrigin = "anonymous";
-            cardImgEl.src = "https://a.top4top.io/p_3841y5vqt1.jpg"; 
-            cardTextEl.innerText = "كود الخصم الفعلي المستقبلي: [ HAMZA10 ] - صالح لـ 7 أيام";
-            giftTitleEl.style.display = "block"; captureArea.classList.add('reveal'); downloadBtn.classList.add('reveal');
-        }
 
         const formData = new FormData();
         formData.append("name", nameEl.value.trim());
         formData.append("phone", phoneEl.value.trim());
         formData.append("governorate", govEl.value);
         formData.append("address", addressEl.value.trim());
-        formData.append("offer", `العرض: ${selectedOfferText} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText} | الكوبون الحالي المستخدم: ${couponActive ? promoInputEl.value.trim().toUpperCase() : "لا يوجد"} | رقم الأوردر الحالي: ${orderCount}`);
+        formData.append("offer", `العرض: ${selectedOfferText} | إجمالي الفاتورة: ${document.getElementById('txt-total').innerText}`);
 
         const webAppUrl = "https://script.google.com/macros/s/AKfycbyYw15uE-xS4eGVUzikrB0ZXYevm0mL1IPYkbNrvQKDt-WSKLkSW_AVd3u379HXY7Yy/exec";
 
         fetch(webAppUrl, { method: "POST", body: formData })
         .then(() => {
             document.getElementById('successOverlay').classList.add('show');
+            orderBtn.disabled = false;
             document.querySelector('.order-now-btn span').innerText = "أطلب الآن🛍️";
             
             nameEl.value = ""; phoneEl.value = ""; govEl.value = ""; addressEl.value = "";
-            document.getElementById('notes').value = ""; document.getElementById('promo-input').value = "";
-            document.getElementById('promo-file').value = "";
-            couponActive = false; recalculateTotal();
+            document.getElementById('notes').value = "";
         })
         .catch(() => {
             alert("حدث خطأ، يرجى المحاولة مرة أخرى!");
+            orderBtn.disabled = false;
             document.querySelector('.order-now-btn span').innerText = "أطلب الآن 🛍️";
         });
     }
 
     function closeSuccess() {
         document.getElementById('successOverlay').classList.remove('show');
-        document.querySelector('.order-now-btn span').innerText = "أطلب الآن 🛍️";
-        document.querySelector('.download-badge-btn span').innerText = "اضغط هنا لتنزيل كارت الخصم في الاستوديو ⬇️";
     }
 </script>
 </body>
